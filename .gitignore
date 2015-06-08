@@ -1,0 +1,12 @@
+*.pdb
+*.qm
+*.sln
+*.vcxproj
+*.vcxproj.filters
+.vs
+Makefile
+Makefile.debug
+Makefile.release
+src/debug
+src/release
+ui_*.h
