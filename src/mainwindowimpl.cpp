@@ -30,6 +30,8 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 	ui = new Ui_ImageSplitterBase();
 	ui->setupUi(this);
 
+	setWindowIcon(QIcon(":/isplitter.png"));
+
 	dragging = false;
 
 	image = NULL;

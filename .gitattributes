@@ -3,7 +3,9 @@
 *.h		text
 *.ico		-text
 *.md		text
+*.png		-text
 *.pro		text
+*.qrc		text
 *.rc		text
 *.ts		text
 *.ui		text

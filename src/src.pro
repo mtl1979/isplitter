@@ -26,6 +26,8 @@ HEADERS =	menubar.h \
 			mainwindowimpl.h \
 			previewimpl.h
 
+RESOURCES    =  isplitter.qrc
+
 TRANSLATIONS =	isplitter_en.ts \
 				isplitter_fi.ts
 
