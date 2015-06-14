@@ -1,0 +1,9 @@
+*.c		text
+*.cpp		text
+*.h		text
+*.ico		-text
+*.md		text
+*.pro		text
+*.rc		text
+*.ts		text
+*.ui		text
