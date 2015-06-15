@@ -93,7 +93,7 @@ ImageSplitter::dropEvent(QDropEvent* event)
 		QList<QUrl> urls = event->mimeData()->urls();
 		QUrl u = urls.takeFirst();
 #ifdef WIN32
-		qDebug("Drop URL: %S", u.toString().utf16());
+		qDebug("Drop URL: %s", u.toString().toLocal8Bit());
 #else
 		wchar_t wu[u.toString().length()+1];
 		int len = u.toString().toWCharArray(wu);
@@ -102,7 +102,7 @@ ImageSplitter::dropEvent(QDropEvent* event)
 #endif
 		QString file = u.toLocalFile();
 #ifdef WIN32
-		qDebug("Drop: %S", file.utf16());
+		qDebug("Drop: %s", file.toLocal8Bit());
 #else
 		wchar_t wfile[file.length()+1];
 		len = file.toWCharArray(wfile);
@@ -295,8 +295,8 @@ ImageSplitter::ClearImage()
     setCaption( tr( "Image Splitter" ) );
 
 	// reset input boxes
-	ui->CollageSizeX->setText("0");
-	ui->CollageSizeY->setText("0");
+	ui->CollageSizeX->setText("1");
+	ui->CollageSizeY->setText("1");
 	ui->CollageOffsetTopX->setText("0");
 	ui->CollageOffsetTopY->setText("0");
 	ui->CollageOffsetBottomX->setText("0");
