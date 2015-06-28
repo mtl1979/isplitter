@@ -1,4 +1,5 @@
 #include "previewimpl.h"
+#include "popup.h"
 #include "mainwindowimpl.h"
 #include "ui_mainwindow.h"
 #include "platform.h"
@@ -102,8 +103,6 @@ Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
 	int ph = (PreviewWidget->height() - pxlPreview->height()) / 2;
 	pxlPreview->move(pw, ph);
 
-
-
 	PreviewButton = new QPushButton( this, "PreviewButton" );
     PreviewButton->setText( tr( "Preview" ) );
 
@@ -138,12 +137,10 @@ Preview::ShowImage(QImage *img)
 }
 
 template <typename T>
-
 bool clamp(T & a, const T b, const T c)
 {
 	bool ret = false;
 	if (a < b)
-
 	{
 		a = b;
 		ret = true;
@@ -245,20 +242,24 @@ Preview::PreviewImage()
 	if (!valid)
 		return;
 
+	if (imageScale < 0)
+	{
+		// Negative numbers mean scale down by specified percentage, we will recheck for valid range later
+		// -25 = three quarters the size, -50 = half the size, -75 = quarter the size
+		imageScale = 100 + imageScale;
+	}
+
 	//
 	//  Make sure we don't get 'divide by zero' error
 	//
 		
-	if (collageSizeX == 0)
-
+	if (collageSizeX < 1)
 	{
-
 		collageSizeX = 1;
 		Splitter->ui->CollageSizeX->setText("1");
 	}
 		
-	if (collageSizeY == 0)
-
+	if (collageSizeY < 1)
 	{
 		collageSizeY = 1;
 		Splitter->ui->CollageSizeY->setText("1");
@@ -320,6 +321,13 @@ Preview::PreviewImage()
 		nw = imgPreview.width();
 		nh = imgPreview.height();
 	}
+
+	if (nw < 1 || nh < 1)
+	{
+		WPopup(tr("Scale factor is too small!"));
+		return;
+	}
+
 	pixPreview = new QPixmap(QSize(lrint(nw), lrint(nh)));
 	if (pixPreview)
 	{
@@ -426,7 +434,7 @@ Preview::startDrag()
 		mimeData->setImageData(*pixPreview);
 		drag->setMimeData(mimeData);
 
-                drag->exec(Qt::CopyAction);
+		drag->exec(Qt::CopyAction);
 	}
 }
 

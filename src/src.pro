@@ -12,6 +12,7 @@ CONFIG -= debug
 SOURCES =	main.cpp \
 			mainwindowimpl.cpp \
 			menubar.cpp \
+			popup.cpp \
 			previewimpl.cpp \
 			uenv.cpp \
 			util.cpp \

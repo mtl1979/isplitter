@@ -6,9 +6,9 @@
 
 #include <qapplication.h>
 #include <q3multilineedit.h>
-#include <qmessagebox.h>
 #include <qstring.h>
 #include <QByteArray>
+#include "popup.h"
 #include "util.h"
 #include "wfile.h"
 #include "wstring.h"
@@ -61,18 +61,6 @@ CleanupDebug()
 }
 
 #endif
-
-void WPopup(const QString &msg)
-{
-	(void) QMessageBox::information(NULL, qApp->translate( "Debug", "Unizone (English)" ),
-	                                msg, QMessageBox::Ok | QMessageBox::Default,
-	                                QMessageBox::NoButton, QMessageBox::NoButton);
-}
-
-void WPopup(const char *msg)
-{
-	WPopup(qApp->translate("Debug", msg));
-}
 
 void
 WAssert(bool test, const char *message, int line, const char *file, const char *date)

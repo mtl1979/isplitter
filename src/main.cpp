@@ -110,6 +110,7 @@ main( int argc, char** argv )
 	QString lfile;
 	if (!lang.exists())
 	{
+NoTranslation:
 		lfile = QFileDialog::getOpenFileName(NULL, app.translate("main", "Open translation file..."),
 
 #ifdef _WIN32
@@ -151,6 +152,8 @@ main( int argc, char** argv )
 				app.installTranslator( &qtr );
 			}
 		}
+		else
+			goto NoTranslation;
 		// Qt's own translator file
 		QFileInfo qfi(lfile);
 		QString langfile = qfi.fileName().replace(QRegExp("isplitter"), "qt");

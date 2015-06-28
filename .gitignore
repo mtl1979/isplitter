@@ -1,5 +1,7 @@
+*.bak
 *.pdb
 *.qm
+*.sdf
 *.sln
 *.vcxproj
 *.vcxproj.filters

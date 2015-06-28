@@ -33,6 +33,51 @@ protected slots:
 	void ClearImage();
 	void Exit();
 
+	// Tab 1
+	void CollageSizeXminusClicked();
+	void CollageSizeXplusClicked();
+	void CollageSizeYminusClicked();
+	void CollageSizeYplusClicked();
+
+	void CollageOffsetTopXminusClicked();
+	void CollageOffsetTopXplusClicked();
+	void CollageOffsetTopYminusClicked();
+	void CollageOffsetTopYplusClicked();
+
+	void CollageOffsetBottomXminusClicked();
+	void CollageOffsetBottomXplusClicked();
+	void CollageOffsetBottomYminusClicked();
+	void CollageOffsetBottomYplusClicked();
+
+	void CollageOffsetLockXchanged(int);
+	void CollageOffsetLockYchanged(int);
+
+	void CollageOffsetTopXchanged(const QString &);
+	void CollageOffsetTopYchanged(const QString &);
+
+	// Tab 2
+	void OffsetIndexXminusClicked();
+	void OffsetIndexXplusClicked();
+	void OffsetIndexYminusClicked();
+	void OffsetIndexYplusClicked();
+
+	void ImageOffsetTopXminusClicked();
+	void ImageOffsetTopXplusClicked();
+	void ImageOffsetTopYminusClicked();
+	void ImageOffsetTopYplusClicked();
+
+	void ImageOffsetBottomXminusClicked();
+	void ImageOffsetBottomXplusClicked();
+	void ImageOffsetBottomYminusClicked();
+	void ImageOffsetBottomYplusClicked();
+
+	void ImageOffsetLockXchanged(int);
+	void ImageOffsetLockYchanged(int);
+
+	void ImageOffsetTopXchanged(const QString &);
+	void ImageOffsetTopYchanged(const QString &);
+
+
 protected:
 	void resizeEvent(QResizeEvent *e);
 	void dragEnterEvent(QDragEnterEvent* event);
