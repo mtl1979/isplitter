@@ -335,7 +335,7 @@ ImageSplitter::ClearImage()
 	}
 
 	ui->pxlCollage->clear();
-	
+
     setCaption( tr( "Image Splitter" ) );
 
 	// reset input boxes
@@ -374,7 +374,7 @@ ImageSplitter::resizeEvent(QResizeEvent *e)
 	Q3MainWindow::resizeEvent(e);
 }
 
-void 
+void
 ImageSplitter::CollageSizeXminusClicked()
 {
 	int val = ui->CollageSizeX->text().toInt();
@@ -382,14 +382,14 @@ ImageSplitter::CollageSizeXminusClicked()
 		ui->CollageSizeX->setText(QString::number(--val));
 }
 
-void 
+void
 ImageSplitter::CollageSizeXplusClicked()
 {
 	int val = ui->CollageSizeX->text().toInt();
 	ui->CollageSizeX->setText(QString::number(++val));
 }
 
-void 
+void
 ImageSplitter::CollageSizeYminusClicked()
 {
 	int val = ui->CollageSizeY->text().toInt();
@@ -397,21 +397,21 @@ ImageSplitter::CollageSizeYminusClicked()
 		ui->CollageSizeY->setText(QString::number(--val));
 }
 
-void 
+void
 ImageSplitter::CollageSizeYplusClicked()
 {
 	int val = ui->CollageSizeY->text().toInt();
 	ui->CollageSizeY->setText(QString::number(++val));
 }
 
-void 
+void
 ImageSplitter::CollageOffsetTopXminusClicked()
 {
 	int val = ui->CollageOffsetTopX->text().toInt();
 	ui->CollageOffsetTopX->setText(QString::number(--val));
 }
 
-void 
+void
 ImageSplitter::CollageOffsetTopXplusClicked()
 {
 	int val = ui->CollageOffsetTopX->text().toInt();
@@ -462,6 +462,7 @@ void ImageSplitter::CollageOffsetLockXchanged(int state)
 		ui->CollageOffsetBottomX->setEnabled(false);
 		ui->CollageOffsetBottomXminus->setEnabled(false);
 		ui->CollageOffsetBottomXplus->setEnabled(false);
+		ui->CollageOffsetBottomX->setText(ui->CollageOffsetTopX->text());
 	}
 	else
 	{
@@ -478,6 +479,7 @@ void ImageSplitter::CollageOffsetLockYchanged(int state)
 		ui->CollageOffsetBottomY->setEnabled(false);
 		ui->CollageOffsetBottomYminus->setEnabled(false);
 		ui->CollageOffsetBottomYplus->setEnabled(false);
+		ui->CollageOffsetBottomY->setText(ui->CollageOffsetTopY->text());
 	}
 	else
 	{
@@ -591,6 +593,7 @@ void ImageSplitter::ImageOffsetLockXchanged(int state)
 		ui->ImageOffsetBottomX->setEnabled(false);
 		ui->ImageOffsetBottomXminus->setEnabled(false);
 		ui->ImageOffsetBottomXplus->setEnabled(false);
+		ui->ImageOffsetBottomX->setText(ui->ImageOffsetTopX->text());
 	}
 	else
 	{
@@ -607,6 +610,7 @@ void ImageSplitter::ImageOffsetLockYchanged(int state)
 		ui->ImageOffsetBottomY->setEnabled(false);
 		ui->ImageOffsetBottomYminus->setEnabled(false);
 		ui->ImageOffsetBottomYplus->setEnabled(false);
+		ui->ImageOffsetBottomY->setText(ui->ImageOffsetTopY->text());
 	}
 	else
 	{

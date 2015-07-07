@@ -1,4 +1,5 @@
 *.bak
+*.opensdf
 *.pdb
 *.qm
 *.sdf

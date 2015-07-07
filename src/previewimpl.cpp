@@ -94,7 +94,13 @@ Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
 	//
 	QPixmap erase;
 	if (erase.loadFromData(erase_xpm_data, sizeof(erase_xpm_data), "XPM"))
-		PreviewWidget->setBackgroundPixmap(erase);
+	{
+		PreviewWidget->setBackgroundRole(QPalette::Window);
+		QPalette palette = PreviewWidget->palette();
+		palette.setBrush(QPalette::Window, QBrush(erase));
+		PreviewWidget->setPalette(palette);
+		PreviewWidget->setAutoFillBackground(true);
+	}
 	//
     GridLayout->addMultiCellWidget( PreviewWidget, 1, 1, 0, 2 );
 
@@ -252,38 +258,38 @@ Preview::PreviewImage()
 	//
 	//  Make sure we don't get 'divide by zero' error
 	//
-		
+
 	if (collageSizeX < 1)
 	{
 		collageSizeX = 1;
 		Splitter->ui->CollageSizeX->setText("1");
 	}
-		
+
 	if (collageSizeY < 1)
 	{
 		collageSizeY = 1;
 		Splitter->ui->CollageSizeY->setText("1");
 	}
-		
+
 	if (clamp(collageIndexX, 0, collageSizeX - 1))
 		Splitter->ui->OffsetIndexX->setText(QString::number(collageIndexX));
-		
+
 	if (clamp(collageIndexY, 0, collageSizeY - 1))
 		Splitter->ui->OffsetIndexY->setText(QString::number(collageIndexY));
-		
+
 	//
 	// Calculate subimage dimensions
 	//
-	
+
 	originalWidth -= collageOffsetTopX + collageOffsetBottomX;
 	originalHeight -= collageOffsetTopY + collageOffsetBottomY;
 	int subOffsetX = (originalWidth / collageSizeX) * collageIndexX + imageOffsetTopX + collageOffsetTopX;
 	int subOffsetY = (originalHeight / collageSizeY) * collageIndexY + imageOffsetTopY + collageOffsetTopY;
 	int subWidth = (originalWidth / collageSizeX) - imageOffsetTopX - imageOffsetBottomX;
 	int subHeight = (originalHeight / collageSizeY) - imageOffsetTopY - imageOffsetBottomY;
-		
+
 	// Rotate original
-		
+
 	QImage timg;
 	{
 		if (imageRotate == 0)
@@ -303,11 +309,11 @@ Preview::PreviewImage()
 			delete pm;
 		}
 	}
-		
+
 	//
 	// Generate subimage
 	//
-		
+
 	QImage imgPreview = timg.copy(subOffsetX, subOffsetY, subWidth, subHeight, 0);
 
 	double nh, nw;
@@ -334,7 +340,7 @@ Preview::PreviewImage()
 		//
 		// Last Step: Draw It!
 		//
-			
+
 		pxlPreview->show();
 		int w, h;
 		scalePixmap(nw, nh, w, h);
@@ -352,7 +358,7 @@ Preview::PreviewImage()
 		{
 			// Use temporary pixmap, so we don't save scaled pixmap
 			QImage nimg = imgPreview.smoothScale(w, h);
-			tmpPreview = nimg;	
+			tmpPreview = nimg;
 		}
 		pxlPreview->resize(w, h);
 		// Center
