@@ -7,7 +7,7 @@
     <message>
         <location filename="popup.cpp" line="9"/>
         <source>Image Splitter</source>
-        <translation type="unfinished">Image Splitter</translation>
+        <translation>Image Splitter</translation>
     </message>
     <message>
         <location filename="debugimpl.cpp" line="70"/>
@@ -251,30 +251,30 @@ Date: %4</translation>
     <name>Preview</name>
     <message>
         <location filename="previewimpl.cpp" line="66"/>
-        <location filename="previewimpl.cpp" line="107"/>
-        <location filename="previewimpl.cpp" line="364"/>
-        <location filename="previewimpl.cpp" line="492"/>
+        <location filename="previewimpl.cpp" line="113"/>
+        <location filename="previewimpl.cpp" line="370"/>
+        <location filename="previewimpl.cpp" line="498"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="76"/>
-        <location filename="previewimpl.cpp" line="471"/>
+        <location filename="previewimpl.cpp" line="477"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="327"/>
+        <location filename="previewimpl.cpp" line="333"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="364"/>
+        <location filename="previewimpl.cpp" line="370"/>
         <source>%1 x %2</source>
         <translation>%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="471"/>
+        <location filename="previewimpl.cpp" line="477"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>
