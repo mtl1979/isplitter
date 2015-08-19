@@ -266,19 +266,31 @@ Preview::PreviewImage()
 	{
 		collageSizeX = 1;
 		Splitter->ui->CollageSizeX->setText("1");
+		if (Splitter->IsAutoPreview())
+			return;
 	}
 
 	if (collageSizeY < 1)
 	{
 		collageSizeY = 1;
 		Splitter->ui->CollageSizeY->setText("1");
+		if (Splitter->IsAutoPreview())
+			return;
 	}
 
 	if (clamp(collageIndexX, 0, collageSizeX - 1))
+	{
 		Splitter->ui->OffsetIndexX->setText(QString::number(collageIndexX));
+		if (Splitter->IsAutoPreview())
+			return;
+	}
 
 	if (clamp(collageIndexY, 0, collageSizeY - 1))
+	{
 		Splitter->ui->OffsetIndexY->setText(QString::number(collageIndexY));
+		if (Splitter->IsAutoPreview())
+			return;
+	}
 
 	//
 	// Calculate subimage dimensions
