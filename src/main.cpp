@@ -16,7 +16,6 @@
 #  include <unistd.h>
 #endif
 
-#include "uenv.h"
 #include "mainwindowimpl.h"
 #include "debugimpl.h"
 #include "util.h"
@@ -50,7 +49,7 @@ SetWorkingDirectory(const char *app)
 QString
 GetAppDirectory()
 {
-	// we have to use some windows api to get our path...
+	// we have to use some Windows API to get our path...
 	wchar_t * name = new wchar_t[MAX_PATH];	// maximum size for Win32 filenames
 	Q_CHECK_PTR(name);
 	if (GetModuleFileName(NULL,				/* current apps module */
@@ -58,15 +57,15 @@ GetAppDirectory()
 							MAX_PATH		/* buffer length */
 							) != 0)
 	{
-                qDebug("Module filename: %ls", name);
+		qDebug("Module filename: %ls", name);
 		PathRemoveFileSpec(name);
 		if (SetCurrentDirectory(name) == 0)
 		{
 			GetCurrentDirectory(MAX_PATH, name);
-                        qDebug("Current directory: %ls", name);
+			qDebug("Current directory: %ls", name);
 		}
 		else
-                        qDebug("Application directory: %ls", name);
+			qDebug("Application directory: %ls", name);
 	}
 	QString qname = QString::fromUcs2((const ushort *) name);
 	delete [] name;
@@ -86,12 +85,12 @@ main( int argc, char** argv )
 
 #ifdef _WIN32
 	QString appdir = GetAppDirectory();
-	QString datadir = EnvironmentVariable("APPDATA");
+	QString datadir = qgetenv("APPDATA");
 	QDir dir(datadir);
 	dir.mkdir("Image Splitter");
 	datadir = MakePath(datadir, "Image Splitter");
 	gDataDir = datadir;
-	gAppDir = GetAppDirectory();
+	gAppDir = appdir;
 	// Set our working directory
 	QDir::setCurrent(datadir);
 #endif
@@ -108,26 +107,21 @@ main( int argc, char** argv )
 #endif
 	QFile lang(langfile);
 	QString lfile;
+	QString ldir = MakePath(gAppDir, "translations");
+
+	if (!QDir(ldir).exists())
+		ldir = gAppDir;
+
 	if (!lang.exists())
 	{
 NoTranslation:
-		lfile = QFileDialog::getOpenFileName(NULL, app.translate("main", "Open translation file..."),
-
-#ifdef _WIN32
-			MakePath(gAppDir, "translations"),
-#else
-			QString::null,
-#endif
-			"isplitter_*.qm");
-		if (!lfile.isEmpty())
+		lfile = QFileDialog::getOpenFileName(NULL, app.translate("main", "Open translation file..."), ldir, "isplitter_*.qm");
+		// Save selected language's translator filename
+		if (!lfile.isEmpty() && lang.open(QIODevice::WriteOnly) )
 		{
-			// Save selected language's translator filename
-			if ( lang.open(QIODevice::WriteOnly) )
-			{
-				QByteArray clang = lfile.utf8();
-				lang.writeBlock(clang, clang.length());
-				lang.close();
-			}
+			QByteArray clang = lfile.utf8();
+			lang.writeBlock(clang, clang.length());
+			lang.close();
 		}
 	}
 
@@ -135,58 +129,47 @@ NoTranslation:
 	if ( lang.open(QIODevice::ReadOnly) )
 	{
 		// file opened successfully
-		char plang[255];
-		lang.readLine(plang, 255);
+		QByteArray plang = lang.readLine();
 		lfile = QString::fromUtf8(plang);
 		lang.close();
     }
 
-
 	// Install translator ;)
-	if (!lfile.isEmpty())
-	{
-		if (QFile::exists(lfile))
-		{
-			if (qtr.load(lfile))
-			{
-				app.installTranslator( &qtr );
-			}
-		}
-		else
-			goto NoTranslation;
-		// Qt's own translator file
-		QFileInfo qfi(lfile);
-		QString langfile = qfi.fileName().replace(QRegExp("isplitter"), "qt");
-		QString qt_lang = QString::null;
-		QString qtdir = EnvironmentVariable("QTDIR");
-		if (qtdir != QString::null)
-		{
-			QString tr_dir = MakePath(qtdir, "translations");
-			qt_lang = MakePath(tr_dir, langfile);
-			if (!QFile::exists(qt_lang))
-				qt_lang = QString::null;
-		}
-		if (qt_lang == QString::null)
-		{
-			// Try using same directory as Image Splitters translations
-			qt_lang = MakePath(qfi.dirPath(true), langfile);
-		}
+	if (!lfile.isEmpty() && QFile::exists(lfile) && qtr.load(lfile))
+		app.installTranslator(&qtr);
+	else
+		goto NoTranslation;
 
-		if (QFile::exists(qt_lang))
-		{
-			if (qtr2.load(qt_lang))
-			{
-				app.installTranslator( &qtr2 );
-			}
-		}
+	// Qt's own translator file
+	QFileInfo qfi(lfile);
+	QString qt_lang = QString::null;
+	QString qtdir = qgetenv("QTDIR");
+	langfile = qfi.fileName().replace(QRegExp("isplitter"), "qt");
+
+	if (qtdir != QString::null)
+	{
+		QString tr_dir = MakePath(qtdir, "translations");
+		qt_lang = MakePath(tr_dir, langfile);
+		if (!QFile::exists(qt_lang))
+			qt_lang = QString::null;
 	}
 
-#ifdef _WIN32
-# if !defined(QT_NO_STYLE_WINDOWSXP)
+	// Try using same directory as Image Splitter's translations
+	if (qt_lang == QString::null)
+	{
+		qt_lang = MakePath(qfi.dirPath(true), langfile);
+	}
+
+	if (QFile::exists(qt_lang) && qtr2.load(qt_lang))
+	{
+		app.installTranslator( &qtr2 );
+	}
+
+#if defined(_WIN32) && !defined(QT_NO_STYLE_WINDOWSXP)
 	// Set style
 	app.setStyle(new QWindowsXPStyle);
-# endif
 #endif
+
 	ImageSplitter * window = new ImageSplitter(NULL);
 	Q_CHECK_PTR(window);
 

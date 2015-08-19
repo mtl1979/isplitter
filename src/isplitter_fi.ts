@@ -292,7 +292,7 @@ Päiväys: %4</translation>
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="114"/>
+        <location filename="main.cpp" line="118"/>
         <source>Open translation file...</source>
         <translation>Avaa käännöstiedosto...</translation>
     </message>

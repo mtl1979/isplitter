@@ -14,7 +14,6 @@ SOURCES =	main.cpp \
 			menubar.cpp \
 			popup.cpp \
 			previewimpl.cpp \
-			uenv.cpp \
 			util.cpp \
 			wstring.cpp
 
