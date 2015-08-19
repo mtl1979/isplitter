@@ -12,11 +12,13 @@ public:
 	~MenuBar();
 
 	Q3PopupMenu * File() const { return fFile; }
+	Q3PopupMenu * Settings() const { return fSettings; }
 
 private:
 
 	/* File menu */
 	Q3PopupMenu * fFile;
+	Q3PopupMenu * fSettings;
 };
 
 #endif

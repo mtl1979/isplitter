@@ -138,7 +138,10 @@ Preview::ShowImage(QImage *img)
 	if (img)
 	{
 		image = img;
-		PreviewButton->setEnabled(true);
+		if (Splitter->IsAutoPreview())
+			PreviewButton->setEnabled(false);
+		else
+			PreviewButton->setEnabled(true);
 	}
 }
 

@@ -25,13 +25,19 @@ public:
 	QImage *getImage() {return image;}
 	QString filename() {return fFilename;}
 	void Load(const QString &filename);
+	bool IsAutoPreview();
 
 	Ui_ImageSplitterBase * ui;
+
+signals:
+	void PreviewChanged();
 
 protected slots:
 	void Load();
 	void ClearImage();
 	void Exit();
+
+	void AutoPreview();
 
 	// Tab 1
 	void CollageSizeXminusClicked();
@@ -52,8 +58,12 @@ protected slots:
 	void CollageOffsetLockXchanged(int);
 	void CollageOffsetLockYchanged(int);
 
+	void CollageSizeXchanged(const QString &);
+	void CollageSizeYchanged(const QString &);
 	void CollageOffsetTopXchanged(const QString &);
 	void CollageOffsetTopYchanged(const QString &);
+	void CollageOffsetBottomXchanged(const QString &);
+	void CollageOffsetBottomYchanged(const QString &);
 
 	// Tab 2
 	void OffsetIndexXminusClicked();
@@ -74,9 +84,16 @@ protected slots:
 	void ImageOffsetLockXchanged(int);
 	void ImageOffsetLockYchanged(int);
 
+	void OffsetIndexXchanged(const QString &);
+	void OffsetIndexYchanged(const QString &);
 	void ImageOffsetTopXchanged(const QString &);
 	void ImageOffsetTopYchanged(const QString &);
+	void ImageOffsetBottomXchanged(const QString &);
+	void ImageOffsetBottomYchanged(const QString &);
 
+	// Tab 3
+	void ImageRotatechanged(const QString &);
+	void ImageScalechanged(const QString &);
 
 protected:
 	void resizeEvent(QResizeEvent *e);
@@ -104,5 +121,7 @@ private:
 
 	void scalePixmap(const QPixmap * image, int &width, int &height);
 	void scaleImage(const QImage * image, int &width, int &height);
+
+	void previewChanged();
 };
 #endif

@@ -16,8 +16,14 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 
 	fFile->insertItem(tr("E&xit"), parent, SLOT(Exit()), Q3Accel::stringToKey(tr("ALT+X")));
 
+	fSettings = new Q3PopupMenu(this);
+	Q_CHECK_PTR(fSettings);
+
+	fSettings->insertItem(tr("Automatic preview"), parent, SLOT(AutoPreview()), 0, 0);
+
 	/* Insert into menubar */
 	insertItem(tr("&File"), fFile);
+	insertItem(tr("&Settings"), fSettings);
 }
 
 MenuBar::~MenuBar()

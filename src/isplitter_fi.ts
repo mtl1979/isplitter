@@ -35,13 +35,13 @@ Päiväys: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="319"/>
-        <location filename="mainwindowimpl.cpp" line="339"/>
+        <location filename="mainwindowimpl.cpp" line="387"/>
+        <location filename="mainwindowimpl.cpp" line="409"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="248"/>
+        <location filename="mainwindowimpl.cpp" line="303"/>
         <source>Open image...</source>
         <translation>Avaa kuva...</translation>
     </message>
@@ -242,9 +242,19 @@ Päiväys: %4</translation>
         <translation>ALT+X</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="20"/>
+        <location filename="menubar.cpp" line="22"/>
+        <source>Automatic preview</source>
+        <translation>Automaattinen esikatselu</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="25"/>
         <source>&amp;File</source>
         <translation>&amp;Tiedosto</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="26"/>
+        <source>&amp;Settings</source>
+        <translation>A&amp;setukset</translation>
     </message>
 </context>
 <context>
@@ -252,29 +262,29 @@ Päiväys: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="66"/>
         <location filename="previewimpl.cpp" line="113"/>
-        <location filename="previewimpl.cpp" line="370"/>
-        <location filename="previewimpl.cpp" line="498"/>
+        <location filename="previewimpl.cpp" line="373"/>
+        <location filename="previewimpl.cpp" line="501"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="76"/>
-        <location filename="previewimpl.cpp" line="477"/>
+        <location filename="previewimpl.cpp" line="480"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="333"/>
+        <location filename="previewimpl.cpp" line="336"/>
         <source>Scale factor is too small!</source>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="370"/>
+        <location filename="previewimpl.cpp" line="373"/>
         <source>%1 x %2</source>
         <translation>%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="477"/>
+        <location filename="previewimpl.cpp" line="480"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>

@@ -24,6 +24,8 @@
 
 #include <QUrl>
 
+#include <wstring.h>
+
 ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 : Q3MainWindow(parent, name, fl | Qt::WMouseNoMask)
 {
@@ -39,29 +41,41 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 	menuBar = new MenuBar(this);
 	Q_CHECK_PTR(menuBar);
 
-	LoadSettings();
-
 	fPreview = new Preview(NULL);
 	Q_CHECK_PTR(fPreview);
 	fPreview->setOwner(this);
+
+	LoadSettings();
 
 	setAcceptDrops(true);
 	ui->pxlCollage->installEventFilter(this);
 
 	// Tab 1
+
+	// Collage Size
 	connect(ui->CollageSizeXminus, SIGNAL(clicked()), this, SLOT(CollageSizeXminusClicked()));
+	connect(ui->CollageSizeX, SIGNAL(textChanged(const QString &)), this, SLOT(CollageSizeXchanged(const QString &)));
 	connect(ui->CollageSizeXplus, SIGNAL(clicked()), this, SLOT(CollageSizeXplusClicked()));
+
 	connect(ui->CollageSizeYminus, SIGNAL(clicked()), this, SLOT(CollageSizeYminusClicked()));
+	connect(ui->CollageSizeY, SIGNAL(textChanged(const QString &)), this, SLOT(CollageSizeYchanged(const QString &)));
 	connect(ui->CollageSizeYplus, SIGNAL(clicked()), this, SLOT(CollageSizeYplusClicked()));
 
+	// Collage Offset
 	connect(ui->CollageOffsetTopXminus, SIGNAL(clicked()), this, SLOT(CollageOffsetTopXminusClicked()));
+	connect(ui->CollageOffsetTopX, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetTopXchanged(const QString &)));
 	connect(ui->CollageOffsetTopXplus, SIGNAL(clicked()), this, SLOT(CollageOffsetTopXplusClicked()));
+
 	connect(ui->CollageOffsetTopYminus, SIGNAL(clicked()), this, SLOT(CollageOffsetTopYminusClicked()));
+	connect(ui->CollageOffsetTopY, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetTopYchanged(const QString &)));
 	connect(ui->CollageOffsetTopYplus, SIGNAL(clicked()), this, SLOT(CollageOffsetTopYplusClicked()));
 
 	connect(ui->CollageOffsetBottomXminus, SIGNAL(clicked()), this, SLOT(CollageOffsetBottomXminusClicked()));
+	connect(ui->CollageOffsetBottomX, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetBottomXchanged(const QString &)));
 	connect(ui->CollageOffsetBottomXplus, SIGNAL(clicked()), this, SLOT(CollageOffsetBottomXplusClicked()));
+
 	connect(ui->CollageOffsetBottomYminus, SIGNAL(clicked()), this, SLOT(CollageOffsetBottomYminusClicked()));
+	connect(ui->CollageOffsetBottomY, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetBottomYchanged(const QString &)));
 	connect(ui->CollageOffsetBottomYplus, SIGNAL(clicked()), this, SLOT(CollageOffsetBottomYplusClicked()));
 
 	connect(ui->CollageOffsetLockX, SIGNAL(stateChanged(int)), this, SLOT(CollageOffsetLockXchanged(int)));
@@ -71,26 +85,46 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 	connect(ui->CollageOffsetTopY, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetTopYchanged(const QString &)));
 
 	// Tab 2
+
+	// Offset Index
 	connect(ui->OffsetIndexXminus, SIGNAL(clicked()), this, SLOT(OffsetIndexXminusClicked()));
+	connect(ui->OffsetIndexX, SIGNAL(textChanged(const QString &)), this, SLOT(OffsetIndexXchanged(const QString &)));
 	connect(ui->OffsetIndexXplus, SIGNAL(clicked()), this, SLOT(OffsetIndexXplusClicked()));
+
 	connect(ui->OffsetIndexYminus, SIGNAL(clicked()), this, SLOT(OffsetIndexYminusClicked()));
+	connect(ui->OffsetIndexY, SIGNAL(textChanged(const QString &)), this, SLOT(OffsetIndexYchanged(const QString &)));
 	connect(ui->OffsetIndexYplus, SIGNAL(clicked()), this, SLOT(OffsetIndexYplusClicked()));
 
+	// Image Offset
 	connect(ui->ImageOffsetTopXminus, SIGNAL(clicked()), this, SLOT(ImageOffsetTopXminusClicked()));
+	connect(ui->ImageOffsetTopX, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetTopXchanged(const QString &)));
 	connect(ui->ImageOffsetTopXplus, SIGNAL(clicked()), this, SLOT(ImageOffsetTopXplusClicked()));
+
 	connect(ui->ImageOffsetTopYminus, SIGNAL(clicked()), this, SLOT(ImageOffsetTopYminusClicked()));
+	connect(ui->ImageOffsetTopY, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetTopYchanged(const QString &)));
 	connect(ui->ImageOffsetTopYplus, SIGNAL(clicked()), this, SLOT(ImageOffsetTopYplusClicked()));
 
 	connect(ui->ImageOffsetBottomXminus, SIGNAL(clicked()), this, SLOT(ImageOffsetBottomXminusClicked()));
+	connect(ui->ImageOffsetBottomX, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetBottomXchanged(const QString &)));
 	connect(ui->ImageOffsetBottomXplus, SIGNAL(clicked()), this, SLOT(ImageOffsetBottomXplusClicked()));
+
 	connect(ui->ImageOffsetBottomYminus, SIGNAL(clicked()), this, SLOT(ImageOffsetBottomYminusClicked()));
+	connect(ui->ImageOffsetBottomY, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetBottomYchanged(const QString &)));
 	connect(ui->ImageOffsetBottomYplus, SIGNAL(clicked()), this, SLOT(ImageOffsetBottomYplusClicked()));
 
 	connect(ui->ImageOffsetLockX, SIGNAL(stateChanged(int)), this, SLOT(ImageOffsetLockXchanged(int)));
 	connect(ui->ImageOffsetLockY, SIGNAL(stateChanged(int)), this, SLOT(ImageOffsetLockYchanged(int)));
 
-	connect(ui->ImageOffsetTopX, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetTopXchanged(const QString &)));
-	connect(ui->ImageOffsetTopY, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetTopYchanged(const QString &)));
+	// Tab 3
+
+	// Rotate
+	connect(ui->ImageRotate, SIGNAL(textChanged(const QString &)), this, SLOT(ImageRotatechanged(const QString &)));
+
+	// Scale
+	connect(ui->ImageScale, SIGNAL(textChanged(const QString &)), this, SLOT(ImageScalechanged(const QString &)));
+
+	// Automatic preview
+	connect(this, SIGNAL(PreviewChanged()), fPreview, SLOT(PreviewImage()));
 
 	ClearImage();
 };
@@ -219,7 +253,25 @@ ImageSplitter::LoadSettings()
 	{
 		QByteArray temp(256);
 		if (qf.readLine(temp.data(), 255) > 0)
+		{
 			lastdir = QString::fromUtf8(temp);
+			lastdir.replace("\n", "");
+		}
+		if (qf.readLine(temp.data(), 255) > 0)
+		{
+			QString autopreview = QString::fromUtf8(temp);
+			if (autopreview.startsWith("autopreview = "))
+			{
+				bool a = autopreview.mid(14, 4) == "true";
+				menuBar->Settings()->setItemChecked(0, a);
+			    fPreview->PreviewButton->setEnabled(!a);
+			}
+			else
+			{
+				menuBar->Settings()->setItemChecked(0, false);
+				fPreview->PreviewButton->setEnabled(true);
+			}
+		}
 		qf.close();
 	}
 }
@@ -232,7 +284,9 @@ ImageSplitter::SaveSettings()
 	{
 		QByteArray temp = lastdir.utf8();
 		qf.writeBlock(temp, temp.length());
-
+		qf.writeBlock("\n", 1);
+		temp = QString("autopreview = %1").arg(menuBar->Settings()->isItemChecked(0) ? "true" : "false").utf8();
+		qf.writeBlock(temp, temp.length());
 		qf.close();
 	}
 }
@@ -245,11 +299,25 @@ ImageSplitter:: ~ImageSplitter()
 void
 ImageSplitter::Load()
 {
-	QString filename = QFileDialog::getOpenFileName ( this, tr("Open image..."), lastdir, "*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff");
+	WString wlastdir(lastdir);
+	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, "*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff");
 	if (!filename.isEmpty())
 	{
 		Load(filename);
 	}
+}
+
+void
+ImageSplitter::AutoPreview()
+{
+	menuBar->Settings()->setItemChecked(0, !IsAutoPreview());
+	fPreview->PreviewButton->setEnabled(!IsAutoPreview());
+}
+
+bool
+ImageSplitter::IsAutoPreview()
+{
+	return menuBar->Settings()->isItemChecked(0);
 }
 
 void
@@ -319,6 +387,8 @@ ImageSplitter::Load(const QString &filename)
 		setCaption( tr("Image Splitter") + " - " + QDir::convertSeparators(fFilename) );
 
 		ui->TabWidget2->showPage(ui->tab1);
+
+		previewChanged();
 	}
 	else
 		delete img;
@@ -489,23 +559,73 @@ void ImageSplitter::CollageOffsetLockYchanged(int state)
 	}
 }
 
+void ImageSplitter::CollageSizeXchanged(const QString &text)
+{
+	bool ok;
+	int i = text.toInt(&ok);
+	if (i > 0)
+		previewChanged();
+}
+
+void ImageSplitter::CollageSizeYchanged(const QString &text)
+{
+	bool ok;
+	int i = text.toInt(&ok);
+	if (i > 0)
+		previewChanged();
+}
+
 void ImageSplitter::CollageOffsetTopXchanged(const QString &text)
 {
-	if (ui->CollageOffsetLockX->state() == Qt::Checked)
-		ui->CollageOffsetBottomX->setText(text);
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		if (ui->CollageOffsetLockX->state() == Qt::Checked)
+			ui->CollageOffsetBottomX->setText(text);
+		else
+			previewChanged();
+	}
 }
 
 void ImageSplitter::CollageOffsetTopYchanged(const QString &text)
 {
-	if (ui->CollageOffsetLockY->state() == Qt::Checked)
-		ui->CollageOffsetBottomY->setText(text);
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		if (ui->CollageOffsetLockY->state() == Qt::Checked)
+			ui->CollageOffsetBottomY->setText(text);
+		else
+			previewChanged();
+	}
+}
+
+void ImageSplitter::CollageOffsetBottomXchanged(const QString &text)
+{
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		previewChanged();
+	}
+}
+
+void ImageSplitter::CollageOffsetBottomYchanged(const QString &text)
+{
+	bool ok;
+	(void)text.toInt(&ok);
+	if (ok)
+	{
+		previewChanged();
+	}
 }
 
 void
 ImageSplitter::OffsetIndexXminusClicked()
 {
 	int val = ui->OffsetIndexX->text().toInt();
-	if (val > 1)
+	if (val > 0)
 		ui->OffsetIndexX->setText(QString::number(--val));
 }
 
@@ -522,7 +642,7 @@ void
 ImageSplitter::OffsetIndexYminusClicked()
 {
 	int val = ui->OffsetIndexY->text().toInt();
-	if (val > 1)
+	if (val > 0)
 		ui->OffsetIndexY->setText(QString::number(--val));
 }
 
@@ -620,14 +740,102 @@ void ImageSplitter::ImageOffsetLockYchanged(int state)
 	}
 }
 
+void ImageSplitter::OffsetIndexXchanged(const QString &text)
+{
+	bool ok;
+	int i = text.toInt(&ok);
+	if (ok && i >= 0)
+	{
+		int xmax = ui->CollageSizeX->text().toInt(&ok);
+		if (ok && i < xmax)
+		{
+			previewChanged();
+		}
+	}
+}
+
+void ImageSplitter::OffsetIndexYchanged(const QString &text)
+{
+	bool ok;
+	int i = text.toInt(&ok);
+	if (ok && i >= 0)
+	{
+		int xmax = ui->CollageSizeY->text().toInt(&ok);
+		if (ok && i < xmax)
+		{
+			previewChanged();
+		}
+	}
+}
+
 void ImageSplitter::ImageOffsetTopXchanged(const QString &text)
 {
-	if (ui->ImageOffsetLockX->state() == Qt::Checked)
-		ui->ImageOffsetBottomX->setText(text);
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		if (ui->ImageOffsetLockX->state() == Qt::Checked)
+			ui->ImageOffsetBottomX->setText(text);
+		else
+			previewChanged();
+	}
 }
 
 void ImageSplitter::ImageOffsetTopYchanged(const QString &text)
 {
-	if (ui->ImageOffsetLockY->state() == Qt::Checked)
-		ui->ImageOffsetBottomY->setText(text);
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		if (ui->ImageOffsetLockY->state() == Qt::Checked)
+			ui->ImageOffsetBottomY->setText(text);
+		else
+			previewChanged();
+	}
+}
+
+void ImageSplitter::ImageOffsetBottomXchanged(const QString &text)
+{
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		previewChanged();
+	}
+}
+
+void ImageSplitter::ImageOffsetBottomYchanged(const QString &text)
+{
+	bool ok;
+	(void) text.toInt(&ok);
+	if (ok)
+	{
+		previewChanged();
+	}
+}
+
+void ImageSplitter::ImageRotatechanged(const QString &text)
+{
+	bool ok;
+	double d = text.toDouble(&ok);
+	if (ok && (d > -360 && d < 360))
+	{
+		previewChanged();
+	}
+}
+
+void ImageSplitter::ImageScalechanged(const QString &text)
+{
+	bool ok;
+	double d = text.toDouble(&ok);
+	if (ok && (d > -100))
+	{
+		previewChanged();
+	}
+}
+
+void ImageSplitter::previewChanged()
+{
+	if (image && menuBar->Settings()->isItemChecked(0))
+		emit PreviewChanged();
 }
