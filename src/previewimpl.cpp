@@ -1,9 +1,4 @@
 #include "previewimpl.h"
-#include "popup.h"
-#include "mainwindowimpl.h"
-#include "ui_mainwindow.h"
-#include "platform.h"
-#include "util.h"
 
 #include <qapplication.h>
 #include <qfile.h>
@@ -15,13 +10,16 @@
 #include <qlayout.h>
 #include <qmessagebox.h>
 #include <qmatrix.h>
-#include <QDropEvent>
-#include <QResizeEvent>
-#include <Q3GridLayout>
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QEvent>
-#include <QImageReader>
+#include <qevent.h>
+#include <q3gridlayout.h>
+#include <qpixmap.h>
+#include <qimagereader.h>
+
+#include "popup.h"
+#include "mainwindowimpl.h"
+#include "ui_mainwindow.h"
+#include "platform.h"
+#include "util.h"
 
 static const unsigned char erase_xpm_data[] = {
     0x2f,0x2a,0x20,0x58,0x50,0x4d,0x20,0x2a,0x2f,0x0d,0x0a,0x73,0x74,0x61,

@@ -10,7 +10,7 @@
         <translation>Kuvanpilkkoja</translation>
     </message>
     <message>
-        <location filename="debugimpl.cpp" line="70"/>
+        <location filename="debugimpl.cpp" line="71"/>
         <source>Send this message to postmaster@raasu.org! This message has also been dumped to &apos;assert.txt&apos;.
 
 %1
@@ -27,7 +27,7 @@ Tiedosto %3
 Päiväys: %4</translation>
     </message>
     <message>
-        <location filename="debugimpl.cpp" line="93"/>
+        <location filename="debugimpl.cpp" line="94"/>
         <source>Attempt to read file larger than maximum allocatable memory amount!</source>
         <translation>Yritetty lukea tiedostoa, joka on isompi kuin muistin kokonaismäärä!</translation>
     </message>
@@ -260,31 +260,31 @@ Päiväys: %4</translation>
 <context>
     <name>Preview</name>
     <message>
-        <location filename="previewimpl.cpp" line="66"/>
-        <location filename="previewimpl.cpp" line="113"/>
-        <location filename="previewimpl.cpp" line="373"/>
-        <location filename="previewimpl.cpp" line="501"/>
+        <location filename="previewimpl.cpp" line="64"/>
+        <location filename="previewimpl.cpp" line="111"/>
+        <location filename="previewimpl.cpp" line="383"/>
+        <location filename="previewimpl.cpp" line="511"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="76"/>
-        <location filename="previewimpl.cpp" line="480"/>
+        <location filename="previewimpl.cpp" line="74"/>
+        <location filename="previewimpl.cpp" line="490"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="336"/>
+        <location filename="previewimpl.cpp" line="346"/>
         <source>Scale factor is too small!</source>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="373"/>
+        <location filename="previewimpl.cpp" line="383"/>
         <source>%1 x %2</source>
         <translation>%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="480"/>
+        <location filename="previewimpl.cpp" line="490"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>

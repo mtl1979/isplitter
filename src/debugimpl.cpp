@@ -7,7 +7,8 @@
 #include <qapplication.h>
 #include <q3multilineedit.h>
 #include <qstring.h>
-#include <QByteArray>
+#include <qbytearray.h>
+
 #include "popup.h"
 #include "util.h"
 #include "wfile.h"

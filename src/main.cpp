@@ -1,25 +1,25 @@
-#include "uenv.h"
-#include "mainwindowimpl.h"
-#include "debugimpl.h"
-#include "util.h"
-
 #include <qapplication.h>
 #include <qfile.h>
 #include <qfiledialog.h>
 #include <qregexp.h>
-#include <QByteArray>
-#include <QTranslator>
+#include <qbytearray.h>
+#include <qtranslator.h>
 
+#if defined(_WIN32) && !defined(QT_NO_STYLE_WINDOWSXP)
+#  include <qwindowsxpstyle.h>
+#endif
 
 #ifdef _WIN32
-#include <windows.h>
-#include <shlwapi.h>
-# if !defined(QT_NO_STYLE_WINDOWSXP)
-#  include <qwindowsxpstyle.h>
-# endif
+#  include <windows.h>
+#  include <shlwapi.h>
 #else
-#include <unistd.h>
+#  include <unistd.h>
 #endif
+
+#include "uenv.h"
+#include "mainwindowimpl.h"
+#include "debugimpl.h"
+#include "util.h"
 
 QString gAppDir;
 #ifdef _WIN32
@@ -117,7 +117,7 @@ NoTranslation:
 			MakePath(gAppDir, "translations"),
 #else
 			QString::null,
-#endif		
+#endif
 			"isplitter_*.qm");
 		if (!lfile.isEmpty())
 		{

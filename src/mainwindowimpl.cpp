@@ -1,10 +1,6 @@
 #include "mainwindowimpl.h"
-#include "ui_mainwindow.h"
-#include "previewimpl.h"
-#include "menubar.h"
-#include "platform.h"
 
-#include <Q3MainWindow>
+#include <q3mainwindow.h>
 #include <qimage.h>
 #include <qlineedit.h>
 #include <qlabel.h>
@@ -14,17 +10,19 @@
 #include <qfile.h>
 #include <qstring.h>
 #include <qtabwidget.h>
-#include <QByteArray>
-#include <QDropEvent>
-#include <QResizeEvent>
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QEvent>
-#include <QDragEnterEvent>
+#include <qbytearray.h>
+#include <qevent.h>
+#include <qpixmap.h>
+#include <qurl.h>
 
-#include <QUrl>
+#include "ui_mainwindow.h"
+#include "previewimpl.h"
+#include "menubar.h"
+#include "platform.h"
 
+#ifdef _DEBUG
 #include <wstring.h>
+#endif
 
 ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 : Q3MainWindow(parent, name, fl | Qt::WMouseNoMask)
@@ -299,7 +297,9 @@ ImageSplitter:: ~ImageSplitter()
 void
 ImageSplitter::Load()
 {
+#ifdef _DEBUG
 	WString wlastdir(lastdir);
+#endif
 	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, "*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff");
 	if (!filename.isEmpty())
 	{
