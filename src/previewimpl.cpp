@@ -347,7 +347,15 @@ Preview::PreviewImage()
 		return;
 	}
 
-	pixPreview = new QPixmap(QSize(lrint(nw), lrint(nh)));
+	long lnw = lrint(nw);
+	long lnh = lrint(nh);
+	QSize isize = QSize(lnw, lnh);
+
+	if (pixPreview == NULL)
+		pixPreview = new QPixmap(isize);
+	else
+		pixPreview->resize(isize);
+
 	if (pixPreview)
 	{
 		//
@@ -359,7 +367,7 @@ Preview::PreviewImage()
 		scalePixmap(nw, nh, w, h);
 		if (imageScale != 100.0f)
 		{
-			QImage simg = imgPreview.smoothScale(lrint(nw), lrint(nh));
+			QImage simg = imgPreview.smoothScale(lnw, lnh);
 			pixPreview->convertFromImage(simg);
 		}
 		else
