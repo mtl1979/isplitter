@@ -274,7 +274,7 @@ Päiväys: %4</translation>
         <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="346"/>
+        <location filename="previewimpl.cpp" line="340"/>
         <source>Scale factor is too small!</source>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>

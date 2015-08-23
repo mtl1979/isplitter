@@ -311,15 +311,9 @@ Preview::PreviewImage()
 		}
 		else
 		{
-			QPixmap *pm = new QPixmap(image->size());
-			if (pm)
-			{
-				pm->convertFromImage(*image);
-				QMatrix wm;
-				wm.rotate(imageRotate);
-				timg = pm->xForm(wm);
-			}
-			delete pm;
+			QTransform tf;
+			tf.rotate(imageRotate);
+			timg = image->transformed(tf, Qt::SmoothTransformation);
 		}
 	}
 
@@ -347,9 +341,7 @@ Preview::PreviewImage()
 		return;
 	}
 
-	long lnw = lrint(nw);
-	long lnh = lrint(nh);
-	QSize isize = QSize(lnw, lnh);
+	QSize isize = QSize(lrint(nw), lrint(nh));
 
 	if (pixPreview == NULL)
 		pixPreview = new QPixmap(isize);
@@ -365,9 +357,9 @@ Preview::PreviewImage()
 		pxlPreview->show();
 		int w, h;
 		scalePixmap(nw, nh, w, h);
-		if (imageScale != 100.0f)
+		if (imageScale != 100.0)
 		{
-			QImage simg = imgPreview.smoothScale(lnw, lnh);
+			QImage simg = imgPreview.scaled(nw, nh, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 			pixPreview->convertFromImage(simg);
 		}
 		else
@@ -378,7 +370,7 @@ Preview::PreviewImage()
 		QPixmap tmpPreview;
 		{
 			// Use temporary pixmap, so we don't save scaled pixmap
-			QImage nimg = imgPreview.smoothScale(w, h);
+			QImage nimg = imgPreview.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 			tmpPreview = nimg;
 		}
 		pxlPreview->resize(w, h);

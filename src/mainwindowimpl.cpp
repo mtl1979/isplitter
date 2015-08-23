@@ -818,7 +818,7 @@ void ImageSplitter::ImageRotatechanged(const QString &text)
 {
 	bool ok;
 	double d = text.toDouble(&ok);
-	if (ok && (d > -360 && d < 360))
+	if (ok && (d > -360.0 && d < 360.0))
 	{
 		previewChanged();
 	}
@@ -828,7 +828,7 @@ void ImageSplitter::ImageScalechanged(const QString &text)
 {
 	bool ok;
 	double d = text.toDouble(&ok);
-	if (ok && (d > -100))
+	if (ok && (d > -100.0 && d != 0.0))
 	{
 		previewChanged();
 	}

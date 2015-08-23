@@ -274,7 +274,7 @@ Date: %4</translation>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="346"/>
+        <location filename="previewimpl.cpp" line="340"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
