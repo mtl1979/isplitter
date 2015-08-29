@@ -128,7 +128,6 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 };
 
 void
-
 ImageSplitter::dragEnterEvent(QDragEnterEvent* event)
 {
     if (event->mimeData()->hasUrls())
@@ -161,9 +160,14 @@ ImageSplitter::eventFilter( QObject *o, QEvent *e )
 }
 
 void
-
 ImageSplitter::dropEvent(QDropEvent* event)
 {
+	if (event->source() == this)
+	{
+		event->ignore();
+		return;
+	}
+
 	if (event->mimeData()->hasUrls())
 	{
 		QList<QUrl> urls = event->mimeData()->urls();
@@ -224,7 +228,6 @@ ImageSplitter::mouseReleaseEvent(QMouseEvent *e)
 }
 
 void
-
 ImageSplitter::startDrag()
 {
 	if (fFilename != QString::null)
@@ -289,7 +292,7 @@ ImageSplitter::SaveSettings()
 	}
 }
 
-ImageSplitter:: ~ImageSplitter()
+ImageSplitter::~ImageSplitter()
 {
 	SaveSettings();
 }
@@ -398,7 +401,6 @@ void
 ImageSplitter::ClearImage()
 {
 	if (image)
-
 	{
 		delete image;
 		image = NULL;
@@ -489,43 +491,50 @@ ImageSplitter::CollageOffsetTopXplusClicked()
 }
 
 
-void ImageSplitter::CollageOffsetTopYminusClicked()
+void
+ImageSplitter::CollageOffsetTopYminusClicked()
 {
 	int val = ui->CollageOffsetTopY->text().toInt();
 	ui->CollageOffsetTopY->setText(QString::number(--val));
 }
 
-void ImageSplitter::CollageOffsetTopYplusClicked()
+void
+ImageSplitter::CollageOffsetTopYplusClicked()
 {
 	int val = ui->CollageOffsetTopY->text().toInt();
 	ui->CollageOffsetTopY->setText(QString::number(++val));
 }
 
-void ImageSplitter::CollageOffsetBottomXminusClicked()
+void
+ImageSplitter::CollageOffsetBottomXminusClicked()
 {
 	int val = ui->CollageOffsetBottomX->text().toInt();
 	ui->CollageOffsetBottomX->setText(QString::number(--val));
 }
 
-void ImageSplitter::CollageOffsetBottomXplusClicked()
+void
+ImageSplitter::CollageOffsetBottomXplusClicked()
 {
 	int val = ui->CollageOffsetBottomX->text().toInt();
 	ui->CollageOffsetBottomX->setText(QString::number(++val));
 }
 
-void ImageSplitter::CollageOffsetBottomYminusClicked()
+void
+ImageSplitter::CollageOffsetBottomYminusClicked()
 {
 	int val = ui->CollageOffsetBottomY->text().toInt();
 	ui->CollageOffsetBottomY->setText(QString::number(--val));
 }
 
-void ImageSplitter::CollageOffsetBottomYplusClicked()
+void
+ImageSplitter::CollageOffsetBottomYplusClicked()
 {
 	int val = ui->CollageOffsetBottomY->text().toInt();
 	ui->CollageOffsetBottomY->setText(QString::number(++val));
 }
 
-void ImageSplitter::CollageOffsetLockXchanged(int state)
+void
+ImageSplitter::CollageOffsetLockXchanged(int state)
 {
 	if (state == Qt::Checked)
 	{
@@ -542,7 +551,8 @@ void ImageSplitter::CollageOffsetLockXchanged(int state)
 	}
 }
 
-void ImageSplitter::CollageOffsetLockYchanged(int state)
+void
+ImageSplitter::CollageOffsetLockYchanged(int state)
 {
 	if (state == Qt::Checked)
 	{
@@ -559,7 +569,8 @@ void ImageSplitter::CollageOffsetLockYchanged(int state)
 	}
 }
 
-void ImageSplitter::CollageSizeXchanged(const QString &text)
+void
+ImageSplitter::CollageSizeXchanged(const QString &text)
 {
 	bool ok;
 	int i = text.toInt(&ok);
@@ -567,7 +578,8 @@ void ImageSplitter::CollageSizeXchanged(const QString &text)
 		previewChanged();
 }
 
-void ImageSplitter::CollageSizeYchanged(const QString &text)
+void
+ImageSplitter::CollageSizeYchanged(const QString &text)
 {
 	bool ok;
 	int i = text.toInt(&ok);
@@ -575,7 +587,8 @@ void ImageSplitter::CollageSizeYchanged(const QString &text)
 		previewChanged();
 }
 
-void ImageSplitter::CollageOffsetTopXchanged(const QString &text)
+void
+ImageSplitter::CollageOffsetTopXchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -588,7 +601,8 @@ void ImageSplitter::CollageOffsetTopXchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::CollageOffsetTopYchanged(const QString &text)
+void
+ImageSplitter::CollageOffsetTopYchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -601,7 +615,8 @@ void ImageSplitter::CollageOffsetTopYchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::CollageOffsetBottomXchanged(const QString &text)
+void
+ImageSplitter::CollageOffsetBottomXchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -611,7 +626,8 @@ void ImageSplitter::CollageOffsetBottomXchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::CollageOffsetBottomYchanged(const QString &text)
+void
+ImageSplitter::CollageOffsetBottomYchanged(const QString &text)
 {
 	bool ok;
 	(void)text.toInt(&ok);
@@ -670,43 +686,50 @@ ImageSplitter::ImageOffsetTopXplusClicked()
 }
 
 
-void ImageSplitter::ImageOffsetTopYminusClicked()
+void
+ImageSplitter::ImageOffsetTopYminusClicked()
 {
 	int val = ui->ImageOffsetTopY->text().toInt();
 	ui->ImageOffsetTopY->setText(QString::number(--val));
 }
 
-void ImageSplitter::ImageOffsetTopYplusClicked()
+void
+ImageSplitter::ImageOffsetTopYplusClicked()
 {
 	int val = ui->ImageOffsetTopY->text().toInt();
 	ui->ImageOffsetTopY->setText(QString::number(++val));
 }
 
-void ImageSplitter::ImageOffsetBottomXminusClicked()
+void
+ImageSplitter::ImageOffsetBottomXminusClicked()
 {
 	int val = ui->ImageOffsetBottomX->text().toInt();
 	ui->ImageOffsetBottomX->setText(QString::number(--val));
 }
 
-void ImageSplitter::ImageOffsetBottomXplusClicked()
+void
+ImageSplitter::ImageOffsetBottomXplusClicked()
 {
 	int val = ui->ImageOffsetBottomX->text().toInt();
 	ui->ImageOffsetBottomX->setText(QString::number(++val));
 }
 
-void ImageSplitter::ImageOffsetBottomYminusClicked()
+void
+ImageSplitter::ImageOffsetBottomYminusClicked()
 {
 	int val = ui->ImageOffsetBottomY->text().toInt();
 	ui->ImageOffsetBottomY->setText(QString::number(--val));
 }
 
-void ImageSplitter::ImageOffsetBottomYplusClicked()
+void
+ImageSplitter::ImageOffsetBottomYplusClicked()
 {
 	int val = ui->ImageOffsetBottomY->text().toInt();
 	ui->ImageOffsetBottomY->setText(QString::number(++val));
 }
 
-void ImageSplitter::ImageOffsetLockXchanged(int state)
+void
+ImageSplitter::ImageOffsetLockXchanged(int state)
 {
 	if (state == Qt::Checked)
 	{
@@ -723,7 +746,8 @@ void ImageSplitter::ImageOffsetLockXchanged(int state)
 	}
 }
 
-void ImageSplitter::ImageOffsetLockYchanged(int state)
+void
+ImageSplitter::ImageOffsetLockYchanged(int state)
 {
 	if (state == Qt::Checked)
 	{
@@ -740,7 +764,8 @@ void ImageSplitter::ImageOffsetLockYchanged(int state)
 	}
 }
 
-void ImageSplitter::OffsetIndexXchanged(const QString &text)
+void
+ImageSplitter::OffsetIndexXchanged(const QString &text)
 {
 	bool ok;
 	int i = text.toInt(&ok);
@@ -754,7 +779,8 @@ void ImageSplitter::OffsetIndexXchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::OffsetIndexYchanged(const QString &text)
+void
+ImageSplitter::OffsetIndexYchanged(const QString &text)
 {
 	bool ok;
 	int i = text.toInt(&ok);
@@ -768,7 +794,8 @@ void ImageSplitter::OffsetIndexYchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::ImageOffsetTopXchanged(const QString &text)
+void
+ImageSplitter::ImageOffsetTopXchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -781,7 +808,8 @@ void ImageSplitter::ImageOffsetTopXchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::ImageOffsetTopYchanged(const QString &text)
+void
+ImageSplitter::ImageOffsetTopYchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -794,7 +822,8 @@ void ImageSplitter::ImageOffsetTopYchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::ImageOffsetBottomXchanged(const QString &text)
+void
+ImageSplitter::ImageOffsetBottomXchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -804,7 +833,8 @@ void ImageSplitter::ImageOffsetBottomXchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::ImageOffsetBottomYchanged(const QString &text)
+void
+ImageSplitter::ImageOffsetBottomYchanged(const QString &text)
 {
 	bool ok;
 	(void) text.toInt(&ok);
@@ -814,7 +844,8 @@ void ImageSplitter::ImageOffsetBottomYchanged(const QString &text)
 	}
 }
 
-void ImageSplitter::ImageRotatechanged(const QString &text)
+void
+ImageSplitter::ImageRotatechanged(const QString &text)
 {
 	bool ok;
 	double d = text.toDouble(&ok);
@@ -824,7 +855,8 @@ void ImageSplitter::ImageRotatechanged(const QString &text)
 	}
 }
 
-void ImageSplitter::ImageScalechanged(const QString &text)
+void
+ImageSplitter::ImageScalechanged(const QString &text)
 {
 	bool ok;
 	double d = text.toDouble(&ok);
@@ -834,7 +866,8 @@ void ImageSplitter::ImageScalechanged(const QString &text)
 	}
 }
 
-void ImageSplitter::previewChanged()
+void
+ImageSplitter::previewChanged()
 {
 	if (image && menuBar->Settings()->isItemChecked(0))
 		emit PreviewChanged();

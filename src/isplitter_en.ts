@@ -35,13 +35,13 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="387"/>
-        <location filename="mainwindowimpl.cpp" line="409"/>
+        <location filename="mainwindowimpl.cpp" line="390"/>
+        <location filename="mainwindowimpl.cpp" line="411"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="303"/>
+        <location filename="mainwindowimpl.cpp" line="306"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
