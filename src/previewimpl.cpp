@@ -341,12 +341,8 @@ Preview::PreviewImage()
 		return;
 	}
 
-	QSize isize = QSize(lrint(nw), lrint(nh));
-
 	if (pixPreview == NULL)
-		pixPreview = new QPixmap(isize);
-	else
-		pixPreview->resize(isize);
+		pixPreview = new QPixmap();
 
 	if (pixPreview)
 	{
@@ -380,7 +376,7 @@ Preview::PreviewImage()
 		pxlPreview->move(pw, ph);
 		pxlPreview->setPixmap( tmpPreview );
 		SaveButton->setEnabled(true);
-		setCaption(tr("Preview") + " - " + tr("%1 x %2").arg(pixPreview->width()).arg(pixPreview->height()));
+		setCaption(tr("Preview - %1 x %2").arg(pixPreview->width()).arg(pixPreview->height()));
 	}
 }
 

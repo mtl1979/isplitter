@@ -262,14 +262,13 @@ Päiväys: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="64"/>
         <location filename="previewimpl.cpp" line="111"/>
-        <location filename="previewimpl.cpp" line="383"/>
-        <location filename="previewimpl.cpp" line="511"/>
+        <location filename="previewimpl.cpp" line="507"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="74"/>
-        <location filename="previewimpl.cpp" line="490"/>
+        <location filename="previewimpl.cpp" line="486"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
@@ -279,12 +278,16 @@ Päiväys: %4</translation>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="383"/>
-        <source>%1 x %2</source>
-        <translation>%1 x %2</translation>
+        <location filename="previewimpl.cpp" line="379"/>
+        <source>Preview - %1 x %2</source>
+        <translation>Esikatselu - %1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="490"/>
+        <source>%1 x %2</source>
+        <translation type="obsolete">%1 x %2</translation>
+    </message>
+    <message>
+        <location filename="previewimpl.cpp" line="486"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>
