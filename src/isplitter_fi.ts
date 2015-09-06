@@ -262,13 +262,13 @@ Päiväys: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="64"/>
         <location filename="previewimpl.cpp" line="111"/>
-        <location filename="previewimpl.cpp" line="507"/>
+        <location filename="previewimpl.cpp" line="513"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="74"/>
-        <location filename="previewimpl.cpp" line="486"/>
+        <location filename="previewimpl.cpp" line="492"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
@@ -287,7 +287,7 @@ Päiväys: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="486"/>
+        <location filename="previewimpl.cpp" line="492"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>

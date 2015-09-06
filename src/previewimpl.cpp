@@ -460,12 +460,18 @@ Preview::Save()
 
 	if (pixPreview)
 	{
-		const char * fmt = QImageReader(Splitter->filename()).format();
+		// Format of original image
+		QByteArray fmt = QImageReader(Splitter->filename()).format();
 		QFileInfo info(Splitter->filename());
+		// Path of original image
 		QString path = info.dirPath();
+		// Base name of original image filename with X and Y offsets appended to it
 		QString base = info.baseName();
+		base.append("_" + Splitter->ui->OffsetIndexX->text() + "_" + Splitter->ui->OffsetIndexY->text());
+		// Extension of original image filename
 		QString ext = info.extension();
-		QString newname = MakePath(path, base + "_" + Splitter->ui->OffsetIndexX->text() + "_" + Splitter->ui->OffsetIndexY->text() + "." + ext);
+		// Full name of new image
+		QString newname = MakePath(path, base + "." + ext);
 		if (!pixPreview->save(newname, fmt))
 		{
 			if (QFile::exists(newname))
@@ -474,9 +480,9 @@ Preview::Save()
 			// If original plugin doesn't support writing, try jpeg plugin
 			//
 
-			if (strcmp(fmt, "JPEG") != 0)
+			if (qstricmp(fmt, "JPEG") != 0)
 			{
-				newname = MakePath(path, base + "_" + Splitter->ui->OffsetIndexX->text() + "_" + Splitter->ui->OffsetIndexY->text() + ".jpg");
+				newname = MakePath(path, base + ".jpg");
 				if (pixPreview->save(newname, "JPEG"))
 					return;
 				else if (QFile::exists(newname))
