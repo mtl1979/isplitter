@@ -61,6 +61,25 @@ ScaleImage(const QImage &image, int width, int height)
 	return QPixmap::fromImage(simg);
 }
 
+QImage
+CropImage(const QImage & image, int x, int y, int width, int height)
+{
+	if (x != 0 || y != 0 || width != image.width() || height != image.height())
+		return image.copy(x, y, width, height, 0);
+	else
+		return image;
+}
+
+QImage
+CropImage(QImage * image, int x, int y, int width, int height)
+{
+	return (image != NULL) ? CropImage(*image, x, y, width, height) : QImage();
+}
+
+//
+// Preview class
+//
+
 Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
 :QWidget(parent, name, fl)
 {
@@ -308,27 +327,22 @@ Preview::PreviewImage()
 	int subWidth = (originalWidth / collageSizeX) - imageOffsetTopX - imageOffsetBottomX;
 	int subHeight = (originalHeight / collageSizeY) - imageOffsetTopY - imageOffsetBottomY;
 
-	// Rotate original
-
-	QImage timg;
-	{
-		if (imageRotate == 0)
-		{
-			timg = *image;
-		}
-		else
-		{
-			QTransform tf;
-			tf.rotate(imageRotate);
-			timg = image->transformed(tf, Qt::SmoothTransformation);
-		}
-	}
-
 	//
 	// Generate subimage
 	//
 
-	QImage imgPreview = timg.copy(subOffsetX, subOffsetY, subWidth, subHeight, 0);
+	QImage imgPreview;
+	if (imageRotate == 0.0)
+	{
+		imgPreview = CropImage(image, subOffsetX, subOffsetY, subWidth, subHeight);
+	}
+	else
+	{
+		// Rotate original first
+		QTransform tf;
+		tf.rotate(imageRotate);
+		imgPreview = CropImage(image->transformed(tf, Qt::SmoothTransformation), subOffsetX, subOffsetY, subWidth, subHeight);
+	}
 
 	double nh, nw;
 	if (imageScale != 100.0f)
