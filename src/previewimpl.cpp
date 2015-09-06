@@ -54,6 +54,13 @@ static const unsigned char erase_xpm_data[] = {
     0x2e,0x2e,0x2e,0x2e,0x2e,0x2e,0x2e,0x22,0x7d,0x3b,0x0d,0x0a
 };
 
+QPixmap
+ScaleImage(const QImage &image, int width, int height)
+{
+	QImage simg = image.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	return QPixmap::fromImage(simg);
+}
+
 Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
 :QWidget(parent, name, fl)
 {
@@ -355,20 +362,14 @@ Preview::PreviewImage()
 		scalePixmap(nw, nh, w, h);
 		if (imageScale != 100.0)
 		{
-			QImage simg = imgPreview.scaled(nw, nh, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-			pixPreview->convertFromImage(simg);
+			*pixPreview = ScaleImage(imgPreview, lrint(nw), lrint(nh));
 		}
 		else
 		{
 			pixPreview->convertFromImage(imgPreview);
 		}
-		//
-		QPixmap tmpPreview;
-		{
-			// Use temporary pixmap, so we don't save scaled pixmap
-			QImage nimg = imgPreview.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-			tmpPreview = nimg;
-		}
+		// Use temporary pixmap, so we don't save scaled pixmap
+		QPixmap tmpPreview = ScaleImage(imgPreview, w, h);
 		pxlPreview->resize(w, h);
 		// Center
 		int pw = (PreviewWidget->width() - pxlPreview->width()) / 2;
