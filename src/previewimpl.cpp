@@ -327,6 +327,12 @@ Preview::PreviewImage()
 	int subWidth = (originalWidth / collageSizeX) - imageOffsetTopX - imageOffsetBottomX;
 	int subHeight = (originalHeight / collageSizeY) - imageOffsetTopY - imageOffsetBottomY;
 
+	if (subWidth < 1 || subHeight < 1)
+	{
+		WPopup(tr("Nothing left after crop!"));
+		return;
+	}
+
 	//
 	// Generate subimage
 	//
