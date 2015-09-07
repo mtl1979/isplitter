@@ -191,10 +191,11 @@ Preview::scalePixmap(double oldw, double oldh, int &width, int &height)
 {
 	double ratio = oldw / oldh;
 	double neww = PreviewWidget->height() * ratio;
-	if (neww > PreviewWidget->width())
+	double pw = PreviewWidget->width();
+	if (neww > pw)
 	{
 		width = PreviewWidget->width();
-		double dh = PreviewWidget->width() / ratio;
+		double dh = pw / ratio;
 		height = lrint(dh);
 	}
 	else
@@ -351,10 +352,11 @@ Preview::PreviewImage()
 	}
 
 	double nh, nw;
-	if (imageScale != 100.0f)
+	double pscale = imageScale / 100.0;
+	if (imageScale != 100.0)
 	{
-		nw = ((double) imgPreview.width() * imageScale)/100.0f;
-		nh = ((double) imgPreview.height() * imageScale)/100.0f;
+		nw = (double) imgPreview.width() * pscale;
+		nh = (double) imgPreview.height() * pscale;
 	}
 	else
 	{
@@ -362,7 +364,7 @@ Preview::PreviewImage()
 		nh = imgPreview.height();
 	}
 
-	if (nw < 1 || nh < 1)
+	if (nw < 1.0 || nh < 1.0)
 	{
 		WPopup(tr("Scale factor is too small!"));
 		return;
@@ -378,8 +380,6 @@ Preview::PreviewImage()
 		//
 
 		pxlPreview->show();
-		int w, h;
-		scalePixmap(nw, nh, w, h);
 		if (imageScale != 100.0)
 		{
 			*pixPreview = ScaleImage(imgPreview, lrint(nw), lrint(nh));
@@ -388,13 +388,26 @@ Preview::PreviewImage()
 		{
 			pixPreview->convertFromImage(imgPreview);
 		}
-		// Use temporary pixmap, so we don't save scaled pixmap
-		QPixmap tmpPreview = ScaleImage(imgPreview, w, h);
+		//
+		int w, h;
+		QPixmap tmpPreview;
+		scalePixmap(nw, nh, w, h);
+		if ((double)w != nw || (double)h != nh)
+		{
+			// Use temporary pixmap, so we don't save scaled pixmap
+			tmpPreview = ScaleImage(imgPreview, w, h);
+		}
+		else
+		{
+			tmpPreview = imgPreview;
+		}
+
 		pxlPreview->resize(w, h);
 		// Center
 		int pw = (PreviewWidget->width() - pxlPreview->width()) / 2;
 		int ph = (PreviewWidget->height() - pxlPreview->height()) / 2;
 		pxlPreview->move(pw, ph);
+		// Update preview
 		pxlPreview->setPixmap( tmpPreview );
 		SaveButton->setEnabled(true);
 		setCaption(tr("Preview - %1 x %2").arg(pixPreview->width()).arg(pixPreview->height()));
