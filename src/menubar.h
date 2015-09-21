@@ -13,12 +13,14 @@ public:
 
 	Q3PopupMenu * File() const { return fFile; }
 	Q3PopupMenu * Settings() const { return fSettings; }
+	Q3PopupMenu * Tools() const { return fTools; }
 
 private:
 
 	/* File menu */
 	Q3PopupMenu * fFile;
 	Q3PopupMenu * fSettings;
+	Q3PopupMenu * fTools;
 };
 
 #endif

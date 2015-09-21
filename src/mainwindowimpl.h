@@ -37,6 +37,7 @@ protected slots:
 	void ClearImage();
 	void Exit();
 
+	void AutoCrop();
 	void AutoPreview();
 
 	// Tab 1

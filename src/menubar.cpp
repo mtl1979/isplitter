@@ -21,9 +21,16 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 
 	fSettings->insertItem(tr("Automatic preview"), parent, SLOT(AutoPreview()), 0, 0);
 
+	fTools = new Q3PopupMenu(this);
+	Q_CHECK_PTR(fTools);
+
+	fTools->insertItem(tr("Automatic crop"), parent, SLOT(AutoCrop()), 0, 10, 0);
+	fTools->setItemEnabled(10, false);
+
 	/* Insert into menubar */
 	insertItem(tr("&File"), fFile);
 	insertItem(tr("&Settings"), fSettings);
+	insertItem(tr("&Tools"), fTools);
 }
 
 MenuBar::~MenuBar()

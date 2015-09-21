@@ -24,6 +24,20 @@
 #include <wstring.h>
 #endif
 
+bool ColorsEqual(const QColor &c1, const QColor &c2)
+{
+	if (c1.alpha() != c2.alpha())
+		return false;
+	int r = QABS(c1.red() - c2.red());
+	int g = QABS(c1.green() - c2.green());
+	int b = QABS(c1.blue() - c2.blue());
+	// Allow a little bit of noise
+	int diff = (r + g + b) / 3;
+	if (diff > 23)
+		return false;
+	return true;
+}
+
 ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 : Q3MainWindow(parent, name, fl | Qt::WMouseNoMask)
 {
@@ -310,6 +324,109 @@ ImageSplitter::Load()
 	}
 }
 
+void ImageSplitter::AutoCrop()
+{
+	// Cache variables
+	bool lx = ui->CollageOffsetLockX->isChecked();
+	bool ly = ui->CollageOffsetLockY->isChecked();
+
+	int left = ui->CollageOffsetTopX->text().toInt();
+	int right = ui->CollageOffsetBottomX->text().toInt();
+	int top = ui->CollageOffsetTopY->text().toInt();
+	int bottom = ui->CollageOffsetBottomY->text().toInt();
+	int width = image->width() - right;
+	int height = image->height() - bottom;
+	// Left and right
+	QColor cl = image->pixel(left, top);
+	QColor cr = image->pixel(width - 1, top);
+	for (int x = left; x < width - 1; x++)
+	{
+		bool samel = true, samer = true;
+		for (int y = top + 1; y < height - 1; y++)
+		{
+			QColor cl2 = image->pixel(x, y);
+			if (!ColorsEqual(cl, cl2))
+			{
+				samel = false;
+				if (lx)
+					break;
+			}
+			QColor cr2 = image->pixel(width - 1, y);
+			if (!ColorsEqual(cr, cr2))
+			{
+				samer = false;
+				if (lx)
+					break;
+			}
+			if (!samel && !samer)
+			{
+				break;
+			}
+		}
+		if (samel)
+		{
+			left++;
+		}
+		if (samer)
+		{
+			right++;
+			width--;
+		}
+		else if (!samel)
+		{
+			break;
+		}
+	}
+	// Top and bottom
+	QColor ct = image->pixel(left, top);
+	QColor cb = image->pixel(left, height - 1);
+	for (int y = top; y < height - 1; y++)
+	{
+		bool samet = true, sameb = true;
+		for (int x = left + 1; x < width - 1; x++)
+		{
+			QColor ct2 = image->pixel(x, y);
+			if (!ColorsEqual(ct, ct2))
+			{
+				samet = false;
+				if (ly)
+					break;
+			}
+			QColor cb2 = image->pixel(x, height - 1);
+			if (!ColorsEqual(cb, cb2))
+			{
+				sameb = false;
+				if (lx)
+					break;
+			}
+			if (!samet && !sameb)
+			{
+				break;
+			}
+		}
+		if (samet)
+		{
+			top++;
+		}
+		if (sameb)
+		{
+			bottom++;
+			height--;
+		}
+		else if (!samet)
+		{
+			break;
+		}
+	}
+	// Save new values
+	ui->CollageOffsetTopX->setText(QString::number(lx ? QMIN(left, right) : left));
+	if (!lx)
+		ui->CollageOffsetBottomX->setText(QString::number(right));
+	ui->CollageOffsetTopY->setText(QString::number(ly ? QMIN(top, bottom) : top));
+	if (!ly)
+		ui->CollageOffsetBottomY->setText(QString::number(bottom));
+}
+
 void
 ImageSplitter::AutoPreview()
 {
@@ -391,6 +508,8 @@ ImageSplitter::Load(const QString &filename)
 
 		ui->TabWidget2->showPage(ui->tab1);
 
+		menuBar->Tools()->setItemEnabled(10, true);
+
 		previewChanged();
 	}
 	else
@@ -428,6 +547,8 @@ ImageSplitter::ClearImage()
 	//
 	ui->ImageRotate->setText("0");
 	ui->ImageScale->setText("100");
+	//
+	menuBar->Tools()->setItemEnabled(10, false);
 	//
 	fPreview->ClearPreview();
 	fPreview->hide();

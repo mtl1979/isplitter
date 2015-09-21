@@ -35,13 +35,13 @@ Päiväys: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="390"/>
-        <location filename="mainwindowimpl.cpp" line="411"/>
+        <location filename="mainwindowimpl.cpp" line="507"/>
+        <location filename="mainwindowimpl.cpp" line="530"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="306"/>
+        <location filename="mainwindowimpl.cpp" line="320"/>
         <source>Open image...</source>
         <translation>Avaa kuva...</translation>
     </message>
@@ -247,14 +247,24 @@ Päiväys: %4</translation>
         <translation>Automaattinen esikatselu</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="25"/>
+        <location filename="menubar.cpp" line="27"/>
+        <source>Automatic crop</source>
+        <translation>Automaattinen rajaus</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="31"/>
         <source>&amp;File</source>
         <translation>&amp;Tiedosto</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="26"/>
+        <location filename="menubar.cpp" line="32"/>
         <source>&amp;Settings</source>
         <translation>A&amp;setukset</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="33"/>
+        <source>&amp;Tools</source>
+        <translation>&amp;Työkalut</translation>
     </message>
 </context>
 <context>
@@ -262,13 +272,13 @@ Päiväys: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="90"/>
         <location filename="previewimpl.cpp" line="137"/>
-        <location filename="previewimpl.cpp" line="546"/>
+        <location filename="previewimpl.cpp" line="547"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="100"/>
-        <location filename="previewimpl.cpp" line="525"/>
+        <location filename="previewimpl.cpp" line="526"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
@@ -283,7 +293,7 @@ Päiväys: %4</translation>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="412"/>
+        <location filename="previewimpl.cpp" line="413"/>
         <source>Preview - %1 x %2</source>
         <translation>Esikatselu - %1 x %2</translation>
     </message>
@@ -292,7 +302,7 @@ Päiväys: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="525"/>
+        <location filename="previewimpl.cpp" line="526"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>
