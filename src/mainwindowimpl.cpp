@@ -144,8 +144,10 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 void
 ImageSplitter::dragEnterEvent(QDragEnterEvent* event)
 {
-    if (event->mimeData()->hasUrls())
-         event->acceptProposedAction();
+	if (event->mimeData()->hasUrls() && event->mimeData()->urls().at(0).isLocalFile())
+		event->acceptProposedAction();
+	if (event->mimeData()->hasImage())
+		event->acceptProposedAction();
 	Q3MainWindow::dragEnterEvent(event);
 }
 
@@ -170,7 +172,7 @@ ImageSplitter::eventFilter( QObject *o, QEvent *e )
 			return true;
 		}
 	}
-	return false;
+	return Q3MainWindow::eventFilter(o, e);
 }
 
 void
@@ -204,6 +206,20 @@ ImageSplitter::dropEvent(QDropEvent* event)
 		qDebug("Drop: %S", wfile);
 #endif
 		Load(file);
+	}
+	else if (event->mimeData()->hasImage())
+	{
+		ClearImage();
+		image = new QImage(qvariant_cast<QImage>(event->mimeData()->imageData()));
+		fFilename = QString::null;
+
+		int w, h;
+		scaleImage(image, w, h);
+		QImage nimg = image->smoothScale(w, h);
+		ui->pxlCollage->setPixmap(QPixmap::fromImage(nimg));
+
+		menuBar->File()->setItemEnabled(3, true);
+		menuBar->Tools()->setItemEnabled(10, false);
 	}
 }
 
@@ -254,7 +270,7 @@ ImageSplitter::startDrag()
 		mimeData->setUrls(list);
 		drag->setMimeData(mimeData);
 
-                drag->exec(Qt::CopyAction);
+		drag->exec(Qt::CopyAction);
 	}
 }
 
@@ -317,10 +333,20 @@ ImageSplitter::Load()
 #ifdef _DEBUG
 	WString wlastdir(lastdir);
 #endif
-	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, "*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff");
+	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)"));
 	if (!filename.isEmpty())
 	{
 		Load(filename);
+	}
+}
+
+void
+ImageSplitter::Save()
+{
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save image..."), lastdir, tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)"));
+	if (!filename.isEmpty())
+	{
+		Save(filename);
 	}
 }
 
@@ -517,6 +543,15 @@ ImageSplitter::Load(const QString &filename)
 }
 
 void
+ImageSplitter::Save(const QString &filename)
+{
+	if (image->save(filename))
+	{
+		Load(filename);
+	}
+}
+
+void
 ImageSplitter::ClearImage()
 {
 	if (image)
@@ -548,6 +583,7 @@ ImageSplitter::ClearImage()
 	ui->ImageRotate->setText("0");
 	ui->ImageScale->setText("100");
 	//
+	menuBar->File()->setItemEnabled(3, false);
 	menuBar->Tools()->setItemEnabled(10, false);
 	//
 	fPreview->ClearPreview();

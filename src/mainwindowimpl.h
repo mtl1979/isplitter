@@ -25,6 +25,7 @@ public:
 	QImage *getImage() {return image;}
 	QString filename() {return fFilename;}
 	void Load(const QString &filename);
+	void Save(const QString &filename);
 	bool IsAutoPreview();
 
 	Ui_ImageSplitterBase * ui;
@@ -34,6 +35,7 @@ signals:
 
 protected slots:
 	void Load();
+	void Save();
 	void ClearImage();
 	void Exit();
 

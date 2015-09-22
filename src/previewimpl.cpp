@@ -480,7 +480,7 @@ Preview::startDrag()
 	{
 		QDrag *drag = new QDrag(this);
 		QMimeData *mimeData = new QMimeData;
-		mimeData->setImageData(*pixPreview);
+		mimeData->setImageData(pixPreview->toImage());
 		drag->setMimeData(mimeData);
 
 		drag->exec(Qt::CopyAction);
@@ -543,6 +543,8 @@ Preview::ClearPreview()
 //		pxlPreview->clear();
 		pxlPreview->hide();
 	}
+
+	image = NULL;
 
 	setCaption(tr("Preview"));
 }

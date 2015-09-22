@@ -35,13 +35,24 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="507"/>
-        <location filename="mainwindowimpl.cpp" line="530"/>
+        <location filename="mainwindowimpl.cpp" line="336"/>
+        <location filename="mainwindowimpl.cpp" line="346"/>
+        <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
+        <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
+    </message>
+    <message>
+        <location filename="mainwindowimpl.cpp" line="346"/>
+        <source>Save image...</source>
+        <translation>Save image...</translation>
+    </message>
+    <message>
+        <location filename="mainwindowimpl.cpp" line="533"/>
+        <location filename="mainwindowimpl.cpp" line="565"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="320"/>
+        <location filename="mainwindowimpl.cpp" line="336"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -233,36 +244,46 @@ Date: %4</translation>
     </message>
     <message>
         <location filename="menubar.cpp" line="17"/>
+        <source>&amp;Save</source>
+        <translation>&amp;Save</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="17"/>
+        <source>CTRL+S</source>
+        <translation>CTRL+S</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="22"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="17"/>
+        <location filename="menubar.cpp" line="22"/>
         <source>ALT+X</source>
         <translation>ALT+X</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="22"/>
+        <location filename="menubar.cpp" line="27"/>
         <source>Automatic preview</source>
         <translation>Automatic preview</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="27"/>
+        <location filename="menubar.cpp" line="32"/>
         <source>Automatic crop</source>
         <translation>Automatic crop</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="31"/>
+        <location filename="menubar.cpp" line="36"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="32"/>
+        <location filename="menubar.cpp" line="37"/>
         <source>&amp;Settings</source>
         <translation>&amp;Settings</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="33"/>
+        <location filename="menubar.cpp" line="38"/>
         <source>&amp;Tools</source>
         <translation>&amp;Tools</translation>
     </message>
@@ -272,7 +293,7 @@ Date: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="90"/>
         <location filename="previewimpl.cpp" line="137"/>
-        <location filename="previewimpl.cpp" line="547"/>
+        <location filename="previewimpl.cpp" line="549"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>

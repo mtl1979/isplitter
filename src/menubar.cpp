@@ -14,6 +14,11 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 
 	fFile->insertSeparator();
 
+	fFile->insertItem(tr("&Save"), parent, SLOT(Save()), Q3Accel::stringToKey(tr("CTRL+S")), 3, -1);
+	fFile->setItemEnabled(3, false);
+
+	fFile->insertSeparator();
+
 	fFile->insertItem(tr("E&xit"), parent, SLOT(Exit()), Q3Accel::stringToKey(tr("ALT+X")));
 
 	fSettings = new Q3PopupMenu(this);
