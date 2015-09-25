@@ -388,8 +388,8 @@ Preview::PreviewImage()
 		//
 		int w, h;
 		QPixmap tmpPreview;
-		scalePixmap(nw, nh, w, h);
-		if (w != nw || h != nh)
+		scalePixmap(imgPreview.width(), imgPreview.height(), w, h);
+		if (w != imgPreview.width() || h != imgPreview.height())
 		{
 			// Use temporary pixmap, so we don't save scaled pixmap
 			tmpPreview = ScaleImage(imgPreview, w, h);
