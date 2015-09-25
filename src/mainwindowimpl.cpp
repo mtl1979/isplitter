@@ -188,22 +188,28 @@ ImageSplitter::dropEvent(QDropEvent* event)
 	{
 		QList<QUrl> urls = event->mimeData()->urls();
 		QUrl u = urls.takeFirst();
-#ifdef WIN32
-		qDebug("Drop URL: %s", u.toString().toLocal8Bit());
-#else
+#ifdef _DEBUG
+#  ifdef WIN32
+		WString wu(u.toString());
+		qDebug("Drop URL: %s", (const char *) wu);
+#  else
 		wchar_t wu[u.toString().length()+1];
 		int len = u.toString().toWCharArray(wu);
 		wu[len] = 0;
 		qDebug("Drop URL: %S", wu);
+#  endif
 #endif
 		QString file = u.toLocalFile();
-#ifdef WIN32
-		qDebug("Drop: %s", file.toLocal8Bit());
-#else
+#ifdef _DEBUG
+#  ifdef WIN32
+		wu = file;
+		qDebug("Drop: %s", (const char *) wu);
+#  else
 		wchar_t wfile[file.length()+1];
 		len = file.toWCharArray(wfile);
 		wfile[len] = 0;
 		qDebug("Drop: %S", wfile);
+#  endif
 #endif
 		Load(file);
 	}

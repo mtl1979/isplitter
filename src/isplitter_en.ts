@@ -35,24 +35,24 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="336"/>
-        <location filename="mainwindowimpl.cpp" line="346"/>
+        <location filename="mainwindowimpl.cpp" line="342"/>
+        <location filename="mainwindowimpl.cpp" line="352"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="346"/>
+        <location filename="mainwindowimpl.cpp" line="352"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="533"/>
-        <location filename="mainwindowimpl.cpp" line="565"/>
+        <location filename="mainwindowimpl.cpp" line="539"/>
+        <location filename="mainwindowimpl.cpp" line="571"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="336"/>
+        <location filename="mainwindowimpl.cpp" line="342"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
