@@ -293,28 +293,28 @@ Päiväys: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="90"/>
         <location filename="previewimpl.cpp" line="137"/>
-        <location filename="previewimpl.cpp" line="549"/>
+        <location filename="previewimpl.cpp" line="546"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="100"/>
-        <location filename="previewimpl.cpp" line="526"/>
+        <location filename="previewimpl.cpp" line="523"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="333"/>
+        <location filename="previewimpl.cpp" line="330"/>
         <source>Nothing left after crop!</source>
         <translation>Rajaamisen jälkeen ei ole mitään jäljellä!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="369"/>
+        <location filename="previewimpl.cpp" line="366"/>
         <source>Scale factor is too small!</source>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="413"/>
+        <location filename="previewimpl.cpp" line="410"/>
         <source>Preview - %1 x %2</source>
         <translation>Esikatselu - %1 x %2</translation>
     </message>
@@ -323,7 +323,7 @@ Päiväys: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="526"/>
+        <location filename="previewimpl.cpp" line="523"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>

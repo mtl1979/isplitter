@@ -55,6 +55,6 @@ private:
 	QPixmap * pixPreview;
 	ImageSplitter * Splitter;
 
-	void scalePixmap(double oldw, double oldh, int &width, int &height);
+	void scalePixmap(int oldw, int oldh, int &width, int &height);
 };
 #endif

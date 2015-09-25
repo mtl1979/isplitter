@@ -187,20 +187,17 @@ bool clamp(T & a, const T b, const T c)
 }
 
 void
-Preview::scalePixmap(double oldw, double oldh, int &width, int &height)
+Preview::scalePixmap(int oldw, int oldh, int &width, int &height)
 {
-	double ratio = oldw / oldh;
-	double neww = PreviewWidget->height() * ratio;
-	double pw = PreviewWidget->width();
-	if (neww > pw)
+	int neww = PreviewWidget->height() * oldw / oldh;
+	if (neww > PreviewWidget->width())
 	{
 		width = PreviewWidget->width();
-		double dh = pw / ratio;
-		height = lrint(dh);
+		height = PreviewWidget->width() * oldh / oldw;
 	}
 	else
 	{
-		width = lrint(neww);
+		width = neww;
 		height = PreviewWidget->height();
 	}
 }
@@ -351,12 +348,12 @@ Preview::PreviewImage()
 		imgPreview = CropImage(image->transformed(tf, Qt::SmoothTransformation), subOffsetX, subOffsetY, subWidth, subHeight);
 	}
 
-	double nh, nw;
+	int nh, nw;
 	double pscale = imageScale / 100.0;
 	if (imageScale != 100.0)
 	{
-		nw = (double) imgPreview.width() * pscale;
-		nh = (double) imgPreview.height() * pscale;
+		nw = lrint((double) imgPreview.width() * pscale);
+		nh = lrint((double) imgPreview.height() * pscale);
 	}
 	else
 	{
@@ -364,7 +361,7 @@ Preview::PreviewImage()
 		nh = imgPreview.height();
 	}
 
-	if (nw < 1.0 || nh < 1.0)
+	if (nw < 1 || nh < 1)
 	{
 		WPopup(tr("Scale factor is too small!"));
 		return;
@@ -382,7 +379,7 @@ Preview::PreviewImage()
 		pxlPreview->show();
 		if (imageScale != 100.0)
 		{
-			*pixPreview = ScaleImage(imgPreview, lrint(nw), lrint(nh));
+			*pixPreview = ScaleImage(imgPreview, nw, nh);
 		}
 		else
 		{
@@ -392,7 +389,7 @@ Preview::PreviewImage()
 		int w, h;
 		QPixmap tmpPreview;
 		scalePixmap(nw, nh, w, h);
-		if ((double)w != nw || (double)h != nh)
+		if (w != nw || h != nh)
 		{
 			// Use temporary pixmap, so we don't save scaled pixmap
 			tmpPreview = ScaleImage(imgPreview, w, h);
