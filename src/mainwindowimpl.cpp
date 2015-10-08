@@ -19,12 +19,13 @@
 #include "previewimpl.h"
 #include "menubar.h"
 #include "platform.h"
+#include "util.h"
 
 #ifdef _DEBUG
 #include <wstring.h>
 #endif
 
-bool ColorsEqual(const QColor &c1, const QColor &c2)
+bool ColorsEqual(const QColor &c1, const QColor &c2, int noise)
 {
 	if (c1.alpha() != c2.alpha())
 		return false;
@@ -33,7 +34,7 @@ bool ColorsEqual(const QColor &c1, const QColor &c2)
 	int b = QABS(c1.blue() - c2.blue());
 	// Allow a little bit of noise
 	int diff = (r + g + b) / 3;
-	if (diff > 23)
+	if (diff > noise)
 		return false;
 	return true;
 }
@@ -96,6 +97,8 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 	connect(ui->CollageOffsetTopX, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetTopXchanged(const QString &)));
 	connect(ui->CollageOffsetTopY, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetTopYchanged(const QString &)));
 
+	connect(ui->noiseminus, SIGNAL(clicked()), this, SLOT(NoiseMinusClicked()));
+	connect(ui->noiseplus, SIGNAL(clicked()), this, SLOT(NoisePlusClicked()));
 	// Tab 2
 
 	// Offset Index
@@ -358,7 +361,10 @@ ImageSplitter::Save()
 
 void ImageSplitter::AutoCrop()
 {
+	bool ok;
+
 	// Cache variables
+
 	bool lx = ui->CollageOffsetLockX->isChecked();
 	bool ly = ui->CollageOffsetLockY->isChecked();
 
@@ -368,7 +374,19 @@ void ImageSplitter::AutoCrop()
 	int bottom = ui->CollageOffsetBottomY->text().toInt();
 	int width = image->width() - right;
 	int height = image->height() - bottom;
+	// Allowed noise level when comparing if row or column consists of same color, valid range is 0-63, default is 23
+	int noise = ui->noiseLevel->text().toInt(&ok);
+	if (ok == false)
+	{
+		noise = 23;
+		ui->noiseLevel->setText(QString::number(noise));
+	} else if (clamp(noise, 0, 63))
+	{
+		ui->noiseLevel->setText(QString::number(noise));
+	}
+
 	// Left and right
+
 	QColor cl = image->pixel(left, top);
 	QColor cr = image->pixel(width - 1, top);
 	for (int x = left; x < width - 1; x++)
@@ -377,14 +395,14 @@ void ImageSplitter::AutoCrop()
 		for (int y = top + 1; y < height - 1; y++)
 		{
 			QColor cl2 = image->pixel(x, y);
-			if (!ColorsEqual(cl, cl2))
+			if (!ColorsEqual(cl, cl2, noise))
 			{
 				samel = false;
 				if (lx)
 					break;
 			}
 			QColor cr2 = image->pixel(width - 1, y);
-			if (!ColorsEqual(cr, cr2))
+			if (!ColorsEqual(cr, cr2, noise))
 			{
 				samer = false;
 				if (lx)
@@ -409,7 +427,9 @@ void ImageSplitter::AutoCrop()
 			break;
 		}
 	}
+
 	// Top and bottom
+
 	QColor ct = image->pixel(left, top);
 	QColor cb = image->pixel(left, height - 1);
 	for (int y = top; y < height - 1; y++)
@@ -418,14 +438,14 @@ void ImageSplitter::AutoCrop()
 		for (int x = left + 1; x < width - 1; x++)
 		{
 			QColor ct2 = image->pixel(x, y);
-			if (!ColorsEqual(ct, ct2))
+			if (!ColorsEqual(ct, ct2, noise))
 			{
 				samet = false;
 				if (ly)
 					break;
 			}
 			QColor cb2 = image->pixel(x, height - 1);
-			if (!ColorsEqual(cb, cb2))
+			if (!ColorsEqual(cb, cb2, noise))
 			{
 				sameb = false;
 				if (lx)
@@ -450,7 +470,9 @@ void ImageSplitter::AutoCrop()
 			break;
 		}
 	}
+
 	// Save new values
+
 	ui->CollageOffsetTopX->setText(QString::number(lx ? QMIN(left, right) : left));
 	if (!lx)
 		ui->CollageOffsetBottomX->setText(QString::number(right));
@@ -577,6 +599,8 @@ ImageSplitter::ClearImage()
 	ui->CollageOffsetTopY->setText("0");
 	ui->CollageOffsetBottomX->setText("0");
 	ui->CollageOffsetBottomY->setText("0");
+	//
+	ui->noiseLevel->setText("23");
 	//
 	ui->OffsetIndexX->setText("0");
 	ui->OffsetIndexY->setText("0");
@@ -748,6 +772,22 @@ ImageSplitter::CollageSizeYchanged(const QString &text)
 	int i = text.toInt(&ok);
 	if (i > 0)
 		previewChanged();
+}
+
+void
+ImageSplitter::NoiseMinusClicked()
+{
+	int level = ui->noiseLevel->text().toInt();
+	if (level > 0)
+		ui->noiseLevel->setText(QString::number(--level));
+}
+
+void
+ImageSplitter::NoisePlusClicked()
+{
+	int level = ui->noiseLevel->text().toInt();
+	if (level < 64)
+		ui->noiseLevel->setText(QString::number(++level));
 }
 
 void

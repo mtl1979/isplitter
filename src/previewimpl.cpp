@@ -169,23 +169,6 @@ Preview::ShowImage(QImage *img)
 	}
 }
 
-template <typename T>
-bool clamp(T & a, const T b, const T c)
-{
-	bool ret = false;
-	if (a < b)
-	{
-		a = b;
-		ret = true;
-	}
-	else if (a > c)
-	{
-		a = c;
-		ret = true;
-	}
-	return ret;
-}
-
 void
 Preview::scalePixmap(int oldw, int oldh, int &width, int &height)
 {

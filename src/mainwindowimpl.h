@@ -68,6 +68,9 @@ protected slots:
 	void CollageOffsetBottomXchanged(const QString &);
 	void CollageOffsetBottomYchanged(const QString &);
 
+	void NoiseMinusClicked();
+	void NoisePlusClicked();
+
 	// Tab 2
 	void OffsetIndexXminusClicked();
 	void OffsetIndexXplusClicked();

@@ -35,24 +35,24 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="342"/>
-        <location filename="mainwindowimpl.cpp" line="352"/>
+        <location filename="mainwindowimpl.cpp" line="345"/>
+        <location filename="mainwindowimpl.cpp" line="355"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="352"/>
+        <location filename="mainwindowimpl.cpp" line="355"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="539"/>
-        <location filename="mainwindowimpl.cpp" line="571"/>
+        <location filename="mainwindowimpl.cpp" line="561"/>
+        <location filename="mainwindowimpl.cpp" line="593"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="342"/>
+        <location filename="mainwindowimpl.cpp" line="345"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -73,9 +73,9 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="180"/>
         <location filename="mainwindow.ui" line="360"/>
         <location filename="mainwindow.ui" line="515"/>
-        <location filename="mainwindow.ui" line="753"/>
-        <location filename="mainwindow.ui" line="964"/>
-        <location filename="mainwindow.ui" line="1130"/>
+        <location filename="mainwindow.ui" line="832"/>
+        <location filename="mainwindow.ui" line="1043"/>
+        <location filename="mainwindow.ui" line="1209"/>
         <source>X</source>
         <translation>X</translation>
     </message>
@@ -84,13 +84,13 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="463"/>
         <location filename="mainwindow.ui" line="502"/>
         <location filename="mainwindow.ui" line="566"/>
-        <location filename="mainwindow.ui" line="791"/>
-        <location filename="mainwindow.ui" line="861"/>
-        <location filename="mainwindow.ui" line="1002"/>
-        <location filename="mainwindow.ui" line="1072"/>
-        <location filename="mainwindow.ui" line="1168"/>
-        <location filename="mainwindow.ui" line="1238"/>
-        <location filename="mainwindow.ui" line="1321"/>
+        <location filename="mainwindow.ui" line="870"/>
+        <location filename="mainwindow.ui" line="940"/>
+        <location filename="mainwindow.ui" line="1081"/>
+        <location filename="mainwindow.ui" line="1151"/>
+        <location filename="mainwindow.ui" line="1247"/>
+        <location filename="mainwindow.ui" line="1317"/>
+        <location filename="mainwindow.ui" line="1400"/>
         <source>0</source>
         <translation>0</translation>
     </message>
@@ -98,31 +98,31 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="225"/>
         <location filename="mainwindow.ui" line="379"/>
         <location filename="mainwindow.ui" line="534"/>
-        <location filename="mainwindow.ui" line="823"/>
-        <location filename="mainwindow.ui" line="1034"/>
-        <location filename="mainwindow.ui" line="1200"/>
+        <location filename="mainwindow.ui" line="902"/>
+        <location filename="mainwindow.ui" line="1113"/>
+        <location filename="mainwindow.ui" line="1279"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="918"/>
+        <location filename="mainwindow.ui" line="997"/>
         <source>Image Offset:</source>
         <translation>Image Offset:</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="431"/>
-        <location filename="mainwindow.ui" line="945"/>
+        <location filename="mainwindow.ui" line="1024"/>
         <source>Top</source>
         <translation>Top</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="624"/>
-        <location filename="mainwindow.ui" line="1111"/>
+        <location filename="mainwindow.ui" line="1190"/>
         <source>Bottom</source>
         <translation>Bottom</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="723"/>
+        <location filename="mainwindow.ui" line="802"/>
         <source>Image Index:</source>
         <translation>Image Index:</translation>
     </message>
@@ -145,17 +145,17 @@ Date: %4</translation>
         <translation>Collage</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="679"/>
+        <location filename="mainwindow.ui" line="758"/>
         <source>Image</source>
         <translation>Image</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1376"/>
+        <location filename="mainwindow.ui" line="1455"/>
         <source>Rotate</source>
         <translation>Rotate</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1300"/>
+        <location filename="mainwindow.ui" line="1379"/>
         <source>Transform</source>
         <translation>Transform</translation>
     </message>
@@ -172,12 +172,13 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="450"/>
         <location filename="mainwindow.ui" line="553"/>
         <location filename="mainwindow.ui" line="598"/>
-        <location filename="mainwindow.ui" line="778"/>
-        <location filename="mainwindow.ui" line="848"/>
-        <location filename="mainwindow.ui" line="989"/>
-        <location filename="mainwindow.ui" line="1059"/>
-        <location filename="mainwindow.ui" line="1155"/>
-        <location filename="mainwindow.ui" line="1225"/>
+        <location filename="mainwindow.ui" line="703"/>
+        <location filename="mainwindow.ui" line="857"/>
+        <location filename="mainwindow.ui" line="927"/>
+        <location filename="mainwindow.ui" line="1068"/>
+        <location filename="mainwindow.ui" line="1138"/>
+        <location filename="mainwindow.ui" line="1234"/>
+        <location filename="mainwindow.ui" line="1304"/>
         <source>-</source>
         <translation>-</translation>
     </message>
@@ -188,39 +189,50 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="476"/>
         <location filename="mainwindow.ui" line="579"/>
         <location filename="mainwindow.ui" line="617"/>
-        <location filename="mainwindow.ui" line="810"/>
-        <location filename="mainwindow.ui" line="880"/>
-        <location filename="mainwindow.ui" line="1021"/>
-        <location filename="mainwindow.ui" line="1091"/>
-        <location filename="mainwindow.ui" line="1187"/>
-        <location filename="mainwindow.ui" line="1257"/>
+        <location filename="mainwindow.ui" line="726"/>
+        <location filename="mainwindow.ui" line="889"/>
+        <location filename="mainwindow.ui" line="959"/>
+        <location filename="mainwindow.ui" line="1100"/>
+        <location filename="mainwindow.ui" line="1170"/>
+        <location filename="mainwindow.ui" line="1266"/>
+        <location filename="mainwindow.ui" line="1336"/>
         <source>+</source>
         <translation>+</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="637"/>
-        <location filename="mainwindow.ui" line="1264"/>
+        <location filename="mainwindow.ui" line="1343"/>
         <source>Lock X</source>
         <translation>Lock X</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="644"/>
-        <location filename="mainwindow.ui" line="1271"/>
+        <location filename="mainwindow.ui" line="1350"/>
         <source>Lock Y</source>
         <translation>Lock Y</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1334"/>
+        <location filename="mainwindow.ui" line="676"/>
+        <source>Noise level</source>
+        <translation>Noise level</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="710"/>
+        <source>23</source>
+        <translation>23</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1413"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1344"/>
+        <location filename="mainwindow.ui" line="1423"/>
         <source>100</source>
         <translation>100</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1357"/>
+        <location filename="mainwindow.ui" line="1436"/>
         <source>Scale</source>
         <translation>Scale</translation>
     </message>
@@ -293,28 +305,28 @@ Date: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="90"/>
         <location filename="previewimpl.cpp" line="137"/>
-        <location filename="previewimpl.cpp" line="546"/>
+        <location filename="previewimpl.cpp" line="529"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="100"/>
-        <location filename="previewimpl.cpp" line="523"/>
+        <location filename="previewimpl.cpp" line="506"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="330"/>
+        <location filename="previewimpl.cpp" line="313"/>
         <source>Nothing left after crop!</source>
         <translation>Nothing left after crop!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="366"/>
+        <location filename="previewimpl.cpp" line="349"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="410"/>
+        <location filename="previewimpl.cpp" line="393"/>
         <source>Preview - %1 x %2</source>
         <translation>Preview - %1 x %2</translation>
     </message>
@@ -323,7 +335,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="523"/>
+        <location filename="previewimpl.cpp" line="506"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>
