@@ -23,4 +23,9 @@ inline bool clamp(T& a, const T& min, const T& max)
 	return ret;
 }
 
+template<typename V>
+inline V mod(const V& a, const V& b)
+{
+	return (a % b + b) % b;
+}
 #endif

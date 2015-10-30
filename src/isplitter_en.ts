@@ -305,28 +305,28 @@ Date: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="90"/>
         <location filename="previewimpl.cpp" line="137"/>
-        <location filename="previewimpl.cpp" line="529"/>
+        <location filename="previewimpl.cpp" line="549"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="100"/>
-        <location filename="previewimpl.cpp" line="506"/>
+        <location filename="previewimpl.cpp" line="526"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="313"/>
+        <location filename="previewimpl.cpp" line="321"/>
         <source>Nothing left after crop!</source>
         <translation>Nothing left after crop!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="349"/>
+        <location filename="previewimpl.cpp" line="369"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="393"/>
+        <location filename="previewimpl.cpp" line="413"/>
         <source>Preview - %1 x %2</source>
         <translation>Preview - %1 x %2</translation>
     </message>
@@ -335,7 +335,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="506"/>
+        <location filename="previewimpl.cpp" line="526"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>

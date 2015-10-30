@@ -297,6 +297,14 @@ Preview::PreviewImage()
 			return;
 	}
 
+	// Make sure image size is divisible by collage size by expanding it if necessary
+
+	if (mod(originalWidth, collageSizeX) != 0)
+		originalWidth += collageSizeX - mod(originalWidth, collageSizeX);
+
+	if (mod(originalHeight, collageSizeY) != 0)
+		originalHeight += collageSizeY - mod(originalHeight, collageSizeY);
+
 	//
 	// Calculate subimage dimensions
 	//
@@ -313,6 +321,18 @@ Preview::PreviewImage()
 		WPopup(tr("Nothing left after crop!"));
 		return;
 	}
+
+	// Make sure the sub-image without right and bottom offsets doesn't go outside original image
+
+	int subX = subOffsetX + imageOffsetBottomX; // Adjusted X coordinate of top-left of subimage
+
+	if (subWidth + subX > image->width())
+		subWidth = image->width() - subX;
+
+	int subY = subOffsetY + imageOffsetBottomY; // Adjusted Y coordinate of top-left of subimage
+
+	if (subHeight + subY > image->height())
+		subHeight = image->height() - subY;
 
 	//
 	// Generate subimage
