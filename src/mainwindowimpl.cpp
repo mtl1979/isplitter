@@ -130,6 +130,10 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 	connect(ui->ImageOffsetLockX, SIGNAL(stateChanged(int)), this, SLOT(ImageOffsetLockXchanged(int)));
 	connect(ui->ImageOffsetLockY, SIGNAL(stateChanged(int)), this, SLOT(ImageOffsetLockYchanged(int)));
 
+	// Mirrored
+	connect(ui->mirrorX, SIGNAL(toggled(bool)), this, SLOT(MirrorXtoggled(bool)));
+	connect(ui->mirrorY, SIGNAL(toggled(bool)), this, SLOT(MirrorYtoggled(bool)));
+
 	// Tab 3
 
 	// Rotate
@@ -609,6 +613,8 @@ ImageSplitter::ClearImage()
 	ui->ImageOffsetTopY->setText("0");
 	ui->ImageOffsetBottomX->setText("0");
 	ui->ImageOffsetBottomY->setText("0");
+	ui->mirrorX->setChecked(false);
+	ui->mirrorY->setChecked(false);
 	//
 	ui->ImageRotate->setText("0");
 	ui->ImageScale->setText("100");
@@ -1067,6 +1073,18 @@ ImageSplitter::ImageScalechanged(const QString &text)
 	{
 		previewChanged();
 	}
+}
+
+void
+ImageSplitter::MirrorXtoggled(bool)
+{
+	previewChanged();
+}
+
+void
+ImageSplitter::MirrorYtoggled(bool)
+{
+	previewChanged();
 }
 
 void

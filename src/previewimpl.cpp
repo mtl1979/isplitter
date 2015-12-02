@@ -351,6 +351,13 @@ Preview::PreviewImage()
 		imgPreview = CropImage(image->transformed(tf, Qt::SmoothTransformation), subOffsetX, subOffsetY, subWidth, subHeight);
 	}
 
+	// Mirror image if requested
+
+	if (Splitter->ui->mirrorX->isChecked() || Splitter->ui->mirrorY->isChecked())
+	{
+		imgPreview = imgPreview.mirrored(Splitter->ui->mirrorX->isChecked(), Splitter->ui->mirrorY->isChecked());
+	}
+
 	int nh, nw;
 	double pscale = imageScale / 100.0;
 	if (imageScale != 100.0)

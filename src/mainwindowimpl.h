@@ -97,6 +97,9 @@ protected slots:
 	void ImageOffsetBottomXchanged(const QString &);
 	void ImageOffsetBottomYchanged(const QString &);
 
+	void MirrorXtoggled(bool);
+	void MirrorYtoggled(bool);
+
 	// Tab 3
 	void ImageRotatechanged(const QString &);
 	void ImageScalechanged(const QString &);
