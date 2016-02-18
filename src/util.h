@@ -23,6 +23,16 @@ inline bool clamp(T& a, const T& min, const T& max)
 	return ret;
 }
 
+template <typename T>
+inline T bound(const T& a, const T& min, const T& max)
+{
+	if (a < min)
+		return min;
+	if (a > max)
+		return max;
+	return a;
+}
+
 template<typename V>
 inline V mod(const V& a, const V& b)
 {

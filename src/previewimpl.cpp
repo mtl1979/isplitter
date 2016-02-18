@@ -86,6 +86,7 @@ Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
     if ( !name )
 	setName( "PreviewBase" );
     resize( 596, 480 );
+	setMinimumHeight(100);
 
     setCaption( tr( "Preview" ) );
 
@@ -172,17 +173,13 @@ Preview::ShowImage(QImage *img)
 void
 Preview::scalePixmap(int oldw, int oldh, int &width, int &height)
 {
-	int neww = PreviewWidget->height() * oldw / oldh;
-	if (neww > PreviewWidget->width())
-	{
-		width = PreviewWidget->width();
-		height = PreviewWidget->width() * oldh / oldw;
-	}
-	else
-	{
-		width = neww;
-		height = PreviewWidget->height();
-	}
+	int hmargin = bound(PreviewWidget->width() / 4, 2, 16);
+	int vmargin = bound(PreviewWidget->height() / 4, 2, 16);
+	int maxw = PreviewWidget->width() - hmargin;
+	int maxh = PreviewWidget->height() - vmargin;
+	int neww = maxh * oldw / oldh;
+	width = qMin(neww, maxw);
+	height = width * oldh / oldw;
 }
 
 void

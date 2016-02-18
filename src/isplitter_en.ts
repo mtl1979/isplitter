@@ -318,30 +318,30 @@ Date: %4</translation>
 <context>
     <name>Preview</name>
     <message>
-        <location filename="previewimpl.cpp" line="90"/>
-        <location filename="previewimpl.cpp" line="137"/>
-        <location filename="previewimpl.cpp" line="556"/>
+        <location filename="previewimpl.cpp" line="91"/>
+        <location filename="previewimpl.cpp" line="138"/>
+        <location filename="previewimpl.cpp" line="553"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="100"/>
-        <location filename="previewimpl.cpp" line="533"/>
+        <location filename="previewimpl.cpp" line="101"/>
+        <location filename="previewimpl.cpp" line="530"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="321"/>
+        <location filename="previewimpl.cpp" line="318"/>
         <source>Nothing left after crop!</source>
         <translation>Nothing left after crop!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="376"/>
+        <location filename="previewimpl.cpp" line="373"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="420"/>
+        <location filename="previewimpl.cpp" line="417"/>
         <source>Preview - %1 x %2</source>
         <translation>Preview - %1 x %2</translation>
     </message>
@@ -350,7 +350,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="533"/>
+        <location filename="previewimpl.cpp" line="530"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>
