@@ -143,6 +143,10 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WFlags fl)
 	// Scale
 	connect(ui->ImageScale, SIGNAL(textChanged(const QString &)), this, SLOT(ImageScalechanged(const QString &)));
 
+	// Shear
+	connect(ui->ShearX, SIGNAL(textChanged(const QString &)), this, SLOT(ShearXchanged(const QString &)));
+	connect(ui->ShearY, SIGNAL(textChanged(const QString &)), this, SLOT(ShearYchanged(const QString &)));
+
 	// Automatic preview
 	connect(this, SIGNAL(PreviewChanged()), fPreview, SLOT(PreviewImage()));
 
@@ -386,6 +390,8 @@ void ImageSplitter::AutoCrop()
 	int top = ui->CollageOffsetTopY->text().toInt();
 	int bottom = ui->CollageOffsetBottomY->text().toInt();
 	double imageRotate = ui->ImageRotate->text().toDouble();
+	double shearX = ui->ShearX->text().toDouble();
+	double shearY = ui->ShearY->text().toDouble();
 
 	if (imageRotate == 0.0)
 	{
@@ -397,6 +403,13 @@ void ImageSplitter::AutoCrop()
 		QTransform tf;
 		tf.rotate(imageRotate);
 		imgPreview = image->transformed(tf, Qt::SmoothTransformation);
+	}
+
+	if (shearX != 0.0 || shearY != 0.0)
+	{
+		QTransform tf;
+		tf.shear(shearX, shearY);
+		imgPreview = imgPreview.transformed(tf, Qt::SmoothTransformation);
 	}
 
 	int width = imgPreview.width() - right;
@@ -1091,6 +1104,28 @@ ImageSplitter::ImageScalechanged(const QString &text)
 	bool ok;
 	double d = text.toDouble(&ok);
 	if (ok && (d > -100.0 && d != 0.0))
+	{
+		previewChanged();
+	}
+}
+
+void
+ImageSplitter::ShearXchanged(const QString &text)
+{
+	bool ok;
+	double d = text.toDouble(&ok);
+	if (ok && qAbs(d) <= 4.0)
+	{
+		previewChanged();
+	}
+}
+
+void
+ImageSplitter::ShearYchanged(const QString &text)
+{
+	bool ok;
+	double d = text.toDouble(&ok);
+	if (ok && qAbs(d) <= 4.0)
 	{
 		previewChanged();
 	}

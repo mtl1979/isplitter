@@ -35,24 +35,24 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="350"/>
-        <location filename="mainwindowimpl.cpp" line="360"/>
+        <location filename="mainwindowimpl.cpp" line="354"/>
+        <location filename="mainwindowimpl.cpp" line="364"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="360"/>
+        <location filename="mainwindowimpl.cpp" line="364"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="579"/>
-        <location filename="mainwindowimpl.cpp" line="611"/>
+        <location filename="mainwindowimpl.cpp" line="592"/>
+        <location filename="mainwindowimpl.cpp" line="624"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="350"/>
+        <location filename="mainwindowimpl.cpp" line="354"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -76,6 +76,7 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="832"/>
         <location filename="mainwindow.ui" line="1043"/>
         <location filename="mainwindow.ui" line="1209"/>
+        <location filename="mainwindow.ui" line="1507"/>
         <source>X</source>
         <translation>X</translation>
     </message>
@@ -91,6 +92,8 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="1247"/>
         <location filename="mainwindow.ui" line="1317"/>
         <location filename="mainwindow.ui" line="1435"/>
+        <location filename="mainwindow.ui" line="1500"/>
+        <location filename="mainwindow.ui" line="1514"/>
         <source>0</source>
         <translation>0</translation>
     </message>
@@ -101,6 +104,7 @@ Date: %4</translation>
         <location filename="mainwindow.ui" line="902"/>
         <location filename="mainwindow.ui" line="1113"/>
         <location filename="mainwindow.ui" line="1279"/>
+        <location filename="mainwindow.ui" line="1521"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
@@ -251,6 +255,11 @@ Date: %4</translation>
         <source>Scale</source>
         <translation>Scale</translation>
     </message>
+    <message>
+        <location filename="mainwindow.ui" line="1528"/>
+        <source>Shear</source>
+        <translation>Shear</translation>
+    </message>
 </context>
 <context>
     <name>MenuBar</name>
@@ -317,28 +326,28 @@ Date: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="74"/>
         <location filename="previewimpl.cpp" line="120"/>
-        <location filename="previewimpl.cpp" line="540"/>
+        <location filename="previewimpl.cpp" line="556"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="84"/>
-        <location filename="previewimpl.cpp" line="517"/>
+        <location filename="previewimpl.cpp" line="533"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="315"/>
+        <location filename="previewimpl.cpp" line="331"/>
         <source>Nothing left after crop!</source>
         <translation>Nothing left after crop!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="360"/>
+        <location filename="previewimpl.cpp" line="376"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="404"/>
+        <location filename="previewimpl.cpp" line="420"/>
         <source>Preview - %1 x %2</source>
         <translation>Preview - %1 x %2</translation>
     </message>
@@ -347,7 +356,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="517"/>
+        <location filename="previewimpl.cpp" line="533"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>

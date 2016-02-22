@@ -233,6 +233,15 @@ Preview::PreviewImage()
 	if (!valid)
 		return;
 
+	double shearX = Splitter->ui->ShearX->text().toDouble(&valid);
+	if (!valid || qAbs(shearX) > 4.0)
+		return;
+
+	double shearY = Splitter->ui->ShearY->text().toDouble(&valid);
+	if (!valid || qAbs(shearY) > 4.0)
+		return;
+
+
 	if (imageScale < 0)
 	{
 		// Negative numbers mean scale down by specified percentage, we will recheck for valid range later
@@ -286,6 +295,13 @@ Preview::PreviewImage()
 		QTransform tf;
 		tf.rotate(imageRotate);
 		imgPreview = image->transformed(tf, Qt::SmoothTransformation);
+	}
+
+	if (shearX != 0.0 || shearY != 0.0)
+	{
+		QTransform tf;
+		tf.shear(shearX, shearY);
+		imgPreview = imgPreview.transformed(tf, Qt::SmoothTransformation);
 	}
 
 	int originalWidth = imgPreview.width();

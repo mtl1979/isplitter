@@ -103,6 +103,8 @@ protected slots:
 	// Tab 3
 	void ImageRotatechanged(const QString &);
 	void ImageScalechanged(const QString &);
+	void ShearXchanged(const QString &);
+	void ShearYchanged(const QString &);
 
 protected:
 	void resizeEvent(QResizeEvent *e);
