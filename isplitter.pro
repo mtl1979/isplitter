@@ -1,2 +1,5 @@
 TEMPLATE = subdirs
-SUBDIRS = src
+win32 {
+    SUBDIRS += zlib
+}
+SUBDIRS += src
