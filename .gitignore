@@ -1,9 +1,11 @@
 *.bak
+*.idb
 *.opensdf
 *.pdb
 *.qm
 *.sdf
 *.sln
+*.vc.opendb
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
