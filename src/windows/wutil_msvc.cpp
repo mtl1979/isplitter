@@ -77,8 +77,7 @@ wreverse(wchar_t *dest, const wchar_t *src, size_t len)
 QString
 wideCharToQString(const wchar_t *wide)
 {
-	QString result;
-	result.setUnicodeCodes((const ushort *)wide, lstrlenW(wide));
+	QString result = QString::fromWCharArray(wide);
 	return result;
 }
 
@@ -93,11 +92,8 @@ qStringToWideChar(const QString &str)
 	wchar_t *result = new wchar_t[str.length() + 1];
 	if (result)
 	{
-#if __STDC_WANT_SECURE_LIB__
-		wcopy_s(result, str.length() + 1, (const wchar_t *)str.unicode(), str.length());
-#else
-		wcopy(result, (const wchar_t *) str.unicode(), str.length());
-#endif
+		int len = str.toWCharArray(result);
+		result[len] = 0;
 		return result;
 	}
 	else
@@ -105,4 +101,3 @@ qStringToWideChar(const QString &str)
 		return NULL;
 	}
 }
-

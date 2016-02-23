@@ -2,7 +2,7 @@
 #define MENUBAR_H
 
 #include <qmenubar.h>
-#include <q3popupmenu.h>
+#include <qmenu.h>
 
 class MenuBar : public QMenuBar
 {
@@ -11,16 +11,40 @@ public:
 	MenuBar(QWidget * parent = NULL);
 	~MenuBar();
 
-	Q3PopupMenu * File() const { return fFile; }
-	Q3PopupMenu * Settings() const { return fSettings; }
-	Q3PopupMenu * Tools() const { return fTools; }
+	QMenu * File() const {
+		return fFile;
+	}
+
+	QMenu * Settings() const {
+		return fSettings;
+	}
+
+	QMenu * Tools() const {
+		return fTools;
+	}
+
+	QAction * Save() const {
+		return fSave;
+	}
+
+	QAction * AutoPreview() const {
+		return fAutoPreview;
+	}
+
+	QAction * AutoCrop() const {
+		return fAutoCrop;
+	}
 
 private:
 
 	/* File menu */
-	Q3PopupMenu * fFile;
-	Q3PopupMenu * fSettings;
-	Q3PopupMenu * fTools;
+	QMenu * fFile;
+	QMenu * fSettings;
+	QMenu * fTools;
+
+	QAction * fSave;
+	QAction * fAutoPreview;
+	QAction * fAutoCrop;
 };
 
 #endif

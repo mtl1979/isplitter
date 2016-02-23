@@ -5,7 +5,7 @@
 #endif
 
 #include <qapplication.h>
-#include <q3multilineedit.h>
+#include <qiodevice.h>
 #include <qstring.h>
 #include <qbytearray.h>
 
@@ -76,7 +76,7 @@ WAssert(bool test, const char *message, int line, const char *file, const char *
 		WFile f;
 		if (f.Open(L"assert.txt", QIODevice::WriteOnly))
 		{
-			QByteArray tmp = out.utf8();
+			QByteArray tmp = out.toUtf8();
 			f.WriteBlock(tmp, tmp.length());
 			f.Close();
 		}

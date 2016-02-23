@@ -58,8 +58,7 @@ void wreplace(wchar_t *buffer, wchar_t in, wchar_t out)
 QString
 wideCharToQString(const wchar_t *wide)
 {
-    QString result;
-    result.setUnicodeCodes((const ushort *) wide, wcslen(wide) * (sizeof(wchar_t) / 2));
+    QString result = QString::fromWCharArray(wide);
     return result;
 }
 
@@ -74,9 +73,8 @@ qStringToWideChar(const QString &str)
 	wchar_t *result = new wchar_t[str.length() + 1];
 	if (result)
 	{
-		for (int i = 0; i < str.length(); ++i)
-			result[i] = str.at(i).unicode();
-		result[str.length()] = 0;
+		int len = str.toWCharArray(result);
+		result[len] = 0;
 		return result;
 	}
 	else
@@ -84,4 +82,3 @@ qStringToWideChar(const QString &str)
 		return NULL;
 	}
 }
-

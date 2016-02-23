@@ -1,6 +1,6 @@
 #include "mainwindowimpl.h"
 
-#include <q3mainwindow.h>
+#include <qmainwindow.h>
 #include <qimage.h>
 #include <qlineedit.h>
 #include <qlabel.h>
@@ -29,9 +29,9 @@ bool ColorsEqual(const QColor &c1, const QColor &c2, int noise)
 {
 	if (c1.alpha() != c2.alpha())
 		return false;
-	int r = QABS(c1.red() - c2.red());
-	int g = QABS(c1.green() - c2.green());
-	int b = QABS(c1.blue() - c2.blue());
+	int r = qAbs(c1.red() - c2.red());
+	int g = qAbs(c1.green() - c2.green());
+	int b = qAbs(c1.blue() - c2.blue());
 	// Allow a little bit of noise
 	int diff = (r + g + b) / 3;
 	if (diff > noise)
@@ -39,8 +39,8 @@ bool ColorsEqual(const QColor &c1, const QColor &c2, int noise)
 	return true;
 }
 
-ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
-: Q3MainWindow(parent, name, fl | Qt::WMouseNoMask)
+ImageSplitter::ImageSplitter( QWidget* parent, Qt::WFlags fl)
+: QMainWindow(parent, fl)
 {
 	ui = new Ui_ImageSplitterBase();
 	ui->setupUi(this);
@@ -53,6 +53,7 @@ ImageSplitter::ImageSplitter( QWidget* parent, const char* name, Qt::WFlags fl)
 
 	menuBar = new MenuBar(this);
 	Q_CHECK_PTR(menuBar);
+	setMenuBar(menuBar);
 
 	fPreview = new Preview(NULL);
 	Q_CHECK_PTR(fPreview);
@@ -155,7 +156,7 @@ ImageSplitter::dragEnterEvent(QDragEnterEvent* event)
 		event->acceptProposedAction();
 	if (event->mimeData()->hasImage())
 		event->acceptProposedAction();
-	Q3MainWindow::dragEnterEvent(event);
+	QMainWindow::dragEnterEvent(event);
 }
 
 bool
@@ -179,7 +180,7 @@ ImageSplitter::eventFilter( QObject *o, QEvent *e )
 			return true;
 		}
 	}
-	return Q3MainWindow::eventFilter(o, e);
+	return QMainWindow::eventFilter(o, e);
 }
 
 void
@@ -228,11 +229,11 @@ ImageSplitter::dropEvent(QDropEvent* event)
 
 		int w, h;
 		scaleImage(image, w, h);
-		QImage nimg = image->smoothScale(w, h);
+		QImage nimg = image->scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		ui->pxlCollage->setPixmap(QPixmap::fromImage(nimg));
 
-		menuBar->File()->setItemEnabled(3, true);
-		menuBar->Tools()->setItemEnabled(10, false);
+		menuBar->Save()->setEnabled(true);
+		menuBar->AutoCrop()->setEnabled(false);
 	}
 }
 
@@ -244,7 +245,7 @@ ImageSplitter::mousePressEvent(QMouseEvent *e)
 		qDebug("Started dragging...\n");
 		dragging = true;
 	}
-	Q3MainWindow::mousePressEvent(e);
+	QMainWindow::mousePressEvent(e);
 }
 
 void
@@ -256,7 +257,7 @@ ImageSplitter::mouseMoveEvent(QMouseEvent *e)
 		if ( ( startPos - currPos ).manhattanLength() > QApplication::startDragDistance() )
 			startDrag();
 	}
-	Q3MainWindow::mouseMoveEvent(e);
+	QMainWindow::mouseMoveEvent(e);
 }
 
 void
@@ -267,7 +268,14 @@ ImageSplitter::mouseReleaseEvent(QMouseEvent *e)
 		qDebug("Stopped dragging...\n");
 		dragging = false;
 	}
-	Q3MainWindow::mouseReleaseEvent(e);
+	QMainWindow::mouseReleaseEvent(e);
+}
+
+void
+ImageSplitter::closeEvent(QCloseEvent *e)
+{
+	Exit();
+	e->accept();
 }
 
 void
@@ -295,7 +303,7 @@ ImageSplitter::LoadSettings()
 	QFile qf("isplitter.ini");
 	if (qf.open(QIODevice::ReadOnly))
 	{
-		QByteArray temp(256);
+		QByteArray temp(256, 0);
 		if (qf.readLine(temp.data(), 255) > 0)
 		{
 			lastdir = QString::fromUtf8(temp);
@@ -307,12 +315,12 @@ ImageSplitter::LoadSettings()
 			if (autopreview.startsWith("autopreview = "))
 			{
 				bool a = autopreview.mid(14, 4) == "true";
-				menuBar->Settings()->setItemChecked(0, a);
+				menuBar->AutoPreview()->setChecked(a);
 			    fPreview->PreviewButton->setEnabled(!a);
 			}
 			else
 			{
-				menuBar->Settings()->setItemChecked(0, false);
+				menuBar->AutoPreview()->setChecked(false);
 				fPreview->PreviewButton->setEnabled(true);
 			}
 		}
@@ -326,11 +334,11 @@ ImageSplitter::SaveSettings()
 	QFile qf("isplitter.ini");
 	if (qf.open(QIODevice::WriteOnly))
 	{
-		QByteArray temp = lastdir.utf8();
-		qf.writeBlock(temp, temp.length());
-		qf.writeBlock("\n", 1);
-		temp = QString("autopreview = %1").arg(menuBar->Settings()->isItemChecked(0) ? "true" : "false").utf8();
-		qf.writeBlock(temp, temp.length());
+		QByteArray temp = lastdir.toUtf8();
+		qf.write(temp);
+		qf.write("\n", 1);
+		temp = QString("autopreview = %1").arg(menuBar->AutoPreview()->isChecked() ? "true" : "false").toUtf8();
+		qf.write(temp);
 		qf.close();
 	}
 }
@@ -366,6 +374,7 @@ ImageSplitter::Save()
 void ImageSplitter::AutoCrop()
 {
 	bool ok;
+	QImage imgPreview;
 
 	// Cache variables
 
@@ -376,8 +385,22 @@ void ImageSplitter::AutoCrop()
 	int right = ui->CollageOffsetBottomX->text().toInt();
 	int top = ui->CollageOffsetTopY->text().toInt();
 	int bottom = ui->CollageOffsetBottomY->text().toInt();
-	int width = image->width() - right;
-	int height = image->height() - bottom;
+	double imageRotate = ui->ImageRotate->text().toDouble();
+
+	if (imageRotate == 0.0)
+	{
+		imgPreview = *image;
+	}
+	else
+	{
+		// Rotate original first
+		QTransform tf;
+		tf.rotate(imageRotate);
+		imgPreview = image->transformed(tf, Qt::SmoothTransformation);
+	}
+
+	int width = imgPreview.width() - right;
+	int height = imgPreview.height() - bottom;
 	// Allowed noise level when comparing if row or column consists of same color, valid range is 0-63, default is 23
 	int noise = ui->noiseLevel->text().toInt(&ok);
 	if (ok == false)
@@ -391,21 +414,21 @@ void ImageSplitter::AutoCrop()
 
 	// Left and right
 
-	QColor cl = image->pixel(left, top);
-	QColor cr = image->pixel(width - 1, top);
+	QColor cl = imgPreview.pixel(left, top);
+	QColor cr = imgPreview.pixel(width - 1, top);
 	for (int x = left; x < width - 1; x++)
 	{
 		bool samel = true, samer = true;
 		for (int y = top + 1; y < height - 1; y++)
 		{
-			QColor cl2 = image->pixel(x, y);
+			QColor cl2 = imgPreview.pixel(x, y);
 			if (!ColorsEqual(cl, cl2, noise))
 			{
 				samel = false;
 				if (lx)
 					break;
 			}
-			QColor cr2 = image->pixel(width - 1, y);
+			QColor cr2 = imgPreview.pixel(width - 1, y);
 			if (!ColorsEqual(cr, cr2, noise))
 			{
 				samer = false;
@@ -434,21 +457,21 @@ void ImageSplitter::AutoCrop()
 
 	// Top and bottom
 
-	QColor ct = image->pixel(left, top);
-	QColor cb = image->pixel(left, height - 1);
+	QColor ct = imgPreview.pixel(left, top);
+	QColor cb = imgPreview.pixel(left, height - 1);
 	for (int y = top; y < height - 1; y++)
 	{
 		bool samet = true, sameb = true;
 		for (int x = left + 1; x < width - 1; x++)
 		{
-			QColor ct2 = image->pixel(x, y);
+			QColor ct2 = imgPreview.pixel(x, y);
 			if (!ColorsEqual(ct, ct2, noise))
 			{
 				samet = false;
 				if (ly)
 					break;
 			}
-			QColor cb2 = image->pixel(x, height - 1);
+			QColor cb2 = imgPreview.pixel(x, height - 1);
 			if (!ColorsEqual(cb, cb2, noise))
 			{
 				sameb = false;
@@ -477,10 +500,10 @@ void ImageSplitter::AutoCrop()
 
 	// Save new values
 
-	ui->CollageOffsetTopX->setText(QString::number(lx ? QMIN(left, right) : left));
+	ui->CollageOffsetTopX->setText(QString::number(lx ? qMin(left, right) : left));
 	if (!lx)
 		ui->CollageOffsetBottomX->setText(QString::number(right));
-	ui->CollageOffsetTopY->setText(QString::number(ly ? QMIN(top, bottom) : top));
+	ui->CollageOffsetTopY->setText(QString::number(ly ? qMin(top, bottom) : top));
 	if (!ly)
 		ui->CollageOffsetBottomY->setText(QString::number(bottom));
 }
@@ -488,14 +511,13 @@ void ImageSplitter::AutoCrop()
 void
 ImageSplitter::AutoPreview()
 {
-	menuBar->Settings()->setItemChecked(0, !IsAutoPreview());
 	fPreview->PreviewButton->setEnabled(!IsAutoPreview());
 }
 
 bool
 ImageSplitter::IsAutoPreview()
 {
-	return menuBar->Settings()->isItemChecked(0);
+	return menuBar->AutoPreview()->isChecked();
 }
 
 void
@@ -551,22 +573,21 @@ ImageSplitter::Load(const QString &filename)
 
 		int w, h;
 		scaleImage(image, w, h);
-		QImage nimg = image->smoothScale(w, h);
-		QPixmap pixCollage;
-		pixCollage.convertFromImage(nimg);
+		QImage nimg = image->scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+		QPixmap pixCollage = QPixmap::fromImage(nimg);
 
 		ui->pxlCollage->setPixmap(pixCollage);
 		fPreview->ShowImage(image);
 		fPreview->show();
 
 		QFileInfo info(fFilename);
-		lastdir = info.dirPath();
+		lastdir = info.path();
 
-		setCaption( tr("Image Splitter") + " - " + QDir::convertSeparators(fFilename) );
+		setWindowTitle(tr("Image Splitter") + " - " + QDir::convertSeparators(fFilename));
 
-		ui->TabWidget2->showPage(ui->tab1);
+		ui->TabWidget2->setCurrentIndex(ui->TabWidget2->indexOf(ui->tab1));
 
-		menuBar->Tools()->setItemEnabled(10, true);
+		menuBar->AutoCrop()->setEnabled(true);
 
 		previewChanged();
 	}
@@ -594,7 +615,7 @@ ImageSplitter::ClearImage()
 
 	ui->pxlCollage->clear();
 
-    setCaption( tr( "Image Splitter" ) );
+    setWindowTitle( tr( "Image Splitter" ) );
 
 	// reset input boxes
 	ui->CollageSizeX->setText("1");
@@ -619,8 +640,8 @@ ImageSplitter::ClearImage()
 	ui->ImageRotate->setText("0");
 	ui->ImageScale->setText("100");
 	//
-	menuBar->File()->setItemEnabled(3, false);
-	menuBar->Tools()->setItemEnabled(10, false);
+	menuBar->Save()->setEnabled(false);
+	menuBar->AutoCrop()->setEnabled(false);
 	//
 	fPreview->ClearPreview();
 	fPreview->hide();
@@ -636,7 +657,7 @@ ImageSplitter::Exit()
 void
 ImageSplitter::resizeEvent(QResizeEvent *e)
 {
-	Q3MainWindow::resizeEvent(e);
+	QMainWindow::resizeEvent(e);
 }
 
 void
@@ -803,7 +824,7 @@ ImageSplitter::CollageOffsetTopXchanged(const QString &text)
 	(void) text.toInt(&ok);
 	if (ok)
 	{
-		if (ui->CollageOffsetLockX->state() == Qt::Checked)
+		if (ui->CollageOffsetLockX->checkState() == Qt::Checked)
 			ui->CollageOffsetBottomX->setText(text);
 		else
 			previewChanged();
@@ -817,7 +838,7 @@ ImageSplitter::CollageOffsetTopYchanged(const QString &text)
 	(void) text.toInt(&ok);
 	if (ok)
 	{
-		if (ui->CollageOffsetLockY->state() == Qt::Checked)
+		if (ui->CollageOffsetLockY->checkState() == Qt::Checked)
 			ui->CollageOffsetBottomY->setText(text);
 		else
 			previewChanged();
@@ -1010,7 +1031,7 @@ ImageSplitter::ImageOffsetTopXchanged(const QString &text)
 	(void) text.toInt(&ok);
 	if (ok)
 	{
-		if (ui->ImageOffsetLockX->state() == Qt::Checked)
+		if (ui->ImageOffsetLockX->checkState() == Qt::Checked)
 			ui->ImageOffsetBottomX->setText(text);
 		else
 			previewChanged();
@@ -1024,7 +1045,7 @@ ImageSplitter::ImageOffsetTopYchanged(const QString &text)
 	(void) text.toInt(&ok);
 	if (ok)
 	{
-		if (ui->ImageOffsetLockY->state() == Qt::Checked)
+		if (ui->ImageOffsetLockY->checkState() == Qt::Checked)
 			ui->ImageOffsetBottomY->setText(text);
 		else
 			previewChanged();
@@ -1090,6 +1111,6 @@ ImageSplitter::MirrorYtoggled(bool)
 void
 ImageSplitter::previewChanged()
 {
-	if (image && menuBar->Settings()->isItemChecked(0))
+	if (image && menuBar->AutoPreview()->isChecked())
 		emit PreviewChanged();
 }

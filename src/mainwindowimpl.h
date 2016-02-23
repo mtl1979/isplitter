@@ -1,7 +1,7 @@
 #ifndef IMAGESPLITTER_H
 #define IMAGESPLITTER_H
 
-#include <Q3MainWindow>
+#include <QMainWindow>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>
@@ -16,11 +16,11 @@ class Preview;
 class QPoint;
 class Ui_ImageSplitterBase;
 
-class ImageSplitter : public Q3MainWindow
+class ImageSplitter : public QMainWindow
 {
 	Q_OBJECT
 public:
-	ImageSplitter( QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0);
+	ImageSplitter( QWidget* parent = 0, Qt::WindowFlags fl = 0);
 	~ImageSplitter();
 	QImage *getImage() {return image;}
 	QString filename() {return fFilename;}
@@ -111,6 +111,7 @@ protected:
 	void mousePressEvent(QMouseEvent *e);
 	void mouseMoveEvent(QMouseEvent *e);
 	void mouseReleaseEvent(QMouseEvent *e);
+	void closeEvent(QCloseEvent *e);
 	bool eventFilter( QObject *o, QEvent *e );
 	void startDrag();
 

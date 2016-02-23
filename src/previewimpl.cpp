@@ -11,7 +11,7 @@
 #include <qmessagebox.h>
 #include <qmatrix.h>
 #include <qevent.h>
-#include <q3gridlayout.h>
+#include <qgridlayout.h>
 #include <qpixmap.h>
 #include <qimagereader.h>
 
@@ -61,57 +61,39 @@ ScaleImage(const QImage &image, int width, int height)
 	return QPixmap::fromImage(simg);
 }
 
-QImage
-CropImage(const QImage & image, int x, int y, int width, int height)
-{
-	if (x != 0 || y != 0 || width != image.width() || height != image.height())
-		return image.copy(x, y, width, height, 0);
-	else
-		return image;
-}
-
-QImage
-CropImage(QImage * image, int x, int y, int width, int height)
-{
-	return (image != NULL) ? CropImage(*image, x, y, width, height) : QImage();
-}
-
 //
 // Preview class
 //
 
-Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
-:QWidget(parent, name, fl)
+Preview::Preview(QWidget* parent, Qt::WFlags fl)
+:QWidget(parent, fl)
 {
-    if ( !name )
-	setName( "PreviewBase" );
     resize( 596, 480 );
 	setMinimumHeight(100);
 
-    setCaption( tr( "Preview" ) );
+    setWindowTitle( tr( "Preview" ) );
 
-    GridLayout = new Q3GridLayout( this );
+    GridLayout = new QGridLayout( this );
 
     GridLayout->setGeometry( QRect( 0, 0, 596, 480 ) );
 
     GridLayout->setSpacing( 0 );
     GridLayout->setMargin( 0 );
 
-    SaveButton = new QPushButton( this, "SaveButton" );
+    SaveButton = new QPushButton( this );
     SaveButton->setText( tr( "Save" ) );
 
     GridLayout->addWidget( SaveButton, 0, 2 );
 
-	PreviewWidget = new QWidget(this, "PreviewWidget");
+	PreviewWidget = new QWidget(this);
 
-    pxlPreview = new QLabel( PreviewWidget, "pxlPreview" );
+    pxlPreview = new QLabel( PreviewWidget );
     pxlPreview->setMinimumSize( QSize( 32, 32 ) );
     pxlPreview->setFrameShape( QLabel::NoFrame );
     pxlPreview->setMargin( 0 );
     pxlPreview->setScaledContents( FALSE );
 	pxlPreview->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 	pxlPreview->installEventFilter(this);
-	pxlPreview->setBackgroundMode(Qt::NoBackground);
 	pxlPreview->hide();
 
 	//
@@ -127,14 +109,14 @@ Preview::Preview(QWidget* parent, const char* name, Qt::WFlags fl)
 		PreviewWidget->setAutoFillBackground(true);
 	}
 	//
-    GridLayout->addMultiCellWidget( PreviewWidget, 1, 1, 0, 2 );
+    GridLayout->addWidget( PreviewWidget, 1, 0, 1, 3 );
 
 	// Center
 	int pw = (PreviewWidget->width() - pxlPreview->width()) / 2;
 	int ph = (PreviewWidget->height() - pxlPreview->height()) / 2;
 	pxlPreview->move(pw, ph);
 
-	PreviewButton = new QPushButton( this, "PreviewButton" );
+	PreviewButton = new QPushButton( this );
     PreviewButton->setText( tr( "Preview" ) );
 
     GridLayout->addWidget( PreviewButton, 0, 0 );
@@ -188,8 +170,6 @@ Preview::PreviewImage()
 	if (!image)
 		return;
 
-	int originalWidth = image->width();
-	int originalHeight = image->height();
 	//
 	//
 	//
@@ -294,6 +274,23 @@ Preview::PreviewImage()
 			return;
 	}
 
+	QImage imgPreview;
+
+	if (imageRotate == 0.0)
+	{
+		imgPreview = *image;
+	}
+	else
+	{
+		// Rotate original first
+		QTransform tf;
+		tf.rotate(imageRotate);
+		imgPreview = image->transformed(tf, Qt::SmoothTransformation);
+	}
+
+	int originalWidth = imgPreview.width();
+	int originalHeight = imgPreview.height();
+
 	// Make sure image size is divisible by collage size by expanding it if necessary
 
 	if (mod(originalWidth, collageSizeX) != 0)
@@ -323,30 +320,20 @@ Preview::PreviewImage()
 
 	int subX = subOffsetX + imageOffsetBottomX; // Adjusted X coordinate of top-left of subimage
 
-	if (subWidth + subX > image->width())
-		subWidth = image->width() - subX;
+	if (subWidth + subX > imgPreview.width())
+		subWidth = imgPreview.width() - subX;
 
 	int subY = subOffsetY + imageOffsetBottomY; // Adjusted Y coordinate of top-left of subimage
 
-	if (subHeight + subY > image->height())
-		subHeight = image->height() - subY;
+	if (subHeight + subY > imgPreview.height())
+		subHeight = imgPreview.height() - subY;
 
 	//
 	// Generate subimage
 	//
 
-	QImage imgPreview;
-	if (imageRotate == 0.0)
-	{
-		imgPreview = CropImage(image, subOffsetX, subOffsetY, subWidth, subHeight);
-	}
-	else
-	{
-		// Rotate original first
-		QTransform tf;
-		tf.rotate(imageRotate);
-		imgPreview = CropImage(image->transformed(tf, Qt::SmoothTransformation), subOffsetX, subOffsetY, subWidth, subHeight);
-	}
+	if (subOffsetX != 0 || subOffsetY != 0 || subWidth != imgPreview.width() || subHeight != imgPreview.height())
+		imgPreview = imgPreview.copy(subOffsetX, subOffsetY, subWidth, subHeight);
 
 	// Mirror image if requested
 
@@ -390,7 +377,7 @@ Preview::PreviewImage()
 		}
 		else
 		{
-			pixPreview->convertFromImage(imgPreview);
+			*pixPreview = QPixmap::fromImage(imgPreview);
 		}
 		//
 		int w, h;
@@ -403,7 +390,7 @@ Preview::PreviewImage()
 		}
 		else
 		{
-			tmpPreview = imgPreview;
+			tmpPreview = QPixmap::fromImage(imgPreview);
 		}
 
 		pxlPreview->resize(w, h);
@@ -414,7 +401,7 @@ Preview::PreviewImage()
 		// Update preview
 		pxlPreview->setPixmap( tmpPreview );
 		SaveButton->setEnabled(true);
-		setCaption(tr("Preview - %1 x %2").arg(pixPreview->width()).arg(pixPreview->height()));
+		setWindowTitle(tr("Preview - %1 x %2").arg(pixPreview->width()).arg(pixPreview->height()));
 	}
 }
 
@@ -502,12 +489,12 @@ Preview::Save()
 		QByteArray fmt = QImageReader(Splitter->filename()).format();
 		QFileInfo info(Splitter->filename());
 		// Path of original image
-		QString path = info.dirPath();
+		QString path = info.path();
 		// Base name of original image filename with X and Y offsets appended to it
 		QString base = info.baseName();
 		base.append("_" + Splitter->ui->OffsetIndexX->text() + "_" + Splitter->ui->OffsetIndexY->text());
 		// Extension of original image filename
-		QString ext = info.extension();
+		QString ext = info.suffix();
 		// Full name of new image
 		QString newname = MakePath(path, base + "." + ext);
 		if (!pixPreview->save(newname, fmt))
@@ -550,7 +537,7 @@ Preview::ClearPreview()
 
 	image = NULL;
 
-	setCaption(tr("Preview"));
+	setWindowTitle(tr("Preview"));
 }
 
 void

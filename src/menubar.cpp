@@ -1,41 +1,34 @@
 #include "menubar.h"
 
 #include <qapplication.h>
-#include <q3accel.h>
-#include <Q3PopupMenu>
+#include <qmenu.h>
 
 MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 {
 	/* create file menu */
-	fFile = new Q3PopupMenu(this);
-	Q_CHECK_PTR(fFile);
-	fFile->insertItem(tr("&Open"), parent, SLOT(Load()), Q3Accel::stringToKey(tr("CTRL+O")));
-	fFile->insertItem(tr("&Close"), parent, SLOT(ClearImage()));
+	fFile = addMenu(tr("&File"));
 
-	fFile->insertSeparator();
+	fFile->addAction(tr("&Open"), parent, SLOT(Load()), Qt::CTRL+Qt::Key_O);
+	fFile->addAction(tr("&Close"), parent, SLOT(ClearImage()));
 
-	fFile->insertItem(tr("&Save"), parent, SLOT(Save()), Q3Accel::stringToKey(tr("CTRL+S")), 3, -1);
-	fFile->setItemEnabled(3, false);
+	fFile->addSeparator();
 
-	fFile->insertSeparator();
+	fSave = fFile->addAction(tr("&Save"), parent, SLOT(Save()), QKeySequence::Save);
+	fSave->setEnabled(false);
 
-	fFile->insertItem(tr("E&xit"), parent, SLOT(Exit()), Q3Accel::stringToKey(tr("ALT+X")));
+	fFile->addSeparator();
 
-	fSettings = new Q3PopupMenu(this);
-	Q_CHECK_PTR(fSettings);
+	fFile->addAction(tr("E&xit"), parent, SLOT(Exit()), QKeySequence::Quit);
 
-	fSettings->insertItem(tr("Automatic preview"), parent, SLOT(AutoPreview()), 0, 0);
+	fSettings = addMenu(tr("&Settings"));
 
-	fTools = new Q3PopupMenu(this);
-	Q_CHECK_PTR(fTools);
+	fAutoPreview = fSettings->addAction(tr("Automatic preview"), parent, SLOT(AutoPreview()));
+	fAutoPreview->setCheckable(true);
 
-	fTools->insertItem(tr("Automatic crop"), parent, SLOT(AutoCrop()), 0, 10, 0);
-	fTools->setItemEnabled(10, false);
+	fTools = addMenu(tr("&Tools"));
 
-	/* Insert into menubar */
-	insertItem(tr("&File"), fFile);
-	insertItem(tr("&Settings"), fSettings);
-	insertItem(tr("&Tools"), fTools);
+	fAutoCrop = fTools->addAction(tr("Automatic crop"), parent, SLOT(AutoCrop()));
+	fAutoCrop->setEnabled(false);
 }
 
 MenuBar::~MenuBar()

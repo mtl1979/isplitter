@@ -3,6 +3,7 @@
 #include <qfiledialog.h>
 #include <qregexp.h>
 #include <qbytearray.h>
+#include <qstring.h>
 #include <qtranslator.h>
 
 #if defined(_WIN32) && !defined(QT_NO_STYLE_WINDOWSXP)
@@ -67,7 +68,7 @@ GetAppDirectory()
 		else
 			qDebug("Application directory: %ls", name);
 	}
-	QString qname = QString::fromUcs2((const ushort *) name);
+	QString qname = QString::fromUtf16((const ushort *) name);
 	delete [] name;
 	name = NULL; // <postmaster@raasu.org> 20021027
 	return qname;
@@ -101,7 +102,7 @@ main( int argc, char** argv )
 	langfile = "isplitter.lng";
 	// Set our working directory
 	SetWorkingDirectory(argv[0]);
-	gAppDir = QDir::currentDirPath();
+	gAppDir = QDir::currentPath();
 #else
 	langfile = MakePath(gDataDir, "isplitter.lng");
 #endif
@@ -119,8 +120,8 @@ NoTranslation:
 		// Save selected language's translator filename
 		if (!lfile.isEmpty() && lang.open(QIODevice::WriteOnly) )
 		{
-			QByteArray clang = lfile.utf8();
-			lang.writeBlock(clang, clang.length());
+			QByteArray clang = lfile.toUtf8();
+			lang.write(clang);
 			lang.close();
 		}
 	}
@@ -157,7 +158,7 @@ NoTranslation:
 	// Try using same directory as Image Splitter's translations
 	if (qt_lang == QString::null)
 	{
-		qt_lang = MakePath(qfi.dirPath(true), langfile);
+		qt_lang = MakePath(qfi.absolutePath(), langfile);
 	}
 
 	if (QFile::exists(qt_lang) && qtr2.load(qt_lang))
@@ -172,8 +173,6 @@ NoTranslation:
 
 	ImageSplitter * window = new ImageSplitter(NULL);
 	Q_CHECK_PTR(window);
-
-	app.setMainWidget(window);
 
 	window->show();
 

@@ -7,7 +7,7 @@
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <QPixmap>
 
 class QImage;
@@ -20,7 +20,7 @@ class Preview : public QWidget
 {
 	Q_OBJECT
 public:
-	Preview( QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0);
+	Preview( QWidget* parent = 0, Qt::WFlags fl = 0);
 	~Preview();
 	void setOwner(QWidget * owner);
 
@@ -47,7 +47,7 @@ protected:
 	bool dragging;
 	QPoint startPos;
 
-    Q3GridLayout* GridLayout;
+	QGridLayout* GridLayout;
 	QWidget* PreviewWidget;
 
 private:
