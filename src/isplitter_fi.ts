@@ -35,24 +35,24 @@ Päiväys: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="354"/>
-        <location filename="mainwindowimpl.cpp" line="364"/>
+        <location filename="mainwindowimpl.cpp" line="361"/>
+        <location filename="mainwindowimpl.cpp" line="371"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Kuvat (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="364"/>
+        <location filename="mainwindowimpl.cpp" line="371"/>
         <source>Save image...</source>
         <translation>Tallenna kuva...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="592"/>
-        <location filename="mainwindowimpl.cpp" line="624"/>
+        <location filename="mainwindowimpl.cpp" line="599"/>
+        <location filename="mainwindowimpl.cpp" line="631"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="354"/>
+        <location filename="mainwindowimpl.cpp" line="361"/>
         <source>Open image...</source>
         <translation>Avaa kuva...</translation>
     </message>
