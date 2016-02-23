@@ -13,6 +13,9 @@
 #ifdef _WIN32
 #  include <windows.h>
 #  include <shlwapi.h>
+#  ifdef _DEBUG
+#    include "wstring.h"
+#  endif
 #else
 #  include <unistd.h>
 #endif
@@ -68,7 +71,7 @@ GetAppDirectory()
 		else
 			qDebug("Application directory: %ls", name);
 	}
-	QString qname = QString::fromUtf16((const ushort *) name);
+	QString qname = QString::fromWCharArray(name);
 	delete [] name;
 	name = NULL; // <postmaster@raasu.org> 20021027
 	return qname;
@@ -91,6 +94,10 @@ main( int argc, char** argv )
 	dir.mkdir("Image Splitter");
 	datadir = MakePath(datadir, "Image Splitter");
 	gDataDir = datadir;
+#ifdef _DEBUG
+	WString wdatadir(datadir);
+	qDebug("Data directory: %ls", wdatadir.getBuffer());
+#endif
 	gAppDir = appdir;
 	// Set our working directory
 	QDir::setCurrent(datadir);
@@ -133,7 +140,7 @@ NoTranslation:
 		QByteArray plang = lang.readLine();
 		lfile = QString::fromUtf8(plang);
 		lang.close();
-    }
+	}
 
 	// Install translator ;)
 	if (!lfile.isEmpty() && QFile::exists(lfile) && qtr.load(lfile))

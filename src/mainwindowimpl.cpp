@@ -211,16 +211,14 @@ ImageSplitter::dropEvent(QDropEvent* event)
 		qDebug("Drop URL: %S", wu);
 #  endif
 #endif
-		QString file = u.toLocalFile();
+		QString file = QDir::convertSeparators(u.toLocalFile());
 #ifdef _DEBUG
 #  ifdef WIN32
 		wu = file;
 		qDebug("Drop: %s", (const char *) wu);
 #  else
-		wchar_t wfile[file.length()+1];
-		len = file.toWCharArray(wfile);
-		wfile[len] = 0;
-		qDebug("Drop: %S", wfile);
+		WString wfile(file);
+		qDebug("Drop: %S", (wchar_t *) wfile.getBuffer());
 #  endif
 #endif
 		Load(file);
@@ -320,7 +318,7 @@ ImageSplitter::LoadSettings()
 			{
 				bool a = autopreview.mid(14, 4) == "true";
 				menuBar->AutoPreview()->setChecked(a);
-			    fPreview->PreviewButton->setEnabled(!a);
+				fPreview->PreviewButton->setEnabled(!a);
 			}
 			else
 			{
@@ -628,7 +626,7 @@ ImageSplitter::ClearImage()
 
 	ui->pxlCollage->clear();
 
-    setWindowTitle( tr( "Image Splitter" ) );
+	setWindowTitle( tr( "Image Splitter" ) );
 
 	// reset input boxes
 	ui->CollageSizeX->setText("1");

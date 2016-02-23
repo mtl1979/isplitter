@@ -20,13 +20,13 @@ class Preview : public QWidget
 {
 	Q_OBJECT
 public:
-	Preview( QWidget* parent = 0, Qt::WFlags fl = 0);
+	Preview(QWidget* parent = 0, Qt::WFlags fl = 0);
 	~Preview();
 	void setOwner(QWidget * owner);
 
-    QPushButton* SaveButton;
-    QLabel* pxlPreview;
-    QPushButton* PreviewButton;
+	QPushButton* SaveButton;
+	QLabel* pxlPreview;
+	QPushButton* PreviewButton;
 
 protected slots:
 	void PreviewImage();
@@ -34,10 +34,10 @@ protected slots:
 
 protected:
 	void resizeEvent(QResizeEvent *e);
-	bool eventFilter( QObject *o, QEvent *e );
 	void mousePressEvent(QMouseEvent *e);
 	void mouseMoveEvent(QMouseEvent *e);
 	void mouseReleaseEvent(QMouseEvent *e);
+	bool eventFilter(QObject *o, QEvent *e);
 	void startDrag();
 
 	friend class ImageSplitter;

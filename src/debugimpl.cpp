@@ -70,7 +70,7 @@ WAssert(bool test, const char *message, int line, const char *file, const char *
 	{
 		QString out = qApp->translate("Debug",
 			"Send this message to postmaster@raasu.org! "
-		    "This message has also been dumped to 'assert.txt'."
+			"This message has also been dumped to 'assert.txt'."
 			"\n\n%1\n\nLine %2\nFile %3\nDate: %4").arg(qApp->translate("Debug",
 				message)).arg(line).arg(file).arg(date);
 		WFile f;

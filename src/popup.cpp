@@ -6,9 +6,8 @@
 
 void WPopup(const QString &msg)
 {
-	(void) QMessageBox::information(NULL, qApp->translate( "Debug", "Image Splitter" ),
-	                                msg, QMessageBox::Ok | QMessageBox::Default,
-	                                QMessageBox::NoButton, QMessageBox::NoButton);
+	(void) QMessageBox::information(NULL, qApp->translate( "Debug", "Image Splitter" ), msg,
+		QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton, QMessageBox::NoButton);
 }
 
 void WPopup(const char *msg)

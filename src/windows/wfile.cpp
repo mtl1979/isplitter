@@ -32,4 +32,3 @@ WFile::Filename() const
 {
 	return file == -1 ? L"" : filename;
 }
-

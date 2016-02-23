@@ -114,7 +114,7 @@ protected:
 	void mouseMoveEvent(QMouseEvent *e);
 	void mouseReleaseEvent(QMouseEvent *e);
 	void closeEvent(QCloseEvent *e);
-	bool eventFilter( QObject *o, QEvent *e );
+	bool eventFilter(QObject *o, QEvent *e);
 	void startDrag();
 
 	void LoadSettings();
