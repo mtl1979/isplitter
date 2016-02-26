@@ -46,8 +46,8 @@ Päiväys: %4</translation>
         <translation>Tallenna kuva...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="597"/>
-        <location filename="mainwindowimpl.cpp" line="629"/>
+        <location filename="mainwindowimpl.cpp" line="609"/>
+        <location filename="mainwindowimpl.cpp" line="641"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>

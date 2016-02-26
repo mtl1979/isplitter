@@ -437,14 +437,20 @@ void ImageSplitter::AutoCrop()
 			{
 				samel = false;
 				if (lx)
+				{
+					samer = false;
 					break;
+				}
 			}
 			QColor cr2 = imgPreview.pixel(width - 1, y);
 			if (!ColorsEqual(cr, cr2, noise))
 			{
 				samer = false;
 				if (lx)
+				{
+					samel = false;
 					break;
+				}
 			}
 			if (!samel && !samer)
 			{
@@ -480,14 +486,20 @@ void ImageSplitter::AutoCrop()
 			{
 				samet = false;
 				if (ly)
+				{
+					sameb = false;
 					break;
+				}
 			}
 			QColor cb2 = imgPreview.pixel(x, height - 1);
 			if (!ColorsEqual(cb, cb2, noise))
 			{
 				sameb = false;
-				if (lx)
+				if (ly)
+				{
+					samet = false;
 					break;
+				}
 			}
 			if (!samet && !sameb)
 			{
@@ -511,10 +523,10 @@ void ImageSplitter::AutoCrop()
 
 	// Save new values
 
-	ui->CollageOffsetTopX->setText(QString::number(lx ? qMin(left, right) : left));
+	ui->CollageOffsetTopX->setText(QString::number(left));
 	if (!lx)
 		ui->CollageOffsetBottomX->setText(QString::number(right));
-	ui->CollageOffsetTopY->setText(QString::number(ly ? qMin(top, bottom) : top));
+	ui->CollageOffsetTopY->setText(QString::number(top));
 	if (!ly)
 		ui->CollageOffsetBottomY->setText(QString::number(bottom));
 }
