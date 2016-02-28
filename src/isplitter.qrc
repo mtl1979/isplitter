@@ -2,4 +2,7 @@
 <qresource>
     <file>isplitter.png</file>
 </qresource>
+<qresource>
+    <file>erase.xpm</file>
+</qresource>
 </RCC>
