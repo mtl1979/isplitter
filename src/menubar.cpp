@@ -1,7 +1,7 @@
 #include "menubar.h"
 
-#include <qapplication.h>
-#include <qmenu.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qmenu.h>
 
 MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 {

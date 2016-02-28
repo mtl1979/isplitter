@@ -2,6 +2,8 @@ unix:TARGET=isplitter
 win32:TARGET=ImageSplitter
 DEBUG_SOURCES =
 
+QT += widgets
+
 #We can't rely on having "debug" in CONFIG if we set "release" as default target
 CONFIG(debug, debug|release) {
 	DEFINES		 += _DEBUG
@@ -46,24 +48,28 @@ win32 {
 	RC_FILE =	isplitter.rc
 
 	!isEmpty(DEBUG_SOURCES) {
-		qtlibs.files = $$[QT_INSTALL_LIBS]\\QtCored4.dll \
-					   $$[QT_INSTALL_LIBS]\\QtGuid4.dll
+		qtlibs.files = $$[QT_INSTALL_LIBS]\\Qt5Cored.dll \
+			       $$[QT_INSTALL_LIBS]\\Qt5Guid.dll \
+			       $$[QT_INSTALL_LIBS]\\Qt5Widgetsd.dll \
+			       $$[QT_INSTALL_LIBS]\\libGLESv2d.dll
 	} else {
-		qtlibs.files = $$[QT_INSTALL_LIBS]\\QtCore4.dll \
-					   $$[QT_INSTALL_LIBS]\\QtGui4.dll
+		qtlibs.files = $$[QT_INSTALL_LIBS]\\Qt5Core.dll \
+			       $$[QT_INSTALL_LIBS]\\Qt5Gui.dll \
+			       $$[QT_INSTALL_LIBS]\\Qt5Widgets.dll \
+			       $$[QT_INSTALL_LIBS]\\libGLESv2.dll
 	}
 	qtlibs.path = ../..
 	qtlibs.CONFIG += recursive
 	INSTALLS += qtlibs
 
 	qtimageformats.path = ../../plugins/imageformats
-	qtimageformats.files = $$[QT_INSTALL_PLUGINS]\\imageformats\\qsvg4.dll \
-					  $$[QT_INSTALL_PLUGINS]\\imageformats\\qgif4.dll \
-					  $$[QT_INSTALL_PLUGINS]\\imageformats\\qico4.dll \
-					  $$[QT_INSTALL_PLUGINS]\\imageformats\\qjpeg4.dll \
-					  $$[QT_INSTALL_PLUGINS]\\imageformats\\qmng4.dll \
-					  $$[QT_INSTALL_PLUGINS]\\imageformats\\qtga4.dll \
-					  $$[QT_INSTALL_PLUGINS]\\imageformats\\qtiff4.dll
+	qtimageformats.files = $$[QT_INSTALL_PLUGINS]\\imageformats\\qsvg.dll \
+			       $$[QT_INSTALL_PLUGINS]\\imageformats\\qgif.dll \
+			       $$[QT_INSTALL_PLUGINS]\\imageformats\\qico.dll \
+			       $$[QT_INSTALL_PLUGINS]\\imageformats\\qjpeg.dll \
+			       $$[QT_INSTALL_PLUGINS]\\imageformats\\qmng.dll \
+			       $$[QT_INSTALL_PLUGINS]\\imageformats\\qtga.dll \
+			       $$[QT_INSTALL_PLUGINS]\\imageformats\\qtiff.dll
 
 	qtimageformats.CONFIG += recursive
 	INSTALLS += qtimageformats

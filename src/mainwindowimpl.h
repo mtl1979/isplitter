@@ -1,7 +1,7 @@
 #ifndef IMAGESPLITTER_H
 #define IMAGESPLITTER_H
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>

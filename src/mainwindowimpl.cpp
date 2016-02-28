@@ -1,18 +1,21 @@
 #include "mainwindowimpl.h"
 
-#include <qmainwindow.h>
-#include <qimage.h>
-#include <qlineedit.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qfiledialog.h>
-#include <qapplication.h>
-#include <qfile.h>
-#include <qstring.h>
-#include <qtabwidget.h>
+#include <QtWidgets/qmainwindow.h>
+#include <QtWidgets/qlineedit.h>
+#include <QtWidgets/qlabel.h>
+#include <QtWidgets/qlayout.h>
+#include <QtWidgets/qfiledialog.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qtabwidget.h>
+
 #include <qbytearray.h>
+#include <qdrag.h>
 #include <qevent.h>
+#include <qfile.h>
+#include <qimage.h>
+#include <qmimedata.h>
 #include <qpixmap.h>
+#include <qstring.h>
 #include <qurl.h>
 
 #include "ui_mainwindow.h"
@@ -39,7 +42,7 @@ bool ColorsEqual(const QColor &c1, const QColor &c2, int noise)
 	return true;
 }
 
-ImageSplitter::ImageSplitter( QWidget* parent, Qt::WFlags fl)
+ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 : QMainWindow(parent, fl)
 {
 	ui = new Ui_ImageSplitterBase();
@@ -211,7 +214,7 @@ ImageSplitter::dropEvent(QDropEvent* event)
 		qDebug("Drop URL: %S", wu);
 #  endif
 #endif
-		QString file = QDir::convertSeparators(u.toLocalFile());
+		QString file = QDir::toNativeSeparators(u.toLocalFile());
 #ifdef _DEBUG
 #  ifdef WIN32
 		wu = file;
@@ -606,7 +609,7 @@ ImageSplitter::Load(const QString &filename)
 		QFileInfo info(fFilename);
 		lastdir = info.path();
 
-		setWindowTitle(tr("Image Splitter") + " - " + QDir::convertSeparators(fFilename));
+		setWindowTitle(tr("Image Splitter") + " - " + QDir::toNativeSeparators(fFilename));
 
 		ui->TabWidget2->setCurrentIndex(ui->TabWidget2->indexOf(ui->tab1));
 

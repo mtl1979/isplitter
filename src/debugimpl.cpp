@@ -4,7 +4,7 @@
 #error "Only include for debug build!"
 #endif
 
-#include <qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <qiodevice.h>
 #include <qstring.h>
 #include <qbytearray.h>

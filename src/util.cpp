@@ -4,7 +4,7 @@
 
 QString MakePath(const QString &dir, const QString &file)
 {
-	QString ret = QDir::convertSeparators(dir);
+	QString ret = QDir::toNativeSeparators(dir);
 	if (!ret.endsWith(QDir::separator()))
 		ret += QDir::separator();
 

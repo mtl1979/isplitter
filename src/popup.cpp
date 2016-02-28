@@ -1,7 +1,8 @@
 #include "popup.h"
 
-#include <qapplication.h>
-#include <qmessagebox.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qmessagebox.h>
+
 #include <qstring.h>
 
 void WPopup(const QString &msg)

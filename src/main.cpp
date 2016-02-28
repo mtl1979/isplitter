@@ -1,14 +1,11 @@
-#include <qapplication.h>
-#include <qfile.h>
-#include <qfiledialog.h>
-#include <qregexp.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qfiledialog.h>
+
 #include <qbytearray.h>
+#include <qfile.h>
+#include <qregexp.h>
 #include <qstring.h>
 #include <qtranslator.h>
-
-#if defined(_WIN32) && !defined(QT_NO_STYLE_WINDOWSXP)
-#  include <qwindowsxpstyle.h>
-#endif
 
 #ifdef _WIN32
 #  include <windows.h>
@@ -172,11 +169,6 @@ NoTranslation:
 	{
 		app.installTranslator( &qtr2 );
 	}
-
-#if defined(_WIN32) && !defined(QT_NO_STYLE_WINDOWSXP)
-	// Set style
-	app.setStyle(new QWindowsXPStyle);
-#endif
 
 	ImageSplitter * window = new ImageSplitter(NULL);
 	Q_CHECK_PTR(window);

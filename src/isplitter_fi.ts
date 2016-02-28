@@ -5,7 +5,7 @@
 <context>
     <name>Debug</name>
     <message>
-        <location filename="popup.cpp" line="9"/>
+        <location filename="popup.cpp" line="10"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>
@@ -35,24 +35,24 @@ Päiväys: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="359"/>
-        <location filename="mainwindowimpl.cpp" line="369"/>
+        <location filename="mainwindowimpl.cpp" line="362"/>
+        <location filename="mainwindowimpl.cpp" line="372"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Kuvat (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="369"/>
+        <location filename="mainwindowimpl.cpp" line="372"/>
         <source>Save image...</source>
         <translation>Tallenna kuva...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="609"/>
-        <location filename="mainwindowimpl.cpp" line="641"/>
+        <location filename="mainwindowimpl.cpp" line="612"/>
+        <location filename="mainwindowimpl.cpp" line="644"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="359"/>
+        <location filename="mainwindowimpl.cpp" line="362"/>
         <source>Open image...</source>
         <translation>Avaa kuva...</translation>
     </message>
@@ -324,30 +324,30 @@ Päiväys: %4</translation>
 <context>
     <name>Preview</name>
     <message>
-        <location filename="previewimpl.cpp" line="74"/>
-        <location filename="previewimpl.cpp" line="124"/>
-        <location filename="previewimpl.cpp" line="560"/>
+        <location filename="previewimpl.cpp" line="44"/>
+        <location filename="previewimpl.cpp" line="90"/>
+        <location filename="previewimpl.cpp" line="526"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="84"/>
-        <location filename="previewimpl.cpp" line="537"/>
+        <location filename="previewimpl.cpp" line="54"/>
+        <location filename="previewimpl.cpp" line="503"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="335"/>
+        <location filename="previewimpl.cpp" line="301"/>
         <source>Nothing left after crop!</source>
         <translation>Rajaamisen jälkeen ei ole mitään jäljellä!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="380"/>
+        <location filename="previewimpl.cpp" line="346"/>
         <source>Scale factor is too small!</source>
         <translation>Skaalauskerroin on liian pieni!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="424"/>
+        <location filename="previewimpl.cpp" line="390"/>
         <source>Preview - %1 x %2</source>
         <translation>Esikatselu - %1 x %2</translation>
     </message>
@@ -356,7 +356,7 @@ Päiväys: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="537"/>
+        <location filename="previewimpl.cpp" line="503"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>
@@ -364,7 +364,7 @@ Päiväys: %4</translation>
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="126"/>
+        <location filename="main.cpp" line="123"/>
         <source>Open translation file...</source>
         <translation>Avaa käännöstiedosto...</translation>
     </message>

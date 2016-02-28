@@ -13,6 +13,7 @@
 Makefile
 Makefile.debug
 Makefile.release
-src/debug
-src/release
+*/debug
+*/release
+src/uic_wrapper.bat
 ui_*.h

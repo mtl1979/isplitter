@@ -1,19 +1,22 @@
 #include "previewimpl.h"
 
-#include <qapplication.h>
+#include <QtWidgets/qapplication.h>
+#include <QtWidgets/qpushbutton.h>
+#include <QtWidgets/qlineedit.h>
+#include <QtWidgets/qlabel.h>
+#include <QtWidgets/qlayout.h>
+#include <QtWidgets/qmessagebox.h>
+#include <QtWidgets/qgridlayout.h>
+
+#include <qdrag.h>
+#include <qevent.h>
 #include <qfile.h>
-#include <qpushbutton.h>
 #include <qfileinfo.h>
 #include <qimage.h>
-#include <qlineedit.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qmessagebox.h>
-#include <qmatrix.h>
-#include <qevent.h>
-#include <qgridlayout.h>
-#include <qpixmap.h>
 #include <qimagereader.h>
+#include <qmatrix.h>
+#include <qmimedata.h>
+#include <qpixmap.h>
 
 #include "popup.h"
 #include "mainwindowimpl.h"
@@ -32,7 +35,7 @@ ScaleImage(const QImage &image, int width, int height)
 // Preview class
 //
 
-Preview::Preview(QWidget* parent, Qt::WFlags fl)
+Preview::Preview(QWidget* parent, Qt::WindowFlags fl)
 :QWidget(parent, fl)
 {
 	resize( 596, 480 );

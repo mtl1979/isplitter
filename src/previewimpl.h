@@ -1,13 +1,13 @@
 #ifndef PREVIEW_H
 #define PREVIEW_H
 
-#include <qwidget.h>
-#include <qlabel.h>
-#include <qlayout.h>
+#include <QtWidgets/qwidget.h>
+#include <QtWidgets/qlabel.h>
+#include <QtWidgets/qlayout.h>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>
-#include <QGridLayout>
+#include <QtWidgets/QGridLayout>
 #include <QPixmap>
 
 class QImage;
@@ -20,7 +20,7 @@ class Preview : public QWidget
 {
 	Q_OBJECT
 public:
-	Preview(QWidget* parent = 0, Qt::WFlags fl = 0);
+	Preview(QWidget* parent = 0, Qt::WindowFlags fl = 0);
 	~Preview();
 	void setOwner(QWidget * owner);
 
