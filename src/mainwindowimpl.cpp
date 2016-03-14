@@ -45,6 +45,9 @@ bool ColorsEqual(const QColor &c1, const QColor &c2, int noise)
 ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 : QMainWindow(parent, fl)
 {
+	QLocale loc;
+	QString zero = QString("0") + loc.decimalPoint() + QString("0");
+
 	ui = new Ui_ImageSplitterBase();
 	ui->setupUi(this);
 
@@ -70,6 +73,9 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 	// Tab 1
 
 	// Collage Size
+	ui->CollageSizeX->setValidator(new QIntValidator(1, INT32_MAX));
+	ui->CollageSizeY->setValidator(new QIntValidator(1, INT32_MAX));
+
 	connect(ui->CollageSizeXminus, SIGNAL(clicked()), this, SLOT(CollageSizeXminusClicked()));
 	connect(ui->CollageSizeX, SIGNAL(textChanged(const QString &)), this, SLOT(CollageSizeXchanged(const QString &)));
 	connect(ui->CollageSizeXplus, SIGNAL(clicked()), this, SLOT(CollageSizeXplusClicked()));
@@ -79,6 +85,12 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 	connect(ui->CollageSizeYplus, SIGNAL(clicked()), this, SLOT(CollageSizeYplusClicked()));
 
 	// Collage Offset
+	ui->CollageOffsetTopX->setValidator(new QIntValidator());
+	ui->CollageOffsetTopY->setValidator(new QIntValidator());
+	ui->CollageOffsetBottomX->setValidator(new QIntValidator());
+	ui->CollageOffsetBottomY->setValidator(new QIntValidator());
+	ui->noiseLevel->setValidator(new QIntValidator(0, 64));
+
 	connect(ui->CollageOffsetTopXminus, SIGNAL(clicked()), this, SLOT(CollageOffsetTopXminusClicked()));
 	connect(ui->CollageOffsetTopX, SIGNAL(textChanged(const QString &)), this, SLOT(CollageOffsetTopXchanged(const QString &)));
 	connect(ui->CollageOffsetTopXplus, SIGNAL(clicked()), this, SLOT(CollageOffsetTopXplusClicked()));
@@ -103,9 +115,13 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 
 	connect(ui->noiseminus, SIGNAL(clicked()), this, SLOT(NoiseMinusClicked()));
 	connect(ui->noiseplus, SIGNAL(clicked()), this, SLOT(NoisePlusClicked()));
+
 	// Tab 2
 
 	// Offset Index
+	ui->OffsetIndexX->setValidator(new QIntValidator(0, 0));
+	ui->OffsetIndexY->setValidator(new QIntValidator(0, 0));
+
 	connect(ui->OffsetIndexXminus, SIGNAL(clicked()), this, SLOT(OffsetIndexXminusClicked()));
 	connect(ui->OffsetIndexX, SIGNAL(textChanged(const QString &)), this, SLOT(OffsetIndexXchanged(const QString &)));
 	connect(ui->OffsetIndexXplus, SIGNAL(clicked()), this, SLOT(OffsetIndexXplusClicked()));
@@ -115,6 +131,11 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 	connect(ui->OffsetIndexYplus, SIGNAL(clicked()), this, SLOT(OffsetIndexYplusClicked()));
 
 	// Image Offset
+	ui->ImageOffsetTopX->setValidator(new QIntValidator());
+	ui->ImageOffsetTopY->setValidator(new QIntValidator());
+	ui->ImageOffsetBottomX->setValidator(new QIntValidator());
+	ui->ImageOffsetBottomY->setValidator(new QIntValidator());
+
 	connect(ui->ImageOffsetTopXminus, SIGNAL(clicked()), this, SLOT(ImageOffsetTopXminusClicked()));
 	connect(ui->ImageOffsetTopX, SIGNAL(textChanged(const QString &)), this, SLOT(ImageOffsetTopXchanged(const QString &)));
 	connect(ui->ImageOffsetTopXplus, SIGNAL(clicked()), this, SLOT(ImageOffsetTopXplusClicked()));
@@ -141,13 +162,26 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 	// Tab 3
 
 	// Rotate
+	ui->ImageRotate->setText(zero);
+	ui->ImageRotate->setMaxLength(9);
+	ui->ImageRotate->setValidator(new QDoubleValidator(-359.9999, 359.9999, 4));
 	connect(ui->ImageRotate, SIGNAL(textChanged(const QString &)), this, SLOT(ImageRotatechanged(const QString &)));
 
 	// Scale
+	ui->ImageScale->setText(zero);
+	ui->ImageScale->setMaxLength(9);
+	ui->ImageScale->setValidator(new QDoubleValidator(-99.9999, 999.9999, 4));
 	connect(ui->ImageScale, SIGNAL(textChanged(const QString &)), this, SLOT(ImageScalechanged(const QString &)));
 
 	// Shear
+	ui->ShearX->setText(zero);
+	ui->ShearX->setMaxLength(7);
+	ui->ShearX->setValidator(new QDoubleValidator(-4.0000, 4.0000, 4));
 	connect(ui->ShearX, SIGNAL(textChanged(const QString &)), this, SLOT(ShearXchanged(const QString &)));
+
+	ui->ShearY->setText(zero);
+	ui->ShearY->setMaxLength(7);
+	ui->ShearY->setValidator(new QDoubleValidator(-4.0000, 4.0000, 4));
 	connect(ui->ShearY, SIGNAL(textChanged(const QString &)), this, SLOT(ShearYchanged(const QString &)));
 
 	// Automatic preview
@@ -383,6 +417,7 @@ void ImageSplitter::AutoCrop()
 
 	// Cache variables
 
+	QLocale loc;
 	bool lx = ui->CollageOffsetLockX->isChecked();
 	bool ly = ui->CollageOffsetLockY->isChecked();
 
@@ -390,9 +425,9 @@ void ImageSplitter::AutoCrop()
 	int right = ui->CollageOffsetBottomX->text().toInt();
 	int top = ui->CollageOffsetTopY->text().toInt();
 	int bottom = ui->CollageOffsetBottomY->text().toInt();
-	double imageRotate = ui->ImageRotate->text().toDouble();
-	double shearX = ui->ShearX->text().toDouble();
-	double shearY = ui->ShearY->text().toDouble();
+	double imageRotate = loc.toDouble(ui->ImageRotate->text());
+	double shearX = loc.toDouble(ui->ShearX->text());
+	double shearY = loc.toDouble(ui->ShearY->text());
 
 	if (imageRotate == 0.0)
 	{
@@ -633,6 +668,9 @@ ImageSplitter::Save(const QString &filename)
 void
 ImageSplitter::ClearImage()
 {
+	QLocale loc;
+	QString zero = QString("0") + loc.decimalPoint() + QString("0");
+
 	if (image)
 	{
 		delete image;
@@ -665,6 +703,8 @@ ImageSplitter::ClearImage()
 	//
 	ui->ImageRotate->setText("0");
 	ui->ImageScale->setText("100");
+	ui->ShearX->setText(zero);
+	ui->ShearY->setText(zero);
 	//
 	menuBar->Save()->setEnabled(false);
 	menuBar->AutoCrop()->setEnabled(false);
@@ -815,7 +855,10 @@ ImageSplitter::CollageSizeXchanged(const QString &text)
 	bool ok;
 	int i = text.toInt(&ok);
 	if (i > 0)
+	{
+		ui->OffsetIndexX->setValidator(new QIntValidator(0, i - 1));
 		previewChanged();
+	}
 }
 
 void
@@ -824,7 +867,10 @@ ImageSplitter::CollageSizeYchanged(const QString &text)
 	bool ok;
 	int i = text.toInt(&ok);
 	if (i > 0)
+	{
+		ui->OffsetIndexY->setValidator(new QIntValidator(0, i - 1));
 		previewChanged();
+	}
 }
 
 void
@@ -1103,9 +1149,9 @@ ImageSplitter::ImageOffsetBottomYchanged(const QString &text)
 void
 ImageSplitter::ImageRotatechanged(const QString &text)
 {
-	bool ok;
-	double d = text.toDouble(&ok);
-	if (ok && (d > -360.0 && d < 360.0))
+	QLocale loc;
+	double d = loc.toDouble(text);
+	if (d > -360.0 && d < 360.0)
 	{
 		previewChanged();
 	}
@@ -1114,9 +1160,9 @@ ImageSplitter::ImageRotatechanged(const QString &text)
 void
 ImageSplitter::ImageScalechanged(const QString &text)
 {
-	bool ok;
-	double d = text.toDouble(&ok);
-	if (ok && (d > -100.0 && d != 0.0))
+	QLocale loc;
+	double d = loc.toDouble(text);
+	if (d > -100.0 && d != 0.0)
 	{
 		previewChanged();
 	}
@@ -1125,9 +1171,9 @@ ImageSplitter::ImageScalechanged(const QString &text)
 void
 ImageSplitter::ShearXchanged(const QString &text)
 {
-	bool ok;
-	double d = text.toDouble(&ok);
-	if (ok && qAbs(d) <= 4.0)
+	QLocale loc;
+	double d = loc.toDouble(text);
+	if (qAbs(d) <= 4.0)
 	{
 		previewChanged();
 	}
@@ -1136,9 +1182,9 @@ ImageSplitter::ShearXchanged(const QString &text)
 void
 ImageSplitter::ShearYchanged(const QString &text)
 {
-	bool ok;
-	double d = text.toDouble(&ok);
-	if (ok && qAbs(d) <= 4.0)
+	QLocale loc;
+	double d = loc.toDouble(text);
+	if (qAbs(d) <= 4.0)
 	{
 		previewChanged();
 	}

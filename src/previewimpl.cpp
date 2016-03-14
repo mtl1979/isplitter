@@ -195,22 +195,18 @@ Preview::PreviewImage()
 	if (!valid)
 		return;
 
-	double imageRotate = Splitter->ui->ImageRotate->text().toDouble(&valid);
-	if (!valid)
+	QLocale loc;
+
+	double imageRotate = loc.toDouble(Splitter->ui->ImageRotate->text());
+	double imageScale = loc.toDouble(Splitter->ui->ImageScale->text());
+
+	double shearX = loc.toDouble(Splitter->ui->ShearX->text());
+	if (qAbs(shearX) > 4.0)
 		return;
 
-	double imageScale = Splitter->ui->ImageScale->text().toDouble(&valid);
-	if (!valid)
+	double shearY = loc.toDouble(Splitter->ui->ShearY->text());
+	if (qAbs(shearY) > 4.0)
 		return;
-
-	double shearX = Splitter->ui->ShearX->text().toDouble(&valid);
-	if (!valid || qAbs(shearX) > 4.0)
-		return;
-
-	double shearY = Splitter->ui->ShearY->text().toDouble(&valid);
-	if (!valid || qAbs(shearY) > 4.0)
-		return;
-
 
 	if (imageScale < 0)
 	{
