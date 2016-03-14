@@ -662,6 +662,8 @@ ImageSplitter::ClearImage()
 	//
 	ui->ImageRotate->setText("0");
 	ui->ImageScale->setText("100");
+	ui->ShearX->setText("0");
+	ui->ShearY->setText("0");
 	//
 	menuBar->Save()->setEnabled(false);
 	menuBar->AutoCrop()->setEnabled(false);
