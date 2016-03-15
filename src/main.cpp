@@ -46,33 +46,6 @@ SetWorkingDirectory(const char *app)
 		}
 	}
 }
-#else
-QString
-GetAppDirectory()
-{
-	// we have to use some Windows API to get our path...
-	wchar_t * name = new wchar_t[MAX_PATH];	// maximum size for Win32 filenames
-	Q_CHECK_PTR(name);
-	if (GetModuleFileName(NULL,				/* current apps module */
-							name,			/* buffer */
-							MAX_PATH		/* buffer length */
-							) != 0)
-	{
-		qDebug("Module filename: %ls", name);
-		PathRemoveFileSpec(name);
-		if (SetCurrentDirectory(name) == 0)
-		{
-			GetCurrentDirectory(MAX_PATH, name);
-			qDebug("Current directory: %ls", name);
-		}
-		else
-			qDebug("Application directory: %ls", name);
-	}
-	QString qname = QString::fromWCharArray(name);
-	delete [] name;
-	name = NULL; // <postmaster@raasu.org> 20021027
-	return qname;
-}
 #endif
 
 int
@@ -85,7 +58,6 @@ main( int argc, char** argv )
 	// Set our working directory
 
 #ifdef _WIN32
-	QString appdir = GetAppDirectory();
 	QString datadir = qgetenv("APPDATA");
 	QDir dir(datadir);
 	dir.mkdir("Image Splitter");
@@ -95,7 +67,7 @@ main( int argc, char** argv )
 	WString wdatadir(datadir);
 	qDebug("Data directory: %ls", wdatadir.getBuffer());
 #endif
-	gAppDir = appdir;
+	gAppDir = QDir::toNativeSeparators(app.applicationDirPath());
 	// Set our working directory
 	QDir::setCurrent(datadir);
 #endif
