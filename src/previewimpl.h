@@ -30,6 +30,7 @@ public:
 
 protected slots:
 	void PreviewImage();
+	void CopyImage();
 	void Save();
 
 protected:

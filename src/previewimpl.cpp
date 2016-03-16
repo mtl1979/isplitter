@@ -8,6 +8,7 @@
 #include <QtWidgets/qmessagebox.h>
 #include <QtWidgets/qgridlayout.h>
 
+#include <qclipboard.h>
 #include <qdrag.h>
 #include <qevent.h>
 #include <qfile.h>
@@ -64,7 +65,14 @@ Preview::Preview(QWidget* parent, Qt::WindowFlags fl)
 	pxlPreview->setScaledContents( FALSE );
 	pxlPreview->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 	pxlPreview->installEventFilter(this);
+	pxlPreview->setContextMenuPolicy(Qt::ActionsContextMenu);
 	pxlPreview->hide();
+
+	QAction *copyAct = new QAction(tr("Copy"), NULL);
+	Q_CHECK_PTR(copyAct);
+	copyAct->setShortcut(Qt::ControlModifier + Qt::Key_C);
+	connect(copyAct, SIGNAL(triggered()), this, SLOT(CopyImage()));
+	pxlPreview->addAction(copyAct);
 
 	//
 	// Create erase pixmap
@@ -384,6 +392,16 @@ Preview::PreviewImage()
 		pxlPreview->setPixmap( tmpPreview );
 		SaveButton->setEnabled(true);
 		setWindowTitle(tr("Preview - %1 x %2").arg(pixPreview->width()).arg(pixPreview->height()));
+	}
+}
+
+void
+Preview::CopyImage()
+{
+	if (pixPreview)
+	{
+		QClipboard *clipboard = QApplication::clipboard();
+		clipboard->setPixmap(*pixPreview);
 	}
 }
 
