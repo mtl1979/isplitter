@@ -404,12 +404,9 @@ Preview::eventFilter( QObject *o, QEvent *e )
 		case QEvent::MouseButtonRelease:
 			mouseReleaseEvent((QMouseEvent *) e);
 			return true;
-		case QEvent::Drop:
-			dropEvent((QDropEvent *) e);
-			return true;
 		}
 	}
-	return false;
+	return QWidget::eventFilter(o, e);
 }
 
 void
@@ -419,6 +416,7 @@ Preview::mousePressEvent(QMouseEvent *e)
 	{
 		qDebug("Started dragging...\n");
 		dragging = true;
+		startPos = e->pos();
 	}
 	QWidget::mousePressEvent(e);
 }

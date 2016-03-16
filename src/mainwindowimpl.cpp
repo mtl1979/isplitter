@@ -246,6 +246,7 @@ ImageSplitter::mousePressEvent(QMouseEvent *e)
 	{
 		qDebug("Started dragging...\n");
 		dragging = true;
+		startPos = e->pos();
 	}
 	QMainWindow::mousePressEvent(e);
 }
