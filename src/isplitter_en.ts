@@ -34,24 +34,24 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="396"/>
-        <location filename="mainwindowimpl.cpp" line="406"/>
+        <location filename="mainwindowimpl.cpp" line="397"/>
+        <location filename="mainwindowimpl.cpp" line="407"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="406"/>
+        <location filename="mainwindowimpl.cpp" line="407"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="647"/>
-        <location filename="mainwindowimpl.cpp" line="682"/>
+        <location filename="mainwindowimpl.cpp" line="648"/>
+        <location filename="mainwindowimpl.cpp" line="683"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="396"/>
+        <location filename="mainwindowimpl.cpp" line="397"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -325,13 +325,13 @@ Date: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="44"/>
         <location filename="previewimpl.cpp" line="90"/>
-        <location filename="previewimpl.cpp" line="522"/>
+        <location filename="previewimpl.cpp" line="520"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="54"/>
-        <location filename="previewimpl.cpp" line="499"/>
+        <location filename="previewimpl.cpp" line="497"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
@@ -355,7 +355,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="499"/>
+        <location filename="previewimpl.cpp" line="497"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>
@@ -363,7 +363,7 @@ Date: %4</translation>
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="123"/>
+        <location filename="main.cpp" line="95"/>
         <source>Open translation file...</source>
         <translation>Open translation file...</translation>
     </message>
