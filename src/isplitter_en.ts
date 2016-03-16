@@ -35,24 +35,24 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="359"/>
-        <location filename="mainwindowimpl.cpp" line="369"/>
+        <location filename="mainwindowimpl.cpp" line="360"/>
+        <location filename="mainwindowimpl.cpp" line="370"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="369"/>
+        <location filename="mainwindowimpl.cpp" line="370"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="609"/>
-        <location filename="mainwindowimpl.cpp" line="641"/>
+        <location filename="mainwindowimpl.cpp" line="610"/>
+        <location filename="mainwindowimpl.cpp" line="642"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="359"/>
+        <location filename="mainwindowimpl.cpp" line="360"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -324,30 +324,35 @@ Date: %4</translation>
 <context>
     <name>Preview</name>
     <message>
-        <location filename="previewimpl.cpp" line="74"/>
-        <location filename="previewimpl.cpp" line="124"/>
-        <location filename="previewimpl.cpp" line="560"/>
+        <location filename="previewimpl.cpp" line="43"/>
+        <location filename="previewimpl.cpp" line="96"/>
+        <location filename="previewimpl.cpp" line="540"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="84"/>
-        <location filename="previewimpl.cpp" line="537"/>
+        <location filename="previewimpl.cpp" line="53"/>
+        <location filename="previewimpl.cpp" line="517"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="335"/>
+        <location filename="previewimpl.cpp" line="69"/>
+        <source>Copy</source>
+        <translation>Copy</translation>
+    </message>
+    <message>
+        <location filename="previewimpl.cpp" line="307"/>
         <source>Nothing left after crop!</source>
         <translation>Nothing left after crop!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="380"/>
+        <location filename="previewimpl.cpp" line="352"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="424"/>
+        <location filename="previewimpl.cpp" line="396"/>
         <source>Preview - %1 x %2</source>
         <translation>Preview - %1 x %2</translation>
     </message>
@@ -356,7 +361,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="537"/>
+        <location filename="previewimpl.cpp" line="517"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>
