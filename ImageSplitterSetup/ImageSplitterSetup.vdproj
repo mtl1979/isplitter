@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6FEB73AB2F5E4A4191762BB19DDC6112"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7248D9D591B244C1839532BF830E400B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -246,6 +252,26 @@
             {
             "SourcePath" = "8:C:\\qt5\\qtbase\\lib\\Qt5Widgets.dll"
             "TargetName" = "8:Qt5Widgets.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_47F62E1545BE43A2885A90A3A437A3AE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FEB73AB2F5E4A4191762BB19DDC6112"
+            {
+            "SourcePath" = "8:..\\qt.conf"
+            "TargetName" = "8:qt.conf"
             "Tag" = "8:"
             "Folder" = "8:_47F62E1545BE43A2885A90A3A437A3AE"
             "Condition" = "8:"
