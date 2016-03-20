@@ -1,5 +1,6 @@
 unix:TARGET=isplitter
 win32:TARGET=ImageSplitter
+GUID={5C97BE51-DAA7-3413-915E-DC71C0E6EEAE}
 DEBUG_SOURCES =
 
 #We can't rely on having "debug" in CONFIG if we set "release" as default target
