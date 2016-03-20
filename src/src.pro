@@ -6,7 +6,7 @@ DEBUG_SOURCES =
 QT += widgets
 
 #We can't rely on having "debug" in CONFIG if we set "release" as default target
-CONFIG(debug, debug|release) {
+build_pass:CONFIG(debug, debug|release) {
 	DEFINES		 += _DEBUG
 	DEBUG_SOURCES = debugimpl.cpp
 }
@@ -75,6 +75,20 @@ win32 {
 
 	qtimageformats.CONFIG += recursive
 	INSTALLS += qtimageformats
+
+	qtplatforms.path = ../../plugins/platforms
+	!isEmpty(DEBUG_SOURCES) {
+		qtplatforms.files = $$[QT_INSTALL_PLUGINS]\\platforms\\qwindowsd.dll
+	} else {
+		qtplatforms.files = $$[QT_INSTALL_PLUGINS]\\platforms\\qwindows.dll
+	}
+	qtplatforms.CONFIG += recursive
+	INSTALLS += qtplatforms
+
+	qtconf.path = ../..
+	qtconf.files = ../qt.conf
+	qtconf.CONFIG += recursive
+	INSTALLS += qtconf
 }
 
 
