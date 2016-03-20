@@ -75,6 +75,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C29D871A42E14F9E8382D4DDF16A744E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D69E5D5D32FA4F3AA6F1960EC8A0D8B1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -356,6 +362,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C29D871A42E14F9E8382D4DDF16A744E"
+            {
+            "SourcePath" = "8:C:\\qt5\\qtbase\\plugins\\platforms\\qwindows.dll"
+            "TargetName" = "8:qwindows.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9CF8095E8CD34D8D821BC4E42A46ED29"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D69E5D5D32FA4F3AA6F1960EC8A0D8B1"
             {
             "SourcePath" = "8:C:\\qt5\\qtbase\\plugins\\imageformats\\qjpeg.dll"
@@ -499,6 +525,17 @@
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_A77138A72DB646E5B4EA1A016530FFDF"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_9CF8095E8CD34D8D821BC4E42A46ED29"
+                            {
+                            "Name" = "8:platforms"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_69C31036767D4A27B2FD680047E8D8D4"
                                 "Folders"
                                 {
                                 }
@@ -1095,7 +1132,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2BFF7D7B4A304C098C947320E9C8620E"
             {
-            "SourcePath" = "8:..\\zlib\\debug\\zlib1.dll"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_47F62E1545BE43A2885A90A3A437A3AE"
@@ -1123,7 +1160,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F71F6D1DBAA1431AB5BAFCF51F6FAA03"
             {
-            "SourcePath" = "8:..\\src\\debug\\ImageSplitter.exe"
+            "SourcePath" = "8:..\\src\\release\\ImageSplitter.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_47F62E1545BE43A2885A90A3A437A3AE"
