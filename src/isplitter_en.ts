@@ -368,7 +368,7 @@ Date: %4</translation>
 <context>
     <name>main</name>
     <message>
-        <location filename="main.cpp" line="95"/>
+        <location filename="main.cpp" line="112"/>
         <source>Open translation file...</source>
         <translation>Open translation file...</translation>
     </message>
