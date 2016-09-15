@@ -312,12 +312,12 @@ Preview::PreviewImage()
 
 	int subX = subOffsetX + imageOffsetBottomX; // Adjusted X coordinate of top-left of subimage
 
-	if (subWidth + subX > imgPreview.width())
+	if (subWidth + subX > imgPreview.width() && collageSizeX > 1)
 		subWidth = imgPreview.width() - subX;
 
 	int subY = subOffsetY + imageOffsetBottomY; // Adjusted Y coordinate of top-left of subimage
 
-	if (subHeight + subY > imgPreview.height())
+	if (subHeight + subY > imgPreview.height() && collageSizeY > 1)
 		subHeight = imgPreview.height() - subY;
 
 	//
