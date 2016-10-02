@@ -394,7 +394,10 @@ ImageSplitter::Load()
 #ifdef _DEBUG
 	WString wlastdir(lastdir);
 #endif
-	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)"));
+	QStringList filters;
+	filters << tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)");
+	filters << tr("Icons (*.ico)");
+	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, filters.join(";;"));
 	if (!filename.isEmpty())
 	{
 		Load(filename);
