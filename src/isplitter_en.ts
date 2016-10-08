@@ -34,29 +34,29 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="398"/>
-        <location filename="mainwindowimpl.cpp" line="410"/>
+        <location filename="mainwindowimpl.cpp" line="399"/>
+        <location filename="mainwindowimpl.cpp" line="411"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="399"/>
+        <location filename="mainwindowimpl.cpp" line="400"/>
         <source>Icons (*.ico)</source>
         <translation>Icons (*.ico)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="410"/>
+        <location filename="mainwindowimpl.cpp" line="411"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="651"/>
-        <location filename="mainwindowimpl.cpp" line="686"/>
+        <location filename="mainwindowimpl.cpp" line="652"/>
+        <location filename="mainwindowimpl.cpp" line="689"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="400"/>
+        <location filename="mainwindowimpl.cpp" line="401"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -282,7 +282,7 @@ Date: %4</translation>
         <translation>&amp;Close</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="16"/>
+        <location filename="menubar.cpp" line="17"/>
         <source>&amp;Save</source>
         <translation>&amp;Save</translation>
     </message>
@@ -291,7 +291,7 @@ Date: %4</translation>
         <translation type="obsolete">CTRL+S</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="21"/>
+        <location filename="menubar.cpp" line="22"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
@@ -300,12 +300,12 @@ Date: %4</translation>
         <translation type="obsolete">ALT+X</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="25"/>
+        <location filename="menubar.cpp" line="26"/>
         <source>Automatic preview</source>
         <translation>Automatic preview</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="30"/>
+        <location filename="menubar.cpp" line="31"/>
         <source>Automatic crop</source>
         <translation>Automatic crop</translation>
     </message>
@@ -315,12 +315,12 @@ Date: %4</translation>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="23"/>
+        <location filename="menubar.cpp" line="24"/>
         <source>&amp;Settings</source>
         <translation>&amp;Settings</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="28"/>
+        <location filename="menubar.cpp" line="29"/>
         <source>&amp;Tools</source>
         <translation>&amp;Tools</translation>
     </message>

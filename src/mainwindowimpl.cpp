@@ -271,6 +271,7 @@ ImageSplitter::dropEvent(QDropEvent* event)
 		QImage nimg = image->scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		ui->pxlCollage->setPixmap(QPixmap::fromImage(nimg));
 
+		menuBar->Close()->setEnabled(true);
 		menuBar->Save()->setEnabled(true);
 		menuBar->AutoCrop()->setEnabled(false);
 	}
@@ -652,6 +653,7 @@ ImageSplitter::Load(const QString &filename)
 
 		ui->TabWidget2->setCurrentIndex(ui->TabWidget2->indexOf(ui->tab1));
 
+		menuBar->Close()->setEnabled(true);
 		menuBar->AutoCrop()->setEnabled(true);
 
 		previewChanged();
@@ -679,6 +681,7 @@ ImageSplitter::ClearImage()
 	{
 		delete image;
 		image = NULL;
+		menuBar->Close()->setEnabled(false);
 	}
 
 	ui->pxlCollage->clear();

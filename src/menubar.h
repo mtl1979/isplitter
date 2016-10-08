@@ -23,6 +23,10 @@ public:
 		return fTools;
 	}
 
+	QAction * Close() const {
+		return fClose;
+	}
+
 	QAction * Save() const {
 		return fSave;
 	}
@@ -42,6 +46,7 @@ private:
 	QMenu * fSettings;
 	QMenu * fTools;
 
+	QAction * fClose;
 	QAction * fSave;
 	QAction * fAutoPreview;
 	QAction * fAutoCrop;

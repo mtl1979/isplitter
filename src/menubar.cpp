@@ -9,7 +9,8 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 	fFile = addMenu(tr("&File"));
 
 	fFile->addAction(tr("&Open"), parent, SLOT(Load()), Qt::CTRL+Qt::Key_O);
-	fFile->addAction(tr("&Close"), parent, SLOT(ClearImage()));
+	fClose = fFile->addAction(tr("&Close"), parent, SLOT(ClearImage()));
+	fClose->setEnabled(false);
 
 	fFile->addSeparator();
 
