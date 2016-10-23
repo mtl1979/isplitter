@@ -20,3 +20,5 @@ Makefile.release
 */release
 src/*_wrapper.bat
 ui_*.h
+*.msi
+*.exe

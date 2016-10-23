@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1D4A46F9714F474FA52D307B92574E87"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1F08E9ED5E314204BB2A645A8AD5373F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -53,6 +59,12 @@
         {
         "MsmKey" = "8:_8757997171184A55950CA9C044BDC28D"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8757997171184A55950CA9C044BDC28D"
+        "OwnerKey" = "8:_2BFF7D7B4A304C098C947320E9C8620E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,6 +226,26 @@
             "TargetName" = "8:qtga.dll"
             "Tag" = "8:"
             "Folder" = "8:_48ED437B67434E30A8927B5D659AFC9B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D4A46F9714F474FA52D307B92574E87"
+            {
+            "SourcePath" = "8:C:\\qt5\\qtbase\\lib\\Qt5Svg.dll"
+            "TargetName" = "8:Qt5Svg.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_47F62E1545BE43A2885A90A3A437A3AE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"

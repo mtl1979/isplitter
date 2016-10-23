@@ -3,7 +3,7 @@ win32:TARGET=ImageSplitter
 GUID={5C97BE51-DAA7-3413-915E-DC71C0E6EEAE}
 DEBUG_SOURCES =
 
-QT += widgets
+QT += widgets svg
 
 #We can't rely on having "debug" in CONFIG if we set "release" as default target
 build_pass:CONFIG(debug, debug|release) {
@@ -52,11 +52,13 @@ win32 {
 	!isEmpty(DEBUG_SOURCES) {
 		qtlibs.files = $$[QT_INSTALL_LIBS]\\Qt5Cored.dll \
 			       $$[QT_INSTALL_LIBS]\\Qt5Guid.dll \
+			       $$[QT_INSTALL_LIBS]\\Qt5Svgd.dll \
 			       $$[QT_INSTALL_LIBS]\\Qt5Widgetsd.dll \
 			       $$[QT_INSTALL_LIBS]\\libGLESv2d.dll
 	} else {
 		qtlibs.files = $$[QT_INSTALL_LIBS]\\Qt5Core.dll \
 			       $$[QT_INSTALL_LIBS]\\Qt5Gui.dll \
+			       $$[QT_INSTALL_LIBS]\\Qt5Svg.dll \
 			       $$[QT_INSTALL_LIBS]\\Qt5Widgets.dll \
 			       $$[QT_INSTALL_LIBS]\\libGLESv2.dll
 	}
