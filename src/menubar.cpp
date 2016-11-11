@@ -26,6 +26,8 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 	fAutoPreview = fSettings->addAction(tr("Automatic preview"), parent, SLOT(AutoPreview()));
 	fAutoPreview->setCheckable(true);
 
+	fSettings->addAction(tr("Set fill color"), parent, SLOT(SetFillColor()));
+
 	fTools = addMenu(tr("&Tools"));
 
 	fAutoCrop = fTools->addAction(tr("Automatic crop"), parent, SLOT(AutoCrop()));

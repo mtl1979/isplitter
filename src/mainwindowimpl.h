@@ -24,6 +24,7 @@ public:
 	~ImageSplitter();
 	QImage *getImage() {return image;}
 	QString filename() {return fFilename;}
+	const QColor &fillColor() { return fFillColor; }
 	void Load(const QString &filename);
 	void Save(const QString &filename);
 	bool IsAutoPreview();
@@ -40,6 +41,7 @@ protected slots:
 	void Exit();
 
 	void AutoCrop();
+	void SetFillColor();
 	void AutoPreview();
 
 	// Tab 1
@@ -124,6 +126,7 @@ private:
 	QImage *image;
 	QString fFilename;
 	QString lastdir;
+	QColor fFillColor;
 	MenuBar * menuBar;
 
 	Preview * fPreview;

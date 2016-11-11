@@ -34,29 +34,34 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="399"/>
-        <location filename="mainwindowimpl.cpp" line="411"/>
+        <location filename="mainwindowimpl.cpp" line="425"/>
+        <location filename="mainwindowimpl.cpp" line="437"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="400"/>
+        <location filename="mainwindowimpl.cpp" line="426"/>
         <source>Icons (*.ico)</source>
         <translation>Icons (*.ico)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="411"/>
+        <location filename="mainwindowimpl.cpp" line="437"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="652"/>
-        <location filename="mainwindowimpl.cpp" line="689"/>
+        <location filename="mainwindowimpl.cpp" line="702"/>
+        <location filename="mainwindowimpl.cpp" line="739"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="401"/>
+        <location filename="mainwindowimpl.cpp" line="619"/>
+        <source>Select fill color...</source>
+        <translation>Select fill color...</translation>
+    </message>
+    <message>
+        <location filename="mainwindowimpl.cpp" line="427"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -305,7 +310,7 @@ Date: %4</translation>
         <translation>Automatic preview</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="31"/>
+        <location filename="menubar.cpp" line="33"/>
         <source>Automatic crop</source>
         <translation>Automatic crop</translation>
     </message>
@@ -321,6 +326,11 @@ Date: %4</translation>
     </message>
     <message>
         <location filename="menubar.cpp" line="29"/>
+        <source>Set fill color</source>
+        <translation>Set fill color</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="31"/>
         <source>&amp;Tools</source>
         <translation>&amp;Tools</translation>
     </message>
@@ -328,35 +338,35 @@ Date: %4</translation>
 <context>
     <name>Preview</name>
     <message>
-        <location filename="previewimpl.cpp" line="45"/>
-        <location filename="previewimpl.cpp" line="98"/>
-        <location filename="previewimpl.cpp" line="538"/>
+        <location filename="previewimpl.cpp" line="46"/>
+        <location filename="previewimpl.cpp" line="99"/>
+        <location filename="previewimpl.cpp" line="553"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="55"/>
-        <location filename="previewimpl.cpp" line="515"/>
+        <location filename="previewimpl.cpp" line="56"/>
+        <location filename="previewimpl.cpp" line="530"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="71"/>
+        <location filename="previewimpl.cpp" line="72"/>
         <source>Copy</source>
         <translation>Copy</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="305"/>
+        <location filename="previewimpl.cpp" line="307"/>
         <source>Nothing left after crop!</source>
         <translation>Nothing left after crop!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="350"/>
+        <location filename="previewimpl.cpp" line="365"/>
         <source>Scale factor is too small!</source>
         <translation>Scale factor is too small!</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="394"/>
+        <location filename="previewimpl.cpp" line="409"/>
         <source>Preview - %1 x %2</source>
         <translation>Preview - %1 x %2</translation>
     </message>
@@ -365,7 +375,7 @@ Date: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="515"/>
+        <location filename="previewimpl.cpp" line="530"/>
         <source>Unable to save output!</source>
         <translation>Unable to save output!</translation>
     </message>

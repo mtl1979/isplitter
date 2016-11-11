@@ -17,6 +17,7 @@
 #include <qimagereader.h>
 #include <qmatrix.h>
 #include <qmimedata.h>
+#include <qpainter.h>
 #include <qpixmap.h>
 
 #include "popup.h"
@@ -258,6 +259,7 @@ Preview::PreviewImage()
 	}
 
 	QImage imgPreview;
+	const QColor & fillcolor = Splitter->fillColor();
 
 	if (imageRotate == 0.0)
 	{
@@ -322,8 +324,21 @@ Preview::PreviewImage()
 	// Generate subimage
 	//
 
-	if (subOffsetX != 0 || subOffsetY != 0 || subWidth != imgPreview.width() || subHeight != imgPreview.height())
-		imgPreview = imgPreview.copy(subOffsetX, subOffsetY, subWidth, subHeight);
+	{
+		int borderleft = subOffsetX < 0 ? -subOffsetX : 0;
+		int borderright = (subOffsetX > 0 ? subWidth + subOffsetX : subWidth) > imgPreview.width() ? subWidth - imgPreview.width() + subOffsetX : 0;
+		int bordertop = subOffsetY < 0 ? -subOffsetY : 0;
+		int borderbottom = (subOffsetY > 0 ? subHeight + subOffsetY : subHeight) > imgPreview.height() ? subHeight - imgPreview.height() + subOffsetY : 0;
+		// Fill background and areas outside original image with fillcolor, we need to use temporary image as QPainter doesn't allow drawing with transparent colors
+		QImage imgtemp = QImage(subWidth, subHeight, QImage::Format_ARGB32_Premultiplied);
+
+		imgtemp.fill(fillcolor);
+		{
+			QPainter painter(&imgtemp);
+			painter.drawImage(borderleft, bordertop, imgPreview, borderleft > 0 ? borderleft : subOffsetX, bordertop > 0 ? bordertop : subOffsetY, subWidth - borderleft - borderright, subHeight - bordertop - borderbottom, Qt::AutoColor);
+		}
+		imgPreview = imgtemp;
+	}
 
 	// Mirror image if requested
 

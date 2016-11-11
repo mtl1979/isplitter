@@ -1,6 +1,7 @@
 #include "mainwindowimpl.h"
 
 #include <QtWidgets/qmainwindow.h>
+#include <QtWidgets/qcolordialog.h>
 #include <QtWidgets/qlineedit.h>
 #include <QtWidgets/qlabel.h>
 #include <QtWidgets/qlayout.h>
@@ -47,6 +48,7 @@ ImageSplitter::ImageSplitter( QWidget* parent, Qt::WindowFlags fl)
 {
 	QLocale loc;
 	QString zero = QString("0") + loc.decimalPoint() + QString("0");
+	fFillColor = QColor(Qt::white);
 
 	ui = new Ui_ImageSplitterBase();
 	ui->setupUi(this);
@@ -365,6 +367,24 @@ ImageSplitter::LoadSettings()
 				fPreview->PreviewButton->setEnabled(true);
 			}
 		}
+		if (qf.readLine(temp.data(), 255) > 0)
+		{
+			QString fillcolor = QString::fromUtf8(temp);
+			fillcolor.replace("\n", "");
+			if (fillcolor.startsWith("fillcolor = "))
+			{
+				fFillColor = QColor(fillcolor.mid(12));
+			}
+		}
+		if (qf.readLine(temp.data(), 255) > 0)
+		{
+			QString fillalpha = QString::fromUtf8(temp);
+			fillalpha.replace("\n", "");
+			if (fillalpha.startsWith("fillalpha = "))
+			{
+				fFillColor.setAlpha(fillalpha.mid(12).toInt());
+			}
+		}
 		qf.close();
 	}
 }
@@ -379,6 +399,12 @@ ImageSplitter::SaveSettings()
 		qf.write(temp);
 		qf.write("\n", 1);
 		temp = QString("autopreview = %1").arg(menuBar->AutoPreview()->isChecked() ? "true" : "false").toUtf8();
+		qf.write(temp);
+		qf.write("\n", 1);
+		temp = QString("fillcolor = %1").arg(fFillColor.name()).toUtf8();
+		qf.write(temp);
+		qf.write("\n", 1);
+		temp = QString("fillalpha = %1").arg(fFillColor.alpha()).toUtf8();
 		qf.write(temp);
 		qf.close();
 	}
@@ -433,6 +459,19 @@ void ImageSplitter::AutoCrop()
 	double imageRotate = loc.toDouble(ui->ImageRotate->text());
 	double shearX = loc.toDouble(ui->ShearX->text());
 	double shearY = loc.toDouble(ui->ShearY->text());
+
+	// Make sure we are not trying to compare pixels outside image.
+	if (left < 0)
+		left = 0;
+
+	if (right < 0)
+		right = 0;
+
+	if (top < 0)
+		top = 0;
+
+	if (bottom < 0)
+		bottom = 0;
 
 	if (imageRotate == 0.0)
 	{
@@ -572,6 +611,17 @@ void ImageSplitter::AutoCrop()
 	ui->CollageOffsetTopY->setText(QString::number(top));
 	if (!ly)
 		ui->CollageOffsetBottomY->setText(QString::number(bottom));
+}
+
+void
+ImageSplitter::SetFillColor()
+{
+	QColor fillcolor = QColorDialog::getColor(fFillColor, this, tr("Select fill color..."), QColorDialog::ShowAlphaChannel);
+	if (fillcolor.isValid())
+	{
+		fFillColor = fillcolor;
+		previewChanged();
+	}
 }
 
 void
