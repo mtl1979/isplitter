@@ -63,12 +63,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8757997171184A55950CA9C044BDC28D"
-        "OwnerKey" = "8:_2BFF7D7B4A304C098C947320E9C8620E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A187535EBFCE48ACBD355F567BFCD178"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -641,7 +635,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Image Splitter"
         "ProductCode" = "8:{606329C3-8038-43DA-A8AC-BBA31ED9169B}"
-        "PackageCode" = "8:{127E14E0-ACFD-4C3B-8137-D0DDBCEB1143}"
+        "PackageCode" = "8:{59A0C029-AEDC-4348-BC34-4D6B7D3494B5}"
         "UpgradeCode" = "8:{7EF3B5AC-DBB6-4130-AEA0-9C41919BA920}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -750,7 +744,15 @@
                                                                     "Condition" = "8:"
                                                                     "Transitive" = "11:FALSE"
                                                                     "ValueTypes" = "3:1"
-                                                                    "Value" = "8:\"[TARGETDIR]ImageSplitter.exe\""
+                                                                    "Value" = "8:[TARGETDIR]ImageSplitter.exe"
+                                                                    }
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_26E891E0AF6F4B279ADDABDE6E791E82"
+                                                                    {
+                                                                    "Name" = "8:Path"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:1"
+                                                                    "Value" = "8:[TARGETDIR]"
                                                                     }
                                                                 }
                                                             }
