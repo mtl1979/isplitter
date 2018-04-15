@@ -20,6 +20,7 @@ class WString
 {
 public:
 	WString();
+	WString(const WString &);
 	WString(const wchar_t *);
 	WString(const QString &);
 	WString(const char *); // UTF-8
