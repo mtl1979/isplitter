@@ -9,6 +9,7 @@
 // For Unicode support on Linux or FreeBSD???
 #  include <wchar.h>
 #  include <wctype.h>
+#  include <stdarg.h>
 #  include <stdlib.h>
 #endif
 

@@ -63,7 +63,7 @@ Preview::Preview(QWidget* parent, Qt::WindowFlags fl)
 	pxlPreview->setMinimumSize( QSize( 32, 32 ) );
 	pxlPreview->setFrameShape( QLabel::NoFrame );
 	pxlPreview->setMargin( 0 );
-	pxlPreview->setScaledContents( FALSE );
+	pxlPreview->setScaledContents( false );
 	pxlPreview->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 	pxlPreview->installEventFilter(this);
 	pxlPreview->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -436,6 +436,7 @@ Preview::eventFilter( QObject *o, QEvent *e )
 		case QEvent::MouseButtonRelease:
 			mouseReleaseEvent((QMouseEvent *) e);
 			return true;
+		default: ;; /* Pass through */
 		}
 	}
 	return QWidget::eventFilter(o, e);

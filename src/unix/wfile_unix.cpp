@@ -1,11 +1,11 @@
-#include "wfile.h"
-#include "wstring.h"
-
 #include <unistd.h>
 #include <fcntl.h>
 #include <limits.h>
 
 #include <QByteArray>
+
+#include "wfile.h"
+#include "wstring.h"
 
 WFile::WFile()
 {

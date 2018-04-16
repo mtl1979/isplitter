@@ -34,34 +34,34 @@ Päiväys: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="425"/>
-        <location filename="mainwindowimpl.cpp" line="437"/>
+        <location filename="mainwindowimpl.cpp" line="426"/>
+        <location filename="mainwindowimpl.cpp" line="438"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Kuvat (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="426"/>
+        <location filename="mainwindowimpl.cpp" line="427"/>
         <source>Icons (*.ico)</source>
         <translation>Kuvakkeet (*.ico)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="437"/>
+        <location filename="mainwindowimpl.cpp" line="438"/>
         <source>Save image...</source>
         <translation>Tallenna kuva...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="702"/>
-        <location filename="mainwindowimpl.cpp" line="739"/>
+        <location filename="mainwindowimpl.cpp" line="703"/>
+        <location filename="mainwindowimpl.cpp" line="740"/>
         <source>Image Splitter</source>
         <translation>Kuvanpilkkoja</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="619"/>
+        <location filename="mainwindowimpl.cpp" line="620"/>
         <source>Select fill color...</source>
         <translation>Valitse täyttöväri...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="427"/>
+        <location filename="mainwindowimpl.cpp" line="428"/>
         <source>Open image...</source>
         <translation>Avaa kuva...</translation>
     </message>
@@ -340,13 +340,13 @@ Päiväys: %4</translation>
     <message>
         <location filename="previewimpl.cpp" line="46"/>
         <location filename="previewimpl.cpp" line="99"/>
-        <location filename="previewimpl.cpp" line="553"/>
+        <location filename="previewimpl.cpp" line="554"/>
         <source>Preview</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
         <location filename="previewimpl.cpp" line="56"/>
-        <location filename="previewimpl.cpp" line="530"/>
+        <location filename="previewimpl.cpp" line="531"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
@@ -375,7 +375,7 @@ Päiväys: %4</translation>
         <translation type="obsolete">%1 x %2</translation>
     </message>
     <message>
-        <location filename="previewimpl.cpp" line="530"/>
+        <location filename="previewimpl.cpp" line="531"/>
         <source>Unable to save output!</source>
         <translation>Ei voitu tallentaa kuvaa!</translation>
     </message>

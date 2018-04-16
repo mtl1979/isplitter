@@ -221,6 +221,7 @@ ImageSplitter::eventFilter( QObject *o, QEvent *e )
 		case QEvent::Drop:
 			dropEvent((QDropEvent *) e);
 			return true;
+		default: ;; /* Pass through */
 		}
 	}
 	return QMainWindow::eventFilter(o, e);
