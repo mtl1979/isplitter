@@ -15,6 +15,10 @@ public:
 		return fFile;
 	}
 
+	QMenu * Edit() const {
+		return fEdit;
+	}
+
 	QMenu * Settings() const {
 		return fSettings;
 	}
@@ -31,6 +35,10 @@ public:
 		return fSave;
 	}
 
+	QAction * Paste() const {
+		return fPaste;
+	}
+
 	QAction * AutoPreview() const {
 		return fAutoPreview;
 	}
@@ -39,17 +47,27 @@ public:
 		return fAutoCrop;
 	}
 
+
+protected slots:
+	void editAboutToShow();
+
 private:
 
 	/* File menu */
 	QMenu * fFile;
+	/* Edit menu */
+	QMenu * fEdit;
+	/* Settings menu */
 	QMenu * fSettings;
+	/* Tools menu */
 	QMenu * fTools;
 
 	QAction * fClose;
 	QAction * fSave;
+	QAction * fPaste;
 	QAction * fAutoPreview;
 	QAction * fAutoCrop;
+
 };
 
 #endif

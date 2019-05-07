@@ -44,6 +44,8 @@ protected slots:
 	void SetFillColor();
 	void AutoPreview();
 
+	void PasteImage();
+
 	// Tab 1
 	void CollageSizeXminusClicked();
 	void CollageSizeXplusClicked();
@@ -118,6 +120,8 @@ protected:
 	void closeEvent(QCloseEvent *e);
 	bool eventFilter(QObject *o, QEvent *e);
 	void startDrag();
+
+	void AddImage(const QImage &);
 
 	void LoadSettings();
 	void SaveSettings();

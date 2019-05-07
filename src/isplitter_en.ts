@@ -34,34 +34,34 @@ Date: %4</translation>
 <context>
     <name>ImageSplitter</name>
     <message>
-        <location filename="mainwindowimpl.cpp" line="426"/>
-        <location filename="mainwindowimpl.cpp" line="438"/>
+        <location filename="mainwindowimpl.cpp" line="416"/>
+        <location filename="mainwindowimpl.cpp" line="428"/>
         <source>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</source>
         <translation>Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="427"/>
+        <location filename="mainwindowimpl.cpp" line="417"/>
         <source>Icons (*.ico)</source>
         <translation>Icons (*.ico)</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="438"/>
+        <location filename="mainwindowimpl.cpp" line="428"/>
         <source>Save image...</source>
         <translation>Save image...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="703"/>
-        <location filename="mainwindowimpl.cpp" line="740"/>
+        <location filename="mainwindowimpl.cpp" line="717"/>
+        <location filename="mainwindowimpl.cpp" line="754"/>
         <source>Image Splitter</source>
         <translation>Image Splitter</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="620"/>
+        <location filename="mainwindowimpl.cpp" line="610"/>
         <source>Select fill color...</source>
         <translation>Select fill color...</translation>
     </message>
     <message>
-        <location filename="mainwindowimpl.cpp" line="428"/>
+        <location filename="mainwindowimpl.cpp" line="418"/>
         <source>Open image...</source>
         <translation>Open image...</translation>
     </message>
@@ -273,7 +273,7 @@ Date: %4</translation>
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="menubar.cpp" line="11"/>
+        <location filename="menubar.cpp" line="13"/>
         <source>&amp;Open</source>
         <translation>&amp;Open</translation>
     </message>
@@ -282,12 +282,12 @@ Date: %4</translation>
         <translation type="obsolete">CTRL+O</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="12"/>
+        <location filename="menubar.cpp" line="14"/>
         <source>&amp;Close</source>
         <translation>&amp;Close</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="17"/>
+        <location filename="menubar.cpp" line="19"/>
         <source>&amp;Save</source>
         <translation>&amp;Save</translation>
     </message>
@@ -296,7 +296,7 @@ Date: %4</translation>
         <translation type="obsolete">CTRL+S</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="22"/>
+        <location filename="menubar.cpp" line="24"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
@@ -305,34 +305,44 @@ Date: %4</translation>
         <translation type="obsolete">ALT+X</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="26"/>
+        <location filename="menubar.cpp" line="35"/>
         <source>Automatic preview</source>
         <translation>Automatic preview</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="33"/>
+        <location filename="menubar.cpp" line="43"/>
         <source>Automatic crop</source>
         <translation>Automatic crop</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="9"/>
+        <location filename="menubar.cpp" line="11"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="24"/>
+        <location filename="menubar.cpp" line="33"/>
         <source>&amp;Settings</source>
         <translation>&amp;Settings</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="29"/>
+        <location filename="menubar.cpp" line="38"/>
         <source>Set fill color</source>
         <translation>Set fill color</translation>
     </message>
     <message>
-        <location filename="menubar.cpp" line="31"/>
+        <location filename="menubar.cpp" line="41"/>
         <source>&amp;Tools</source>
         <translation>&amp;Tools</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="27"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Edit</translation>
+    </message>
+    <message>
+        <location filename="menubar.cpp" line="30"/>
+        <source>&amp;Paste</source>
+        <translation>&amp;Paste</translation>
     </message>
 </context>
 <context>

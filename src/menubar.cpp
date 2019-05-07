@@ -3,6 +3,8 @@
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmenu.h>
 
+#include <qclipboard.h>
+
 MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 {
 	/* create file menu */
@@ -21,6 +23,13 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 
 	fFile->addAction(tr("E&xit"), parent, SLOT(Exit()), QKeySequence::Quit);
 
+	/* create edit menu */
+	fEdit = addMenu(tr("&Edit"));
+	connect(fEdit, SIGNAL(aboutToShow()), this, SLOT(editAboutToShow()));
+
+	fPaste = fEdit->addAction(tr("&Paste"), parent, SLOT(PasteImage()), Qt::CTRL + Qt::Key_V);
+
+	/* create settings menu */
 	fSettings = addMenu(tr("&Settings"));
 
 	fAutoPreview = fSettings->addAction(tr("Automatic preview"), parent, SLOT(AutoPreview()));
@@ -28,6 +37,7 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 
 	fSettings->addAction(tr("Set fill color"), parent, SLOT(SetFillColor()));
 
+	/* create tools menu */
 	fTools = addMenu(tr("&Tools"));
 
 	fAutoCrop = fTools->addAction(tr("Automatic crop"), parent, SLOT(AutoCrop()));
@@ -36,5 +46,16 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent)
 
 MenuBar::~MenuBar()
 {
+}
+
+void MenuBar::editAboutToShow()
+{
+	QClipboard *clipboard = QGuiApplication::clipboard();
+	QImage img = clipboard->image();
+	if (img.isNull()) {
+		fPaste->setDisabled(true);
+	} else {
+		fPaste->setEnabled(true);
+	}
 }
 

@@ -10,6 +10,7 @@
 #include <QtWidgets/qtabwidget.h>
 
 #include <qbytearray.h>
+#include <qclipboard.h>
 #include <qdrag.h>
 #include <qevent.h>
 #include <qfile.h>
@@ -265,18 +266,7 @@ ImageSplitter::dropEvent(QDropEvent* event)
 	}
 	else if (event->mimeData()->hasImage())
 	{
-		ClearImage();
-		image = new QImage(qvariant_cast<QImage>(event->mimeData()->imageData()));
-		fFilename = QString::null;
-
-		int w, h;
-		scaleImage(image, w, h);
-		QImage nimg = image->scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-		ui->pxlCollage->setPixmap(QPixmap::fromImage(nimg));
-
-		menuBar->Close()->setEnabled(true);
-		menuBar->Save()->setEnabled(true);
-		menuBar->AutoCrop()->setEnabled(false);
+		AddImage(qvariant_cast<QImage>(event->mimeData()->imageData()));
 	}
 }
 
@@ -629,6 +619,30 @@ void
 ImageSplitter::AutoPreview()
 {
 	fPreview->PreviewButton->setEnabled(!IsAutoPreview());
+}
+
+void ImageSplitter::PasteImage()
+{
+	QClipboard *clipboard = QGuiApplication::clipboard();
+	QImage img = clipboard->image();
+
+	AddImage(img);
+}
+
+void ImageSplitter::AddImage(const QImage &img)
+{
+	ClearImage();
+	image = new QImage(img);
+	fFilename = QString::null;
+
+	int w, h;
+	scaleImage(image, w, h);
+	QImage nimg = image->scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	ui->pxlCollage->setPixmap(QPixmap::fromImage(nimg));
+
+	menuBar->Close()->setEnabled(true);
+	menuBar->Save()->setEnabled(true);
+	menuBar->AutoCrop()->setEnabled(false);
 }
 
 bool
