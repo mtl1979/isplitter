@@ -8,6 +8,8 @@
 #include <QtWidgets/qfiledialog.h>
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qtabwidget.h>
+#include <QDoubleValidator>
+#include <QIntValidator>
 
 #include <qbytearray.h>
 #include <qclipboard.h>

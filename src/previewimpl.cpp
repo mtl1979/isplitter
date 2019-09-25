@@ -7,6 +7,7 @@
 #include <QtWidgets/qlayout.h>
 #include <QtWidgets/qmessagebox.h>
 #include <QtWidgets/qgridlayout.h>
+#include <QAction>
 
 #include <qclipboard.h>
 #include <qdrag.h>
