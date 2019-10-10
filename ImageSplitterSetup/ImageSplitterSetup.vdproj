@@ -99,6 +99,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DD84A240A1F947BC8DBDF80E753A7490"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E410FB6C7D914F74BAAC86EE364744ED"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F30A490E773A4D038BAACE4BB748EEFB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -442,6 +454,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD84A240A1F947BC8DBDF80E753A7490"
+            {
+            "SourcePath" = "8:C:\\qt5\\qtbase\\plugins\\styles\\qwindowsvistastyle.dll"
+            "TargetName" = "8:qwindowsvistastyle.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_4E86E2085A424A01B3EB98DE6EE9B925"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E410FB6C7D914F74BAAC86EE364744ED"
+            {
+            "SourcePath" = "8:C:\\qt5\\qtbase\\plugins\\iconengines\\qsvgicon.dll"
+            "TargetName" = "8:qsvgicon.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_A64CCD6EB63D4D6A871051FCEED089B9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F30A490E773A4D038BAACE4BB748EEFB"
             {
             "SourcePath" = "8:C:\\qt5\\qtbase\\lib\\Qt5Gui.dll"
@@ -529,6 +581,17 @@
                                 {
                                 }
                             }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_4E86E2085A424A01B3EB98DE6EE9B925"
+                            {
+                            "Name" = "8:styles"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_FA6592CF4DF1478D9CC3AFF3A3C3D56C"
+                                "Folders"
+                                {
+                                }
+                            }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_9CF8095E8CD34D8D821BC4E42A46ED29"
                             {
                             "Name" = "8:platforms"
@@ -536,6 +599,17 @@
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_69C31036767D4A27B2FD680047E8D8D4"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_A64CCD6EB63D4D6A871051FCEED089B9"
+                            {
+                            "Name" = "8:iconengines"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_8C2C62EED03D4B14BB52B5138DAFBB02"
                                 "Folders"
                                 {
                                 }
@@ -583,7 +657,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Image Splitter"
         "ProductCode" = "8:{606329C3-8038-43DA-A8AC-BBA31ED9169B}"
-        "PackageCode" = "8:{59A0C029-AEDC-4348-BC34-4D6B7D3494B5}"
+        "PackageCode" = "8:{E14C1243-C3F8-4C70-86A9-0CDE212E1335}"
         "UpgradeCode" = "8:{7EF3B5AC-DBB6-4130-AEA0-9C41919BA920}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
