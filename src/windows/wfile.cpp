@@ -30,5 +30,5 @@ WFile::TranslateMode(int mode)
 WString
 WFile::Filename() const
 {
-	return file == -1 ? L"" : filename;
+	return file == -1 ? WString(L"") : filename;
 }

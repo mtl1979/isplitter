@@ -29,7 +29,7 @@
 #include "util.h"
 
 #ifdef _DEBUG
-#include <wstring.h>
+#include "wstring.h"
 #endif
 
 bool ColorsEqual(const QColor &c1, const QColor &c2, int noise)
@@ -317,7 +317,7 @@ ImageSplitter::closeEvent(QCloseEvent *e)
 void
 ImageSplitter::startDrag()
 {
-	if (fFilename != QString::null)
+	if (!fFilename.isEmpty())
 	{
 		QList<QUrl> list;
 		QUrl url = QUrl::fromLocalFile(fFilename);
@@ -334,8 +334,8 @@ ImageSplitter::startDrag()
 void
 ImageSplitter::LoadSettings()
 {
-	QString filename = QString::null;
-	lastdir = QString::null;
+	QString filename;
+	lastdir.clear();
 	QFile qf("isplitter.ini");
 	if (qf.open(QIODevice::ReadOnly))
 	{
@@ -415,7 +415,7 @@ ImageSplitter::Load()
 	WString wlastdir(lastdir);
 #endif
 	QStringList filters;
-	filters << tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)");
+	filters << tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff;*.webp)");
 	filters << tr("Icons (*.ico)");
 	QString filename = QFileDialog::getOpenFileName(this, tr("Open image..."), lastdir, filters.join(";;"));
 	if (!filename.isEmpty())
@@ -427,7 +427,7 @@ ImageSplitter::Load()
 void
 ImageSplitter::Save()
 {
-	QString filename = QFileDialog::getSaveFileName(this, tr("Save image..."), lastdir, tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff)"));
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save image..."), lastdir, tr("Images (*.png;*.bmp;*.xbm;*.xpm;*.pbm;*.pgm;*.ppm;*.jpg;*.jpeg;*.mng;*.gif;*.tiff;*.webp)"));
 	if (!filename.isEmpty())
 	{
 		Save(filename);
@@ -635,7 +635,7 @@ void ImageSplitter::AddImage(const QImage &img)
 {
 	ClearImage();
 	image = new QImage(img);
-	fFilename = QString::null;
+	fFilename.clear();
 
 	int w, h;
 	scaleImage(image, w, h);

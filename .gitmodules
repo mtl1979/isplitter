@@ -1,5 +1,0 @@
-[submodule "zlib"]
-	path = zlib
-	url = https://github.com/mtl1979/zlib.git
-	branch = unizone
-	update = rebase

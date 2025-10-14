@@ -3,7 +3,6 @@
 
 #include <qbytearray.h>
 #include <qfile.h>
-#include <qregexp.h>
 #include <qstring.h>
 #include <qtranslator.h>
 
@@ -91,7 +90,7 @@ main( int argc, char** argv )
 	{
 		ld.cdUp();
 		// If there is no "translations" sub-directory, check the directory containing the executable
-		if (ld.exists("isplitter_en.qm"))
+		if (ld.exists("imagesplitter_en.qm"))
 		{
 			ldir = gAppDir;
 		}
@@ -99,9 +98,16 @@ main( int argc, char** argv )
 		{
 			// ... then try its parent directory, for example if we are running from Visual Studio
 			ld.cdUp();
-			if (ld.exists("isplitter_en.qm"))
+			if (ld.exists("imagesplitter_en.qm"))
 			{
 				ldir = QDir::toNativeSeparators(ld.absolutePath());
+			} else if (ld.exists("translations"))
+			{
+				ld.cd("translations");
+				if (ld.exists("imagesplitter_en.qm"))
+				{
+					ldir = QDir::toNativeSeparators(ld.absolutePath());
+				}
 			}
 		}
 	}
@@ -109,7 +115,7 @@ main( int argc, char** argv )
 	if (!lang.exists())
 	{
 NoTranslation:
-		lfile = QFileDialog::getOpenFileName(NULL, app.translate("main", "Open translation file..."), ldir, "isplitter_*.qm");
+		lfile = QFileDialog::getOpenFileName(NULL, app.translate("main", "Open translation file..."), ldir, "imagesplitter_*.qm");
 		// Save selected language's translator filename
 		if (!lfile.isEmpty() && lang.open(QIODevice::WriteOnly) )
 		{
@@ -136,20 +142,20 @@ NoTranslation:
 
 	// Qt's own translator file
 	QFileInfo qfi(lfile);
-	QString qt_lang = QString::null;
+	QString qt_lang;
 	QString qtdir = QString::fromLocal8Bit(qgetenv("QTDIR").constData());
-	langfile = qfi.fileName().replace(QRegExp("isplitter"), "qt");
+	langfile = qfi.fileName().replace("isplitter", "qt");
 
-	if (qtdir != QString::null)
+	if (!qtdir.isEmpty())
 	{
 		QString tr_dir = MakePath(qtdir, "translations");
 		qt_lang = MakePath(tr_dir, langfile);
 		if (!QFile::exists(qt_lang))
-			qt_lang = QString::null;
+			qt_lang.clear();
 	}
 
 	// Try using same directory as Image Splitter's translations
-	if (qt_lang == QString::null)
+	if (qt_lang.isEmpty())
 	{
 		qt_lang = MakePath(qfi.absolutePath(), langfile);
 	}

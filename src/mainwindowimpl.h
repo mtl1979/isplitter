@@ -2,6 +2,7 @@
 #define IMAGESPLITTER_H
 
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/qwidget.h>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>
@@ -20,7 +21,7 @@ class ImageSplitter : public QMainWindow
 {
 	Q_OBJECT
 public:
-	ImageSplitter( QWidget* parent = 0, Qt::WindowFlags fl = 0);
+	ImageSplitter( QWidget* parent = 0, Qt::WindowFlags fl = Qt::WindowType::Widget);
 	~ImageSplitter();
 	QImage *getImage() {return image;}
 	QString filename() {return fFilename;}

@@ -9,7 +9,23 @@ before saving.
 
 ## Building
 
-Image Splitter should build without changes under Windows with Microsoft
-Visual C++ 2010-2015 and Qt 5.0-5.6. It should also build with minimal
-changes under most Linux distributions with Qt5 development packages
-installed.
+### Windows
+
+Image Splitter should build without changes under Windows 11 with Microsoft
+Visual C++ 2019-2022, vcpkg, CMake 3.16 or later, and Qt 6.10 or later. If CMake can't find zlib headers, rename
+`CMakeUserPresets.json.sample` to `CMakeMakeUserPresets.json` and update `VCPKG_ROOT` in
+the file to reflect installation path of standalone version of vcpkg. vcpkg can be
+downloaded from [GitHub](https://github.com/microsoft/vcpkg/releases). Pass the vcpkg
+toolchain file to CMake when configuring the build.
+
+For example:
+```
+md build
+cd build
+cmake -D CMAKE_TOOLCHAIN_FILE=c:/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+cmake --build . --config Release
+```
+
+### Linux
+
+It should also build with minimal changes under most Linux distributions with Qt6 development packages installed.

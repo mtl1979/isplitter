@@ -20,7 +20,7 @@ class Preview : public QWidget
 {
 	Q_OBJECT
 public:
-	Preview(QWidget* parent = 0, Qt::WindowFlags fl = 0);
+	Preview(QWidget* parent = 0, Qt::WindowFlags fl = Qt::WindowType::Widget);
 	~Preview();
 	void setOwner(QWidget * owner);
 

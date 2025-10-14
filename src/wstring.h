@@ -13,7 +13,7 @@
 #  include <stdlib.h>
 #endif
 
-#include <platform.h>
+#include "platform.h"
 
 class QString;
 

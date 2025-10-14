@@ -8,6 +8,7 @@
 #include <QtWidgets/qmessagebox.h>
 #include <QtWidgets/qgridlayout.h>
 #include <QAction>
+#include <QTransform>
 
 #include <qclipboard.h>
 #include <qdrag.h>
@@ -16,7 +17,6 @@
 #include <qfileinfo.h>
 #include <qimage.h>
 #include <qimagereader.h>
-#include <qmatrix.h>
 #include <qmimedata.h>
 #include <qpainter.h>
 #include <qpixmap.h>
@@ -51,7 +51,6 @@ Preview::Preview(QWidget* parent, Qt::WindowFlags fl)
 	GridLayout->setGeometry( QRect( 0, 0, 596, 480 ) );
 
 	GridLayout->setSpacing( 0 );
-	GridLayout->setMargin( 0 );
 
 	SaveButton = new QPushButton( this );
 	SaveButton->setText( tr( "Save" ) );
@@ -560,7 +559,7 @@ Preview::resizeEvent(QResizeEvent *e)
 {
 	QSize s = e->size();
 	GridLayout->setGeometry(QRect(0, 0, s.width(), s.height()));
-	if (pxlPreview->pixmap())
+	if (!pxlPreview->pixmap().isNull())
 	{
 		PreviewImage();
 	}
